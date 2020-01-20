@@ -1,2 +1,2 @@
 # ft_printf
-Our vesion of printf()
+Our version of printf()
