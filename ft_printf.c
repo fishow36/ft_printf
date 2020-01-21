@@ -18,33 +18,46 @@ int is_even(const char *format, int i)
         return (0);    
 }
 
-int count_args(const char *format)
+char    *count_args(const char *format, int *amount)
 {
     int i;
-    int amount;
+    int j;
+    char *c;
 
-    i = 0;
-    amount = 0;
-    while (format[i])
+    i = -1;
+    while (format[++i])
+        if (format[i] == '%' && format[i + 1] != '%'
+        && is_even(format, i) == 1 && format[i + 1] != '\0')
+            (*amount)++;
+    c = (char*)malloc(sizeof(char) * (*amount + 1));
+    i = -1;
+    j = 0;
+    while (format[++i])
     {
         if (format[i] == '%' && format[i + 1] != '%'
-        && is_even(format, i) == 1)
-            amount++;
-        i++;
+        && is_even(format, i) == 1 && format[i + 1] != '\0')
+            {
+                c[j] = format[i + 1];
+                j++;
+            }
     }
-    return (amount);
+    c[j] = '\0';
+    
+    return (c);
 }
 
-int ft_printf(const char *format, ...)
+int     ft_printf(const char *format, ...)
 {
     va_list ap;
     int i;
-    char *str;
-    char *str2;
+    char *conversions;
     int expected_amount;
 
-    va_start(ap, format);
+    expected_amount = 0;
+    conversions = count_args(format, &expected_amount);
+//    va_start(ap, format);
     i = 0;
-    expected_amount = count_args(format);
+    printf("%s\n", conversions);
+    printf("%d\n", expected_amount);
     return(0);
 }
