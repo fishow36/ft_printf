@@ -18,46 +18,83 @@ int is_even(const char *format, int i)
         return (0);    
 }
 
-char    *count_args(const char *format, int *amount)
+int *count_args(const char *format, int *amount)
 {
     int i;
     int j;
-    char *c;
+    int *pos;
 
     i = -1;
     while (format[++i])
         if (format[i] == '%' && format[i + 1] != '%'
         && is_even(format, i) == 1 && format[i + 1] != '\0')
             (*amount)++;
-    c = (char*)malloc(sizeof(char) * (*amount + 1));
+    pos = (int*)malloc(sizeof(int) * (*amount));
     i = -1;
     j = 0;
     while (format[++i])
-    {
         if (format[i] == '%' && format[i + 1] != '%'
         && is_even(format, i) == 1 && format[i + 1] != '\0')
             {
-                c[j] = format[i + 1];
+                pos[j] = i;
                 j++;
             }
-    }
-    c[j] = '\0';
-    
-    return (c);
+    return (pos);
 }
 
-int     ft_printf(const char *format, ...)
+int fill_node(const char *format, int pos, t_lst **node)
+{
+    pos++;
+    pos = find_flags(format, pos, node);
+    pos = find_width(format, pos, node);
+    pos = find_prec(format, pos, node);
+    pos = find_length(format, pos, node);
+    pos = find_type(format, pos, node);
+    return (pos);
+}
+
+t_lst *create_list(const char *format, int *pos, int amount)
+{
+    t_lst *head;
+    t_lst *temp;
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    
+    head = new(pos[0]);
+    i = fill_node(format, pos[0], &head);
+    while (j < amount)
+    {
+        temp = new(pos[j]) ;  
+        i = fill_node(format, pos[j], &temp);
+        if (i == -1)
+            return (NULL);
+        lst_push_front(&head, temp);
+        j++;
+    }
+    lst_reverse(&head);
+    return (head);
+}
+
+int    ft_printf(const char *format, ...)
 {
     va_list ap;
     int i;
-    char *conversions;
-    int expected_amount;
+    int *pos;
+    int amount;
+    t_lst *head;
+    char *flags;
 
-    expected_amount = 0;
-    conversions = count_args(format, &expected_amount);
-//    va_start(ap, format);
-    i = 0;
-    printf("%s\n", conversions);
-    printf("%d\n", expected_amount);
+    amount = 0;
+    pos = count_args(format, &amount);
+    if (amount != 0)
+        head = create_list(format, pos, amount);
+    while (head)
+    {
+        print_node(head);
+        head = head->next;
+    }
     return(0);
 }
