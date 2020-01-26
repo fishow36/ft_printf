@@ -3,8 +3,8 @@
 int main(void)
 {
     char str[5];
-    ft_printf("haha %0.*d %-skk", "meow");
-//    printf(4);
+    ft_printf("stro\n", "meow");
+//    printf("stro\n", "meow");
 //    fill_char(5, (char**)(&str));
     return (0);
 }

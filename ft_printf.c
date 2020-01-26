@@ -90,11 +90,17 @@ int    ft_printf(const char *format, ...)
     amount = 0;
     pos = count_args(format, &amount);
     if (amount != 0)
-        head = create_list(format, pos, amount);
-    while (head)
     {
-        print_node(head);
-        head = head->next;
+        head = create_list(format, pos, amount);
+        while (head)
+        {
+            print_node(head);
+            head = head->next;
+        }
     }
+    else
+    {
+        ft_putstr(format);
+    }  
     return(0);
 }
