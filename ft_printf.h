@@ -18,7 +18,7 @@ typedef	struct	s_lst
     char    *precision;
     char    length[2];
     char    type;
-    char    *before;
+    int     next_pos;
     struct s_lst  *next;
 }				t_lst;
 

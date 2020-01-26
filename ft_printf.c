@@ -50,6 +50,7 @@ int fill_node(const char *format, int pos, t_lst **node)
     pos = find_prec(format, pos, node);
     pos = find_length(format, pos, node);
     pos = find_type(format, pos, node);
+    (*node)->next_pos = pos;
     return (pos);
 }
 
@@ -78,29 +79,61 @@ t_lst *create_list(const char *format, int *pos, int amount)
     return (head);
 }
 
+void print_elem(t_lst *temp, va_list *ap)
+{
+
+}
+
+void    print_from_list(const char *format, t_lst *head, va_list ap)
+{
+    t_lst *temp;
+    int i;
+
+    temp = head;
+    i = 0;
+    
+    while (temp)
+    {
+        while (i < temp->pos)
+        {
+            ft_putchar(format[i]);
+            i++;
+        }
+        print_elem(temp, &ap);
+        i = temp->next_pos;
+        temp = temp->next;
+    }
+    while (format[i])
+    {
+            ft_putchar(format[i]);
+            i++;
+    }
+}
+
 int    ft_printf(const char *format, ...)
 {
     va_list ap;
-    int i;
     int *pos;
     int amount;
     t_lst *head;
-    char *flags;
 
     amount = 0;
+    va_start(ap, format);
     pos = count_args(format, &amount);
     if (amount != 0)
     {
         head = create_list(format, pos, amount);
-        while (head)
+        /*while (head)
         {
             print_node(head);
             head = head->next;
-        }
+        }*/
+        print_from_list(format, head, ap);
     }
     else
     {
         ft_putstr(format);
-    }  
+    } 
+    va_end(ap); 
     return(0);
 }

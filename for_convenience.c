@@ -14,10 +14,5 @@ void print_node(t_lst *node)
     printf("%s", "\n");
     printf("length: %s\n", node->length);
     printf("type: %c\n", node->type);
-    printf("%s", "before: ");
-    if (node->before)
-        printf("%s", node->before);
-    printf("%s", "\n");
-    printf("%s", "\n");
     printf("%s", "\n");
 }
