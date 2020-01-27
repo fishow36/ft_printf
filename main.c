@@ -3,7 +3,7 @@
 int main(void)
 {
     char str[5];
-    ft_printf("haha %d mihi%s puh\n", "meow");
+    ft_printf("123 %s 456%s 789\n", "meow", "her");
 //    printf("stro\n", "meow");
 //    fill_char(5, (char**)(&str));
     return (0);
