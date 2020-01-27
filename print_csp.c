@@ -8,10 +8,17 @@ void    print_char(t_lst *temp, int c, va_list ap)
     char filler;
     char side;
 
-    ch = (char)c;
-    str = (char*)malloc(sizeof(char) * 2);
-    str[0] = ch;
-    str[1] = '\0';
+    if (temp->type == 'c')
+    {
+        ch = (char)c;
+        str = (char*)malloc(sizeof(char) * 2);
+        str[0] = ch;
+        str[1] = '\0';
+    }
+    else
+    {
+        str = ft_itoa(c);
+    }
     filler = ' ';
     if (temp->width)
     {

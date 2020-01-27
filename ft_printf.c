@@ -102,21 +102,21 @@ void print_elem2(t_lst *temp, va_list ap)
 
 void print_elem(t_lst *temp, va_list ap)
 {
-    /*if (temp->type == 'd' || temp->type == 'i')
+    if (temp->type == 'd' || temp->type == 'i')
     {
-        if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
+        /*if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
             print_long(temp, va_arg(ap, long));
         else if (temp->flags[0] == 'l' && temp->flags[1] == 'l')
             print_long_long(temp, va_arg(ap, long long));
         else if (temp->flags[0] == 'h' && temp->flags[1] != 'h')
-            print_short(temp, va_arg(ap, short));
-        else if (temp->flags[0] == 'h' && temp->flags[1] == 'h')
-            print_char_as_int(temp, va_arg(ap, char));
-        else
-            print_int(temp, va_arg(ap, int)); 
+            print_short(temp, va_arg(ap, short));*/
+        if (temp->length[0] == 'h' && temp->length[1] == 'h')
+            print_char(temp, va_arg(ap, int), ap);
+        /*else
+            print_int(temp, va_arg(ap, int));*/ 
     }
         
-    else if (temp->type == 'o' || temp->type == 'u'
+    /*else if (temp->type == 'o' || temp->type == 'u'
     || temp->type == 'x' || temp->type == 'X')
     {
         if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
@@ -176,7 +176,7 @@ int    ft_printf(const char *format, ...)
     {
         head = create_list(format, pos, amount);
         temp = head;
-/*        while (head)
+        /*while (head)
         {
             print_node(head);
             head = head->next;
