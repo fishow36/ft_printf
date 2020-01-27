@@ -81,22 +81,57 @@ t_lst *create_list(const char *format, int *pos, int amount)
     return (head);
 }
 
-void print_elem(t_lst *temp, va_list ap)
+void print_elem2(t_lst *temp, va_list ap)
 {
-    if (temp->type == 'd' || temp->type == 'i')
-        print_int(temp, va_arg(ap, int));
-    else if (temp->type == 'o' || temp->type == 'u'
-    || temp->type == 'x' || temp->type == 'X')
-        print_uns(temp, va_arg(ap, unsigned int));
-    else if (temp->type == 'c')
+    if (temp->type == 'c')
         print_char(temp, va_arg(ap, char));
     else if (temp->type == 's')
         print_str(temp, va_arg(ap, char*));
     else if (temp->type == 'p')
         print_ptr(temp, va_arg(ap, void*));
     else if (temp->type == 'f')
-        print_float(temp, va_arg(ap, float));
+    {
+        if (temp->length[0] == 'L')
+            print_lfloat(temp, va_arg(ap, long double));
+        else
+            print_float(temp, va_arg(ap, double));      
+    }
+    else
+        print_other(temp);
+}
 
+void print_elem(t_lst *temp, va_list ap)
+{
+    if (temp->type == 'd' || temp->type == 'i')
+    {
+        if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
+            print_long(temp, va_arg(ap, long));
+        else if (temp->flags[0] == 'l' && temp->flags[1] == 'l')
+            print_long_long(temp, va_arg(ap, long long));
+        else if (temp->flags[0] == 'h' && temp->flags[1] != 'h')
+            print_short(temp, va_arg(ap, short));
+        else if (temp->flags[0] == 'h' && temp->flags[1] == 'h')
+            print_char_as_int(temp, va_arg(ap, char));
+        else
+            print_int(temp, va_arg(ap, int)); 
+    }
+        
+    else if (temp->type == 'o' || temp->type == 'u'
+    || temp->type == 'x' || temp->type == 'X')
+    {
+        if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
+            print_ulong(temp, va_arg(ap, unsigned long));
+        else if (temp->flags[0] == 'l' && temp->flags[1] == 'l')
+            print_ulong_long(temp, va_arg(ap, unsigned long long));
+        else if (temp->flags[0] == 'h' && temp->flags[1] != 'h')
+            print_ushort(temp, va_arg(ap, unsigned short));
+        else if (temp->flags[0] == 'h' && temp->flags[1] == 'h')
+            print_char_as_int(temp, va_arg(ap, char));
+        else
+            print_uint(temp, va_arg(ap, unsigned int)); 
+    }
+    else
+        print_elem2(temp, ap);
 }
 
 void    print_from_list(const char *format, t_lst *head, va_list ap)
@@ -114,7 +149,7 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
             ft_putchar(format[i]);
             i++;
         }
-        print_elem(temp, ap);
+//        print_elem(temp, ap);
         i = temp->next_pos;
         temp = temp->next;
     }
