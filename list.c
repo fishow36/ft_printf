@@ -40,3 +40,25 @@ void	lst_reverse(t_lst **head)
 	}
 	*head = cur;
 }
+
+void	lst_rec(t_lst **current)
+{
+	if (*current)
+	{
+		lst_rec(&(*current)->next);
+		if ((*current)->width)
+			ft_strdel(&(*current)->width);
+		if ((*current)->precision)
+			ft_strdel(&(*current)->precision);
+		free(*current);
+	}
+}
+
+void	lst_del(t_lst **head)
+{
+	if (head && *head)
+	{
+		lst_rec(head);
+		*head = NULL;
+	}
+}

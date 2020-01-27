@@ -27,6 +27,7 @@ int     ft_printf(const char *format, ...);
 t_lst *new(int pos);
 int		lst_push_front(t_lst **head, t_lst *new);
 void	lst_reverse(t_lst **head);
+void	lst_del(t_lst **head);
 
 int     is_even(const char *format, int i);
 int     *count_args(const char *format, int *amount);
@@ -36,7 +37,10 @@ int     find_prec(const char *format, int pos, t_lst **node);
 int     find_length(const char *format, int pos, t_lst **node);
 int     find_type(const char *format, int pos, t_lst **node);
 
+void    print_char(t_lst *temp, int c, va_list ap);
 //
 void print_node(t_lst *node);
 //
+
+char *align_width(char *str, int size, t_lst *node);
 #endif

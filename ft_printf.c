@@ -84,8 +84,8 @@ t_lst *create_list(const char *format, int *pos, int amount)
 void print_elem2(t_lst *temp, va_list ap)
 {
     if (temp->type == 'c')
-        print_char(temp, va_arg(ap, char));
-    else if (temp->type == 's')
+        print_char(temp, va_arg(ap, int), ap);
+/*    else if (temp->type == 's')
         print_str(temp, va_arg(ap, char*));
     else if (temp->type == 'p')
         print_ptr(temp, va_arg(ap, void*));
@@ -97,12 +97,12 @@ void print_elem2(t_lst *temp, va_list ap)
             print_float(temp, va_arg(ap, double));      
     }
     else
-        print_other(temp);
+        print_other(temp);*/
 }
 
 void print_elem(t_lst *temp, va_list ap)
 {
-    if (temp->type == 'd' || temp->type == 'i')
+    /*if (temp->type == 'd' || temp->type == 'i')
     {
         if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
             print_long(temp, va_arg(ap, long));
@@ -131,7 +131,8 @@ void print_elem(t_lst *temp, va_list ap)
             print_uint(temp, va_arg(ap, unsigned int)); 
     }
     else
-        print_elem2(temp, ap);
+        print_elem2(temp, ap);*/
+    print_elem2(temp, ap);
 }
 
 void    print_from_list(const char *format, t_lst *head, va_list ap)
@@ -149,7 +150,7 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
             ft_putchar(format[i]);
             i++;
         }
-//        print_elem(temp, ap);
+        print_elem(temp, ap);
         i = temp->next_pos;
         temp = temp->next;
     }
@@ -175,17 +176,19 @@ int    ft_printf(const char *format, ...)
     {
         head = create_list(format, pos, amount);
         temp = head;
-        while (head)
+/*        while (head)
         {
             print_node(head);
             head = head->next;
-        }
+        }*/
         print_from_list(format, temp, ap);
     }
     else
     {
         ft_putstr(format);
     } 
-    va_end(ap); 
+    va_end(ap);
+    lst_del(&head);
+    free(pos);
     return(0);
 }
