@@ -1,12 +1,10 @@
 #include "ft_printf.h"
 
-void    print_char(t_lst *temp, int c, va_list ap)
+void    print_char(t_lst *temp, int c, va_list ap, int *w_p)
 {
     char ch;
-    int size;
     char *str;
-    char filler;
-    char side;
+    char *t;
 
     if (temp->type == 'c')
     {
@@ -19,16 +17,28 @@ void    print_char(t_lst *temp, int c, va_list ap)
     {
         str = ft_itoa(c);
     }
-    filler = ' ';
-    if (temp->width)
+    if (w_p[0] != 0)
     {
-        if (temp->width[0] == '*')
-            size = va_arg(ap, int);
-        else
-            size = ft_atoi(temp->width);
-        
-        str = align_width(str, size, temp);
+        t = str;
+        str = align_width(str, w_p[0], temp);
+        ft_strdel(&t);
     }
     ft_putstr(str);
     ft_strdel(&str);
+}
+
+void    print_str(t_lst *temp, char *str, va_list ap, int *w_p)
+{
+
+    if (w_p[1] < ft_strlen(str) && w_p[1] != 0)
+    {
+        str = shorten_str(str, w_p[1]);
+    }
+    if (w_p[0] != 0)
+    {
+        str = align_width(str, w_p[0], temp);
+    }
+    ft_putstr(str);
+    if (temp->width || temp->precision)
+        ft_strdel(&str);
 }

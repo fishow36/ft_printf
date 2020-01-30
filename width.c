@@ -13,13 +13,12 @@ char *align_width(char *str, int size, t_lst *node)
     filler = ' ';
     side = 'r';
     i = 0;
-    if(node->flags[0] == '0')
+    if(node->flags[0] == '0')    filler = ' ';
         filler = '0';
     if (node->flags[2] == '-')
         side = 'l';
     if (side == 'l')
     {
-        while (str[i])
         {
             res[i] = str[i];
             i++;
@@ -46,6 +45,22 @@ char *align_width(char *str, int size, t_lst *node)
         }
     }
     res[i] = '\0';
-    ft_strdel(&str);
+    return (res);
+}
+
+char *shorten_str(char *str, int precision)
+{
+    char *res;
+    int i;
+
+    i = 0;
+    if (!(res = (char*)malloc(sizeof(precision + 1))))
+        return (NULL);
+    res[precision] = '\0';
+    while (i < precision)
+    {
+        res[i] = str[i];
+        i++;
+    }
     return (res);
 }

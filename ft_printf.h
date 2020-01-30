@@ -37,10 +37,12 @@ int     find_prec(const char *format, int pos, t_lst **node);
 int     find_length(const char *format, int pos, t_lst **node);
 int     find_type(const char *format, int pos, t_lst **node);
 
-void    print_char(t_lst *temp, int c, va_list ap);
+void    print_char(t_lst *temp, int c, va_list ap, int *w_p);
+void    print_str(t_lst *temp, char *str, va_list ap, int *w_p);
 //
 void print_node(t_lst *node);
 //
 
 char *align_width(char *str, int size, t_lst *node);
+char *shorten_str(char *str, int precision);
 #endif

@@ -15,4 +15,5 @@ void print_node(t_lst *node)
     printf("length: %s\n", node->length);
     printf("type: %c\n", node->type);
     printf("%s", "\n");
+    printf("next pos: %d\n", node->next_pos);
 }
