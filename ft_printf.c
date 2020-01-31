@@ -105,7 +105,7 @@ void print_elem(t_lst *temp, va_list ap)
     int w_p[2];
 
     w_p[0] = 0; //width
-    w_p[1] = 0; // precision
+    w_p[1] = -1; // precision
     if (temp->width)
     {
         if (temp->width[0] == '*')

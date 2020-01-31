@@ -87,8 +87,14 @@ int find_prec(const char *format, int pos, t_lst **node)
                 len++;
             }
             if (len == 0)
-                return (pos);
-            else if (!((*node)->precision = (char*)malloc(sizeof(char) * (len + 1))))
+            {
+                if (!((*node)->precision = (char*)malloc(sizeof(char) * (2))))
+                    return (-1);
+                (*node)->precision[0] = '0';
+                (*node)->precision[1] = '\0';
+                return(pos);
+            }
+            if (!((*node)->precision = (char*)malloc(sizeof(char) * (len + 1))))
                 return (-1);
             len = 0;
             while (format[temp] >47 && format[temp] < 58)
