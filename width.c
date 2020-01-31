@@ -13,7 +13,7 @@ char *align_width(char *str, int size, t_lst *node)
     filler = ' ';
     side = 'r';
     i = 0;
-    if(node->flags[0] == '0')    filler = ' ';
+    if(node->flags[0] == '0')
         filler = '0';
     if (node->flags[2] == '-')
         side = 'l';
