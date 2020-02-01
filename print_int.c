@@ -5,10 +5,9 @@ void    print_int(t_lst *temp, long long int nbr, int *w_p)
 	char *str;
 	char flag[2];
 
-	str = ft_itoa(nbr);
+	str = ft_itoa_long(nbr);
 	if (w_p[1] != -1)
 	{
-		str = ft_itoa(nbr);
 		if ((int)ft_strlen(str) < w_p[1])
 		{
 			flag[0] = temp->flags[0];
@@ -38,10 +37,20 @@ void    print_int(t_lst *temp, long long int nbr, int *w_p)
 		}
 		else
 		{
-			if (temp->flags[2] == '-' && temp->flags[3] == ' ')
+			if (temp->flags[2] == '-')
 			{
-				if (nbr >= 0)
-					str = add_plus(str, ' ');
+				temp->flags[0] = '?';
+				if (temp->flags[1] == '+')
+				{
+					if (nbr >= 0)
+						str = add_plus(str, '+');	
+				}
+				else if (temp->flags[3] == ' ')
+				{
+					if (nbr >= 0)
+						str = add_plus(str, ' ');
+				}
+				
 				str = int_width(str, w_p[0], temp);
 			}
 			else if (temp->flags[2] != '-')

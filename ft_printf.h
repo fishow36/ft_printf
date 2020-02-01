@@ -24,7 +24,7 @@ typedef	struct	s_lst
 
 int     ft_printf(const char *format, ...);
 
-t_lst *new(int pos);
+t_lst   *new(int pos);
 int		lst_push_front(t_lst **head, t_lst *new);
 void	lst_reverse(t_lst **head);
 void	lst_del(t_lst **head);
@@ -51,4 +51,6 @@ char    *align_width(char *str, int size, t_lst *node);
 char    *shorten_str(char *str, int precision);
 char    *int_width(char *str, int size, t_lst *node);
 char    *add_plus(char *str, char to_add);
+
+char	*ft_itoa_long(long long n);
 #endif
