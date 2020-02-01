@@ -68,7 +68,6 @@ void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p)
 				}
 			}
 		}
-		
 	}
 	else
 	{
@@ -77,7 +76,6 @@ void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p)
 		else if (temp->flags[3] == ' ' && nbr >= 0)
 			str = add_plus(str, ' ');
 	}
-	
 	ft_putstr(str);
 	ft_strdel(&str);
 }
