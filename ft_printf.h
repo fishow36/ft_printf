@@ -39,10 +39,13 @@ int     find_type(const char *format, int pos, t_lst **node);
 
 void    print_char(t_lst *temp, int c, va_list ap, int *w_p);
 void    print_str(t_lst *temp, char *str, va_list ap, int *w_p);
+void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p); ;
 //
 void print_node(t_lst *node);
 //
 
-char *align_width(char *str, int size, t_lst *node);
-char *shorten_str(char *str, int precision);
+char    *align_width(char *str, int size, t_lst *node);
+char    *shorten_str(char *str, int precision);
+char    *int_width(char *str, int size, t_lst *node);
+char    *add_plus(char *str, char to_add);
 #endif

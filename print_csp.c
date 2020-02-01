@@ -36,11 +36,11 @@ void    print_str(t_lst *temp, char *str, va_list ap, int *w_p)
         str = shorten_str(str, w_p[1]);
         t = str;
     }
-    if (w_p[0] != 0)  
+    if (w_p[0] != 0 && w_p[0] > ft_strlen(str))  
         str = align_width(str, w_p[0], temp);
     ft_putstr(str);
-    if (temp->width)
+    if (temp->width && w_p[0] > ft_strlen(str))
         ft_strdel(&str);
-    if (temp->precision)
+    if (temp->precision && w_p[1] < ft_strlen(str))
         ft_strdel(&t);
 }

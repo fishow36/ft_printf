@@ -130,8 +130,8 @@ void print_elem(t_lst *temp, va_list ap)
             print_short(temp, va_arg(ap, short));*/
 //        if (temp->length[0] == 'h' && temp->length[1] == 'h')
 //            print_char(temp, va_arg(ap, int), ap);
-        /*else
-            print_int(temp, va_arg(ap, int));*/ 
+        /*else*/
+            print_int(temp, va_arg(ap, int), ap, w_p); 
     }
         
     else if (temp->type == 'o' || temp->type == 'u'
