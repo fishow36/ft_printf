@@ -1,17 +1,16 @@
 #include "ft_printf.h"
 
-char	*ft_itoa_base(long long value, int base);
+char	*ft_itoa_base(unsigned long long value, int base);
 
 int main(void)
 {
-    char str[5];
-//    ft_printf("% +07.10i\n", -1234);
-    printf("%X\n", -155);
+//    char str[5];
+    ft_printf("%ld\n", 2147483747);
+//    printf("%ld\n", 2147483747);
 //    ft_printf("%.2s\n", "serebro");
 //    printf("%.2s\n", "serebro");
 //    fill_char(5, (char**)(&str));
 
 
-    printf("%s\n", ft_itoa_base(0, 16));
     return (0);
 }

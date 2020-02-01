@@ -84,9 +84,9 @@ t_lst *create_list(const char *format, int *pos, int amount)
 void print_elem2(t_lst *temp, va_list ap, int *w_p)
 {
     if (temp->type == 'c')
-        print_char(temp, va_arg(ap, int), ap, w_p);
+        print_char(temp, va_arg(ap, int), w_p);
     else if (temp->type == 's')
-        print_str(temp, va_arg(ap, char*), ap, w_p);
+        print_str(temp, va_arg(ap, char*), w_p);
 /*    else if (temp->type == 'p')
         print_ptr(temp, va_arg(ap, void*));
     else if (temp->type == 'f')
@@ -122,28 +122,32 @@ void print_elem(t_lst *temp, va_list ap)
     }
     if (temp->type == 'd' || temp->type == 'i')
     {
-        /*if (temp->flags[0] == 'l' && temp->flags[1] != 'l')
-            print_long(temp, va_arg(ap, long));
-        else if (temp->flags[0] == 'l' && temp->flags[1] == 'l')
-            print_long_long(temp, va_arg(ap, long long));
-        else if (temp->flags[0] == 'h' && temp->flags[1] != 'h')
-            print_short(temp, va_arg(ap, short));*/
+        if (temp->length[0] == 'l' && temp->length[1] != 'l')
+        {
+            printf("%s\n", "long");
+            print_long(temp, va_arg(ap, long), w_p);
+        }
+            
+        else if (temp->length[0] == 'l' && temp->length[1] == 'l')
+            print_long_long(temp, va_arg(ap, long long), w_p);
+        else if (temp->length[0] == 'h' && temp->length[1] != 'h')
+            print_short(temp, va_arg(ap, int), w_p);
 //        if (temp->length[0] == 'h' && temp->length[1] == 'h')
 //            print_char(temp, va_arg(ap, int), ap);
-        /*else*/
-            print_int(temp, va_arg(ap, int), ap, w_p); 
+        else
+            print_int(temp, (long long)va_arg(ap, int), w_p); 
     }
         
     else if (temp->type == 'o' || temp->type == 'u'
     || temp->type == 'x' || temp->type == 'X')
     {
-        /* (temp->flags[0] == 'l' && temp->flags[1] != 'l')
+        /* (temp->length[0] == 'l' && temp->length[1] != 'l')
             print_ulong(temp, va_arg(ap, unsigned long));
-        else if (temp->flags[0] == 'l' && temp->flags[1] == 'l')
+        else if (temp->length[0] == 'l' && temp->length[1] == 'l')
             print_ulong_long(temp, va_arg(ap, unsigned long long));
-        else if (temp->flags[0] == 'h' && temp->flags[1] != 'h')
+        else if (temp->length[0] == 'h' && temp->length[1] != 'h')
             print_ushort(temp, va_arg(ap, unsigned short));*/
-//        if (temp->flags[0] == 'h' && temp->flags[1] == 'h')
+//        if (temp->length[0] == 'h' && temp->length[1] == 'h')
 //            print_char(temp, va_arg(ap, int), ap);
         /*else
             print_uint(temp, va_arg(ap, unsigned int));*/ 

@@ -32,7 +32,7 @@ char *align_width(char *str, int size, t_lst *node)
     }
     else
     {
-        while (i < size - ft_strlen(str))
+        while (i < size - (int)ft_strlen(str))
         {
             res[i] = filler;
             i++;

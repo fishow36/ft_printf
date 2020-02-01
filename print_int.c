@@ -1,17 +1,15 @@
 #include "ft_printf.h"
 
-void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p)
+void    print_int(t_lst *temp, long long int nbr, int *w_p)
 {
 	char *str;
-	int i;
-	char *t;
 	char flag[2];
 
 	str = ft_itoa(nbr);
 	if (w_p[1] != -1)
 	{
 		str = ft_itoa(nbr);
-		if (ft_strlen(str) < w_p[1])
+		if ((int)ft_strlen(str) < w_p[1])
 		{
 			flag[0] = temp->flags[0];
 			flag[1] = temp->flags[2];
@@ -29,7 +27,7 @@ void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p)
 		else if (temp->flags[3] == ' ' && nbr >= 0)
 			str = add_plus(str, ' ');
 	}	
-	if (w_p[0] != 0 && w_p[0] > ft_strlen(str))
+	if (w_p[0] != 0 && w_p[0] > (int)ft_strlen(str))
 	{
 		if (w_p[1] != -1)
 		{
@@ -78,4 +76,19 @@ void    print_int(t_lst *temp, int nbr, va_list ap, int *w_p)
 	}
 	ft_putstr(str);
 	ft_strdel(&str);
+}
+
+void	print_long(t_lst *temp, long nbr, int *w_p)
+{
+	print_int(temp, (long long)nbr, w_p);
+}
+
+void	print_long_long(t_lst *temp, long long nbr, int *w_p)
+{
+	print_int(temp, nbr, w_p);
+}
+
+void	print_short(t_lst *temp, int nbr, int *w_p)
+{
+	print_int(temp, (long long)nbr, w_p);
 }
