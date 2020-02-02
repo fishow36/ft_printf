@@ -44,7 +44,9 @@ void print_elem(t_lst *temp, va_list ap)
         if (temp->length[0] == 'l' && temp->length[1] != 'l')
             print_long(temp, va_arg(ap, long), w_p);            
         else if (temp->length[0] == 'l' && temp->length[1] == 'l')
+        {
             print_long_long(temp, va_arg(ap, long long), w_p);
+        }     
         else if (temp->length[0] == 'h' && temp->length[1] != 'h')
             print_short(temp, va_arg(ap, int), w_p);
         else if (temp->length[0] == 'h' && temp->length[1] == 'h')

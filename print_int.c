@@ -101,7 +101,7 @@ void	print_long(t_lst *temp, long nbr, int *w_p)
 
 void	print_long_long(t_lst *temp, long long nbr, int *w_p)
 {
-	print_int(temp, nbr, w_p);
+	print_int(temp, (long long)nbr, w_p);
 }
 
 void	print_short(t_lst *temp, int nbr, int *w_p)

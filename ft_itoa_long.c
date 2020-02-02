@@ -1,56 +1,59 @@
 #include "ft_printf.h"
 
-static	unsigned	razr(long long *n, int *flag, int *i)
+static int		nbr_len(long long n)
 {
-	unsigned	cp;
-	unsigned	num;
+	int len;
 
-	num = *n < 0 ? (unsigned)(-*n) : *n;
-	*flag = *n < 0 ? 1 : 0;
-	cp = num;
-	if (cp == 0)
-		(*i)++;
+	len = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		n = n * -1;
+		len++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		len++;
+	}
+	return (len);
+}
+
+static char		*check_excep(long long n)
+{
+	char *result;
+
+	if (n == 0)
+		result = ft_strdup("0");
 	else
+		result = (ft_strdup("-9223372036854775808"));
+	return (result);
+}
+
+char			*ft_itoa_long(long long n)
+{
+	char	*result;
+	int		len;
+	int		sign;
+
+	sign = 1;
+	len = nbr_len(n);
+	if (n == 0 || n == -9223372036854775808)
+		return (check_excep(n));
+	if (n < 0)
 	{
-		while (cp)
-		{
-			(*i)++;
-			cp /= 10;
-		}
+		n = n * -1;
+		sign = -1;
 	}
-	*i = *flag ? (*i + 1) : *i;
-	return (num);
-}
-
-static	int			ft_pow(int i)
-{
-	int	res;
-
-	res = 1;
-	while (i--)
-		res *= 10;
-	return (res);
-}
-
-char				*ft_itoa_long(long long n)
-{
-	char		*res;
-	int			i;
-	int			sign;
-	unsigned	num;
-
-	i = 0;
-	num = razr(&n, &sign, &i);
-	res = (char *)malloc(sizeof(char) * (i + 1));
-	if (!res)
+	if (!(result = ft_strnew(len)))
 		return (NULL);
-	if (sign)
-		res[0] = '-';
-	while (sign++ != i)
+	if (sign == -1)
+		result[0] = '-';
+	while (n > 0)
 	{
-		res[sign - 1] = (num / ft_pow(i - sign)) + '0';
-		num %= ft_pow(i - sign);
+		result[--len] = (char)(n % 10 + '0');
+		n = n / 10;
 	}
-	res[--sign] = '\0';
-	return (res);
+	return (result);
 }
