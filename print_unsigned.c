@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:10:49 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/02 18:10:50 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/02 18:14:43 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
     if (w_p[0] == 0 && w_p[1] == -1 && temp->flags[4] == '#')
         str = add_zero(str,temp->type, w_p[1]);
     ft_putstr(str);
+    ft_strdel(&str);
 }
 
 void	print_ulong(t_lst *temp, unsigned long nbr, int *w_p)
