@@ -1,86 +1,5 @@
 #include "ft_printf.h"
 
-int is_even(const char *format, int i)
-{
-    int amount;
-
-    amount = 0;
-    i--;
-    while (format[i] && format[i] == '%')
-    {
-        if (format[i] == '%')
-            amount++;
-        i--;
-    }
-    if (amount % 2 == 0)
-        return (1);
-    else
-        return (0);    
-}
-
-int *count_args(const char *format, int *amount)
-{
-    int i;
-    int j;
-    int *pos;
-
-    i = -1;
-    while (format[++i])
-        if (format[i] == '%' && format[i + 1] != '%'
-        && is_even(format, i) == 1 && format[i + 1] != '\0')
-            (*amount)++;
-    pos = (int*)malloc(sizeof(int) * (*amount));
-    i = -1;
-    j = 0;
-    while (format[++i])
-        if (format[i] == '%' && format[i + 1] != '%'
-        && is_even(format, i) == 1 && format[i + 1] != '\0')
-            {
-                pos[j] = i;
-                j++;
-            }
-    return (pos);
-}
-
-int fill_node(const char *format, int pos, t_lst **node)
-{
-    pos++;
-    (*node)->width = NULL;
-    (*node)->precision = NULL;
-    pos = find_flags(format, pos, node);
-    pos = find_width(format, pos, node);
-    pos = find_prec(format, pos, node);
-    pos = find_length(format, pos, node);
-    pos = find_type(format, pos, node);
-    (*node)->next_pos = pos;
-    return (pos);
-}
-
-t_lst *create_list(const char *format, int *pos, int amount)
-{
-    t_lst *head;
-    t_lst *temp;
-    int i;
-    int j;
-
-    i = 0;
-    j = 1;
-    
-    head = new(pos[0]);
-    i = fill_node(format, pos[0], &head);
-    while (j < amount)
-    {
-        temp = new(pos[j]) ;  
-        i = fill_node(format, pos[j], &temp);
-        if (i == -1)
-            return (NULL);
-        lst_push_front(&head, temp);
-        j++;
-    }
-    lst_reverse(&head);
-    return (head);
-}
-
 void print_elem2(t_lst *temp, va_list ap, int *w_p)
 {
     if (temp->type == 'c')
@@ -128,8 +47,8 @@ void print_elem(t_lst *temp, va_list ap)
             print_long_long(temp, va_arg(ap, long long), w_p);
         else if (temp->length[0] == 'h' && temp->length[1] != 'h')
             print_short(temp, va_arg(ap, int), w_p);
-//        if (temp->length[0] == 'h' && temp->length[1] == 'h')
-//            print_char(temp, va_arg(ap, int), ap);
+        if (temp->length[0] == 'h' && temp->length[1] == 'h')
+            print_char(temp, va_arg(ap, int), w_p);
         else
             print_int(temp, (long long)va_arg(ap, int), w_p); 
     }
@@ -137,16 +56,16 @@ void print_elem(t_lst *temp, va_list ap)
     else if (temp->type == 'o' || temp->type == 'u'
     || temp->type == 'x' || temp->type == 'X')
     {
-        /* (temp->length[0] == 'l' && temp->length[1] != 'l')
-            print_ulong(temp, va_arg(ap, unsigned long));
+        if (temp->length[0] == 'l' && temp->length[1] != 'l')
+            print_ulong(temp, va_arg(ap, unsigned long), w_p);
         else if (temp->length[0] == 'l' && temp->length[1] == 'l')
-            print_ulong_long(temp, va_arg(ap, unsigned long long));
+            print_ulong_long(temp, va_arg(ap, unsigned long long), w_p);
         else if (temp->length[0] == 'h' && temp->length[1] != 'h')
-            print_ushort(temp, va_arg(ap, unsigned short));*/
-//        if (temp->length[0] == 'h' && temp->length[1] == 'h')
-//            print_char(temp, va_arg(ap, int), ap);
-        /*else
-            print_uint(temp, va_arg(ap, unsigned int));*/ 
+            print_ushort(temp, va_arg(ap, unsigned int), w_p);
+        else if (temp->length[0] == 'h' && temp->length[1] == 'h')
+            print_char(temp, va_arg(ap, int), w_p);
+        else
+            print_uint(temp, va_arg(ap, unsigned int), w_p); 
     }
     else
         print_elem2(temp, ap, w_p);

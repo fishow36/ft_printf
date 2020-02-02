@@ -19,6 +19,8 @@ void    print_char(t_lst *temp, int c, int *w_p)
     }
     if (w_p[0] != 0)
     {
+        if (temp->flags[2] == '-')
+            temp->flags[0] = '?';
         t = str;
         str = align_width(str, w_p[0], temp);
         ft_strdel(&t);
