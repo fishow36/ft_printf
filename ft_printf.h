@@ -40,6 +40,7 @@ int     find_type(const char *format, int pos, t_lst **node);
 
 void    print_char(t_lst *temp, int c, int *w_p);
 void    print_str(t_lst *temp, char *str, int *w_p);
+void    print_ptr(t_lst *temp, void *ptr, int *w_p);
 
 void    print_int(t_lst *temp, long long int nbr, int *w_p);
 void	print_long(t_lst *temp, long nbr, int *w_p);

@@ -6,9 +6,9 @@ void print_elem2(t_lst *temp, va_list ap, int *w_p)
         print_char(temp, va_arg(ap, int), w_p);
     else if (temp->type == 's')
         print_str(temp, va_arg(ap, char*), w_p);
-/*    else if (temp->type == 'p')
-        print_ptr(temp, va_arg(ap, void*));
-    else if (temp->type == 'f')
+    else if (temp->type == 'p')
+        print_ptr(temp, va_arg(ap, void*), w_p);
+/*    else if (temp->type == 'f')
     {
         if (temp->length[0] == 'L')
             print_lfloat(temp, va_arg(ap, long double));
