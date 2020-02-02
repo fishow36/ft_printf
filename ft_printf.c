@@ -47,8 +47,8 @@ void print_elem(t_lst *temp, va_list ap)
             print_long_long(temp, va_arg(ap, long long), w_p);
         else if (temp->length[0] == 'h' && temp->length[1] != 'h')
             print_short(temp, va_arg(ap, int), w_p);
-        if (temp->length[0] == 'h' && temp->length[1] == 'h')
-            print_char(temp, va_arg(ap, int), w_p);
+        else if (temp->length[0] == 'h' && temp->length[1] == 'h')
+            print_int(temp, va_arg(ap, int), w_p);
         else
             print_int(temp, (long long)va_arg(ap, int), w_p); 
     }
@@ -63,9 +63,9 @@ void print_elem(t_lst *temp, va_list ap)
         else if (temp->length[0] == 'h' && temp->length[1] != 'h')
             print_ushort(temp, va_arg(ap, unsigned int), w_p);
         else if (temp->length[0] == 'h' && temp->length[1] == 'h')
-            print_char(temp, va_arg(ap, int), w_p);
+            print_uint(temp, va_arg(ap, int), w_p);
         else
-            print_uint(temp, va_arg(ap, unsigned int), w_p); 
+            print_uint(temp, va_arg(ap, unsigned long long), w_p); 
     }
     else
         print_elem2(temp, ap, w_p);

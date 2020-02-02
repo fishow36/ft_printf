@@ -22,9 +22,16 @@ void    print_int(t_lst *temp, long long int nbr, int *w_p)
 			temp->flags[2] = flag[1];
 		}
 		if (temp->flags[1] == '+' && nbr >= 0)
+		{
 			str = add_plus(str, '+');
+			temp->flags[1] = '?';
+		}
+			
 		else if (temp->flags[3] == ' ' && nbr >= 0)
+		{
 			str = add_plus(str, ' ');
+			temp->flags[3] = '?';
+		}
 	}	
 	if (w_p[0] != 0 && w_p[0] > (int)ft_strlen(str))
 	{

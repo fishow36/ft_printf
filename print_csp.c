@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_csp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/02 16:17:22 by eshor             #+#    #+#             */
+/*   Updated: 2020/02/02 16:17:44 by eshor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void    print_char(t_lst *temp, int c, int *w_p)
@@ -6,17 +18,10 @@ void    print_char(t_lst *temp, int c, int *w_p)
     char *str;
     char *t;
 
-    if (temp->type == 'c')
-    {
-        ch = (char)c;
-        str = (char*)malloc(sizeof(char) * 2);
-        str[0] = ch;
-        str[1] = '\0';
-    }
-    else
-    {
-        str = ft_itoa(c);
-    }
+    ch = (char)c;
+    str = (char*)malloc(sizeof(char) * 2);
+    str[0] = ch;
+    str[1] = '\0';
     if (w_p[0] != 0)
     {
         if (temp->flags[2] == '-')
