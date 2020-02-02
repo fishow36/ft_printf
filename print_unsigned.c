@@ -5,7 +5,9 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
     char    *str;
     char    flag[2];
 
-    if (temp->type == 'u')
+    if (temp->length[0] != 'l' && nbr > 4294967295)
+        str = ft_strdup("0");
+    else if (temp->type == 'u')
         str = ft_itoa_base(nbr, 10);
     else if (temp->type == 'o')
         str = ft_itoa_base(nbr, 8);
