@@ -85,7 +85,8 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
     {
         while (i < temp->pos)
         {
-            ft_putchar(format[i]);
+            if (format[i] != '%' || (format[i] == '%' && is_even(format, i) == 0))
+                ft_putchar(format[i]);
             i++;
         }
         print_elem(temp, ap);
@@ -94,8 +95,9 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
     }
     while (format[i])
     {
+        if (format[i] != '%' || (format[i] == '%' && is_even(format, i) == 0))
             ft_putchar(format[i]);
-            i++;
+        i++;
     }
 }
 

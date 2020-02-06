@@ -10,17 +10,17 @@ int main(void)
     unsigned int u;
     unsigned long ul;
     unsigned long long ull;
-    int *p;
-    int d;
+    char *p;
+    char c;
 
 /*    i = 2147483647;
     ll =  9223372036854775807;
     ull = 9223372036854775808;*/
 
-    i = 15;
-    p = &i;
-    ft_printf("%20.15p\n", p);
-    printf("%20.15p\n", p);
+    c = 'f';
+    p = &c;
+    ft_printf("%%% m%20.15p\n", p);
+    printf("%%% m%20.15p\n", p);
 //    ft_printf("%.2s\n", "serebro");
 //    printf("%.2s\n", "serebro");
 //    fill_char(5, (char**)(&str));
