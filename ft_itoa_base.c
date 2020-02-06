@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 17:07:43 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/01 17:07:44 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:06:08 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ char		get_remnant(unsigned long long value, unsigned long long base)
 	if (value % base < 10)
 		return (value % base + 48);
 	else if (value % base == 10)
-		return ('A');
+		return ('a');
 	else if (value % base == 11)
-		return ('B');
+		return ('b');
 	else if (value % base == 12)
-		return ('C');
+		return ('c');
 	else if (value % base == 13)
-		return ('D');
+		return ('d');
 	else if (value % base == 14)
-		return ('E');
+		return ('e');
 	else
-		return ('F');
+		return ('f');
 }
 
 char		*ft_itoa_base(unsigned long long value, unsigned long long base)

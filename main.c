@@ -16,12 +16,14 @@ int main(void)
 /*    i = 2147483647;
     ll =  9223372036854775807;
     ull = 9223372036854775808;*/
-    ft_printf("%0.0m\n", 18);
-    printf("%0.0m\n", 18);
+
+    i = 15;
+    p = &i;
+    ft_printf("%20.15p\n", p);
+    printf("%20.15p\n", p);
 //    ft_printf("%.2s\n", "serebro");
 //    printf("%.2s\n", "serebro");
 //    fill_char(5, (char**)(&str));
-
 
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 16:17:22 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/02 18:10:38 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:17:40 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	print_str(t_lst *temp, char *str, int *w_p)
 
 void	print_ptr(t_lst *temp, void *ptr, int *w_p)
 {
-	unsigned char p;
-
-	p = (unsigned char)ptr;
+	temp->flags[4] = '#';
+	print_uint(temp, (unsigned long long)ptr, w_p);
 }

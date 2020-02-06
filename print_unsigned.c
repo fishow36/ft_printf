@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:10:49 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/02 18:14:43 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:17:36 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
     char    *str;
     char    flag[2];
 
-    if (temp->length[0] != 'l' && nbr > 4294967295)
+    if (temp->length[0] != 'l' && nbr > 4294967295 && temp->type != 'p')
         str = ft_strdup("0");
     else if (temp->type == 'u')
         str = ft_itoa_base(nbr, 10);
     else if (temp->type == 'o')
         str = ft_itoa_base(nbr, 8);
-    else if (temp->type == 'X' || temp->type == 'x')
+    else if (temp->type == 'X' || temp->type == 'x' || temp->type == 'p')
     {
         str = ft_itoa_base(nbr, 16);
-        if (temp->type == 'x')
+        if (temp->type == 'X')
             change_case(&str);
+        else if (temp->type == 'p')
+            temp->type = 'x';  
     }
     if (temp->flags[2] == '-' || (w_p[0] != 0 && w_p[1] != -1))
         temp->flags[0] = '?';
@@ -47,11 +49,13 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
         if (temp->flags[4] == '#')
             str = add_zero(str, temp->type, w_p[1]);
 	}
+//    printf("%s\n", str);
     if (w_p[0] != 0)
     {
         if (w_p[1] != -1)
         {
             str = int_width(str, w_p[0], temp);
+//            printf("%s\n", str);
         }
         else
         {
