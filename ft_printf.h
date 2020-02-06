@@ -51,6 +51,8 @@ void    print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
 void	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
 void	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
 void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
+
+void    print_other(t_lst *temp, int *w_p);
 //
 void print_node(t_lst *node);
 //

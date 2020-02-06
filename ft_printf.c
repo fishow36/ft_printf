@@ -13,10 +13,10 @@ void print_elem2(t_lst *temp, va_list ap, int *w_p)
         if (temp->length[0] == 'L')
             print_lfloat(temp, va_arg(ap, long double));
         else
-            print_float(temp, va_arg(ap, double));      
-    }
+            print_float(temp, va_arg(ap, double));
+    }*/
     else
-        print_other(temp);*/
+        print_char(temp, temp->type, w_p);
 }
 
 void print_elem(t_lst *temp, va_list ap)

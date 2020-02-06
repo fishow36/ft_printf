@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:45:13 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/02 18:05:56 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/06 13:19:22 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,17 +159,6 @@ int		find_length(const char *format, int pos, t_lst **node)
 
 int		find_type(const char *format, int pos, t_lst **node)
 {
-	if (format[pos] == 'c' || format[pos] == 's' || format[pos] == 'p'
-	|| format[pos] == 'd' || format[pos] == 'i' || format[pos] == 'o'
-	|| format[pos] == 'u' || format[pos] == 'x' || format[pos] == 'X'
-	|| format[pos] == 'f')
-	{
-		(*node)->type = format[pos];
-		return (pos + 1);
-	}
-	else
-	{
-		(*node)->type = format[pos];
-		return (-1);
-	}
+	(*node)->type = format[pos];
+	return (pos + 1);
 }
