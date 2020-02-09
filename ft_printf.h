@@ -29,7 +29,7 @@ int		lst_push_front(t_lst **head, t_lst *new);
 void	lst_reverse(t_lst **head);
 void	lst_del(t_lst **head);
 
-int     is_even(const char *format, int i);
+int     type_pos(const char *format, int pos);
 void    change_case(char **str);
 int     *count_args(const char *format, int *amount);
 int     find_flags(const char *format, int pos, t_lst **node);

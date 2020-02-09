@@ -20,19 +20,24 @@ int		*count_args(const char *format, int *amount)
 
 	i = -1;
 	while (format[++i])
-		if (format[i] == '%' && format[i + 1] != '%'
-		&& is_even(format, i) == 1 && format[i + 1] != '\0')
+		if (format[i] == '%' && format[i + 1] != '\0')
+		{
+			i = type_pos(format, i + 1);
 			(*amount)++;
+		}
 	pos = (int*)malloc(sizeof(int) * (*amount));
 	i = -1;
 	j = 0;
 	while (format[++i])
-		if (format[i] == '%' && format[i + 1] != '%'
-		&& is_even(format, i) == 1 && format[i + 1] != '\0')
+	{
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			pos[j] = i;
 			j++;
+			i = type_pos(format, i + 1);
+			
 		}
+	}
 	return (pos);
 }
 

@@ -85,8 +85,7 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
     {
         while (i < temp->pos)
         {
-            if (format[i] != '%' || (format[i] == '%' && is_even(format, i) == 0))
-                ft_putchar(format[i]);
+            ft_putchar(format[i]);
             i++;
         }
         print_elem(temp, ap);
@@ -95,8 +94,7 @@ void    print_from_list(const char *format, t_lst *head, va_list ap)
     }
     while (format[i])
     {
-        if (format[i] != '%' || (format[i] == '%' && is_even(format, i) == 0))
-            ft_putchar(format[i]);
+        ft_putchar(format[i]);
         i++;
     }
 }
@@ -112,11 +110,12 @@ int    ft_printf(const char *format, ...)
     amount = 0;
     va_start(ap, format);
     pos = count_args(format, &amount);
+    printf("amount = %d\n",  amount);
     if (amount != 0)
     {
         head = create_list(format, pos, amount);
         temp = head;
-/*        while (head)
+        /*while (head)
         {
             print_node(head);
             head = head->next;

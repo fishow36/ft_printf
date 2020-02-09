@@ -12,22 +12,37 @@
 
 #include "ft_printf.h"
 
-int		is_even(const char *format, int i)
+int type_pos(const char *format, int pos)
 {
-	int amount;
-
-	amount = 0;
-	i--;
-	while (format[i] && format[i] == '%')
-	{
-		if (format[i] == '%')
-			amount++;
-		i--;
-	}
-	if (amount % 2 == 0)
-		return (1);
+	while ((format[pos] == '0' || format[pos] == '+'
+	|| format[pos] == '-' || format[pos] == ' '
+	|| format[pos] == '#') && format[pos])
+		pos++;
+	if (format[pos] == '*')
+		pos++;
 	else
-		return (0);
+	{
+		while (format[pos] >= '0' && format[pos] <= '9')
+			pos++;
+	}
+	if (format[pos] == '.')
+	{
+		pos++;
+		if (format[pos] == '*')
+			pos++;
+		else
+		{
+			while (format[pos] >= '0' && format[pos] <= '9')
+				pos++;
+		}
+	}
+	if ((format[pos] == 'h') || (format[pos] == 'l') || format[pos] == 'L'
+	|| (format[pos] == 'h' && format[pos + 1] == 'h') || (format[pos] == 'l' && format[pos + 1] == 'l'))
+	{
+		while (format[pos] == 'h' || format[pos] == 'l' || format[pos] == 'L')
+			pos++;
+	}
+	return (pos);
 }
 
 void	change_case(char **str)
