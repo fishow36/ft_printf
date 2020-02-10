@@ -1,1 +1,3 @@
 gcc *.c -I libft/includes libft/libft.a
+
+gcc -Iincludes libftprintf.a fl_main.c
