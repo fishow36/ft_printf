@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 17:07:43 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/06 14:06:08 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/10 17:32:17 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char		get_remnant(unsigned long long value, unsigned long long base)
 
 char		*ft_itoa_base(unsigned long long value, unsigned long long base)
 {
-	char	*str;
-	int		i;
-	int		temp;
+	char					*str;
+	int						i;
+	unsigned long long		temp;
 
 	i = 0;
 	if (value == 0)
@@ -64,7 +64,6 @@ char		*ft_itoa_base(unsigned long long value, unsigned long long base)
 	}
 	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	str[i] = '\0';
 	i = 0;
 	while (value > 0)
 	{
@@ -72,6 +71,7 @@ char		*ft_itoa_base(unsigned long long value, unsigned long long base)
 		value = value / base;
 		i++;
 	}
+	str[i] = '\0';
 	ft_strrev(&str);
 	return (str);
 }

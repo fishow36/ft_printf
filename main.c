@@ -1,29 +1,27 @@
+//#include "ft_printf.h"
+//#include <limits.h>
+
 #include "ft_printf.h"
-#include <limits.h>
 
 int main(void)
 {
-//    char str[5];
     int i;
     long int l;
     long long ll;
     unsigned int u;
     unsigned long ul;
     unsigned long long ull;
-    char *p;
+    double *p;
     char c;
+    double f;
+    char *str;
 
-//    i = 2147483647;
-    ll =  9223372036854775807;
-    ull = 9223372036854775808;
-    u = 153252;
-    c = 'f';
-    p = &c;
-    ft_printf("%%%%c\n", c);
-    printf("%%%%c\n", c);
-//    ft_printf("%.2s\n", "serebro");
-//    printf("%.2s\n", "serebro");
-//    fill_char(5, (char**)(&str));
-
+    f = 1.0;
+    p = &f;
+    
+    u = 4294967295;
+    i = -2147483649;
+    ft_printf("%lld\n", 18446744073709551615);
+    printf("%lld\n", 18446744073709551615);
     return (0);
 }

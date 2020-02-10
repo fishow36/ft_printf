@@ -110,7 +110,6 @@ int    ft_printf(const char *format, ...)
     amount = 0;
     va_start(ap, format);
     pos = count_args(format, &amount);
-    printf("amount = %d\n",  amount);
     if (amount != 0)
     {
         head = create_list(format, pos, amount);

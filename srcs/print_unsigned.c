@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:10:49 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/06 14:17:36 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/10 16:50:45 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
         if (temp->type == 'X')
             change_case(&str);
         else if (temp->type == 'p')
-            temp->type = 'x';  
+            temp->type = 'x';
     }
     if (temp->flags[2] == '-' || (w_p[0] != 0 && w_p[1] != -1))
         temp->flags[0] = '?';
@@ -49,13 +49,11 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
         if (temp->flags[4] == '#')
             str = add_zero(str, temp->type, w_p[1]);
 	}
-//    printf("%s\n", str);
     if (w_p[0] != 0)
     {
         if (w_p[1] != -1)
         {
             str = int_width(str, w_p[0], temp);
-//            printf("%s\n", str);
         }
         else
         {
@@ -76,7 +74,7 @@ void    print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
         }
     }
     if (w_p[0] == 0 && w_p[1] == -1 && temp->flags[4] == '#')
-        str = add_zero(str,temp->type, w_p[1]);
+        str = add_zero(str, temp->type, w_p[1]);
     ft_putstr(str);
     ft_strdel(&str);
 }
