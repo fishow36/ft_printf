@@ -61,13 +61,14 @@ unsigned    exp_shift(unsigned exp, unsigned *shift, unsigned dbl_ldbl)
         *shift = exp - 1023; // 1023?
         return (*shift > 0 ? 1 : -1);
     }
+    return (0);
 }
 
 void    print_float(t_lst *temp, double input)
 {
     t_dbl   res;
-    unsigned    shift;
 
+    printf("%c\n", temp->flags[0]);
     res.origin = input;
     printf("%u\n", res.parts.sign);
     printf("%u\n", res.parts.exp);
@@ -83,9 +84,9 @@ void    print_float(t_lst *temp, double input)
 void    print_lfloat(t_lst *temp, long double input)
 {
     t_ldbl  res;
-    unsigned    shift;
 
     res.origin = input;
+    printf("%c\n", temp->flags[0]);
     printf("%u\n", res.parts.sign);
     printf("%u\n", res.parts.exp);
     printf("%llu\n", res.parts.mant);

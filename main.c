@@ -5,23 +5,23 @@
 
 int main(void)
 {
-    int i;
-    long int l;
-    long long ll;
-    unsigned int u;
-    unsigned long ul;
-    unsigned long long ull;
-    double *p;
     char c;
-    double f;
+    int i;
     char *str;
+    ft_printf("null %c and text", 0);
+    printf("\n");
+    printf("null %c and text", 0);
 
-    f = 1.0;
-    p = &f;
-    
-    u = 4294967295;
-    i = -2147483649;
-    ft_printf("%lld\n", 18446744073709551615);
-    printf("%lld\n", 18446744073709551615);
+//    printf("%d\n", printf(""));
+//    printf("%d\n", ft_printf("%10x\\n", 42));
+//    ft_printf("");
+    /*ft_printf("my: %#8x\t", 42);
+    ft_printf("my: %10x\t", 42);
+    ft_printf("my: %-10x\t", 42);
+    printf("\n");
+    printf("%010x\t", 542);
+    printf("%#8x\t", 42);
+    printf("%10x\t", 42);
+    printf("%-10x\t", 42);*/
     return (0);
 }

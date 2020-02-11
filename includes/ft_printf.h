@@ -68,24 +68,25 @@ int     find_prec(const char *format, int pos, t_lst **node);
 int     find_length(const char *format, int pos, t_lst **node);
 int     find_type(const char *format, int pos, t_lst **node);
 
-void    print_char(t_lst *temp, int c, int *w_p);
-void    print_str(t_lst *temp, char *str, int *w_p);
-void    print_ptr(t_lst *temp, void *ptr, int *w_p);
+int    print_char(t_lst *temp, int c, int *w_p);
+int    print_str(t_lst *temp, char *str, int *w_p);
+int    print_ptr(t_lst *temp, void *ptr, int *w_p);
 
-void    print_int(t_lst *temp, long long int nbr, int *w_p);
-void	print_long(t_lst *temp, long nbr, int *w_p);
-void	print_long_long(t_lst *temp, long long nbr, int *w_p);
-void	print_short(t_lst *temp, int nbr, int *w_p);
+int    print_int(t_lst *temp, long long int nbr, int *w_p);
+int     print_long(t_lst *temp, long nbr, int *w_p);
+int	print_long_long(t_lst *temp, long long nbr, int *w_p);
+int	print_short(t_lst *temp, int nbr, int *w_p);
+int	print_sshort(t_lst *temp, int nbr, int *w_p);
 
-void    print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
-void	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
-void	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
-void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
+int    print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
+int	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
+int	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
+int	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
 
 void    print_float(t_lst *temp, double input);
 void    print_lfloat(t_lst *temp, long double input);
 
-void    print_other(t_lst *temp, int *w_p);
+int    print_other(t_lst *temp, int *w_p);
 //
 void print_node(t_lst *node);
 //

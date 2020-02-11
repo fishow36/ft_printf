@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_and_fill_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:44:04 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/10 20:10:27 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/11 15:17:14 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		*count_args(const char *format, int *amount)
 			i = type_pos(format, i + 1);
 			(*amount)++;
 		}
-	pos = (int*)malloc(sizeof(int) * (*amount));
+	if (amount == 0 || !(pos = (int*)malloc(sizeof(int) * (*amount))))
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (format[++i])

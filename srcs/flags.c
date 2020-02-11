@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 14:30:27 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/10 16:52:14 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/11 15:02:18 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*add_zero(char *str, char type, int prec)
 			return (NULL);
 		res[0] = '0';
 		res[1] = type;
-		while (++i < ft_strlen(str))
+		while (++i < (int)ft_strlen(str))
 			res[i + 2] = str[i];
 		res[i + 2] = '\0';
 	}
@@ -56,7 +56,7 @@ char	*add_zero(char *str, char type, int prec)
 		if (!(res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 2))))
 			return (NULL);
 		res[0] = '0';
-		while (++i < ft_strlen(str))
+		while (++i < (int)ft_strlen(str))
 			res[i + 1] = str[i];
 		res[i + 1] = '\0';
 	}
