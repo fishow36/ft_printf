@@ -80,7 +80,7 @@ static char    *ft_dtoa_two(t_ulli value, int shift)
 {
 	char        *str;
 	unsigned	i;
-	unsigned	flag;
+	int         flag;
 
 	i = 0;
 	flag = shift < 0 ? -shift : 0; 
@@ -100,25 +100,74 @@ static char    *ft_dtoa_two(t_ulli value, int shift)
 	return (str);
 }
 
+t_ulli  ft_power(unsigned num)
+{
+    t_ulli      res_llu;
+
+    res_llu = 1;
+    while (num-- > 0)
+    {
+        res_llu *= 2;
+    }
+    return (res_llu);
+}
+
+char    *print_ldbl_dec(char *i_part, char *f_part)
+{
+    int         power;
+    unsigned    len;
+    t_ulli      i_res;
+    long double f_res;
+
+    power = ft_strlen(i_part);
+    len = power;
+    i_res = 0;
+    f_res = 0.0;
+    if (f_part == NULL)
+    {
+	    printf("%s\n", i_part);
+    }
+    else
+    {
+        // printf("%s\n", i_part);
+        // printf("%s\n", f_part);
+        while (--power >= 0)
+        {
+            if (i_part[power] == '1')
+                i_res += ft_power(len - power - 1);
+        }
+        len = ft_strlen(f_part);
+        power = 0;
+        while (power < len)
+        {
+            if (f_part[power] == '1')
+                f_res += 1. / ft_power(power + 1);
+            power++;
+        }
+        printf("%llu\n", i_res);    
+        printf("%Lf\n", f_res);
+    }
+}
+
 int     ldbl_to_str(t_ldbl *input, int shift)
 {
-    char    *res;
-    char    *frac;
+    char    *i_part;
+    char    *f_part;
 	char	*temp;
 
-	if ((res = ft_dtoa_two(input->parts.mant, shift)) == NULL)
+	f_part = NULL;
+    if ((i_part = ft_dtoa_two(input->parts.mant, shift)) == NULL)
 		return (-1);
 	if (shift > 0)
 	{
-		if ((frac = ft_strncpy(frac, res + shift, 64 - shift)) == NULL)
+		if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
 			return (-1);
-		temp = res;
-		if ((res = ft_strncpy(res, res, shift)) == NULL)
+		temp = i_part;
+		if ((i_part = ft_strncpy(i_part, i_part, shift + 1)) == NULL)
 			return (-1);
 		free(temp);
 	}
-	else
-		printf("%s\nres minus^^^\n", res);
+    print_ldbl_dec(i_part, f_part);
 }
 
 void    print_lfloat(t_lst *temp, long double input)
@@ -131,11 +180,12 @@ void    print_lfloat(t_lst *temp, long double input)
 	mid_exp = 0;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
-    printf("%u\n", res.parts.sign);
-    printf("%d\n", (int)res.parts.exp - mid_exp);
-    printf("%llu\n", res.parts.mant);
-    printf("\nMANT_BINARY\n");
-	printf("%s\n", ft_itoa_base(res.parts.mant, 2));
+    // printf("%u\n", res.parts.sign);
+    // printf("%d\n", (int)res.parts.exp - mid_exp);
+    // printf("%llu\n", res.parts.mant);
+
+    // printf("\nMANT_BINARY\n");
+	// printf("%s\n", ft_itoa_base(res.parts.mant, 2));
     
 	ldbl_to_str(&res, res.parts.exp - mid_exp);
 }
