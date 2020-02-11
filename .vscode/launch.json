@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/a.out",
-            "preLaunchTask": "print",
+            // "preLaunchTask": "print",
             "logging": {
                 "moduleLoad": false,
                 "programOutput": true,

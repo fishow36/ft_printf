@@ -22,7 +22,6 @@ typedef	struct	s_lst
     struct s_lst  *next;
 }				t_lst;
 
-//
 typedef unsigned long long int t_ulli;
 
 typedef struct      s_dbl_struct
@@ -50,7 +49,6 @@ typedef union       u_ldbl
     long double     origin;
     t_ldbl_struct   parts;
 }                   t_ldbl;
-//
 
 int     ft_printf(const char *format, ...);
 
