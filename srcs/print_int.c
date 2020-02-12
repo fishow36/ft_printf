@@ -21,7 +21,7 @@ int    print_int(t_lst *temp, long long int nbr, int *w_p)
 	str = ft_itoa_long(nbr);
 	if (nbr == 0 && w_p[1] == 0)
         str = ft_strdup("");
-	len = (nbr < 0) ? (int)ft_strlen(str) - 1 : ft_strlen(str);
+	len = (nbr < 0) ? (int)ft_strlen(str) - 1 : (int)ft_strlen(str);
 	if (w_p[1] != -1)
 	{
 		if (len < w_p[1])

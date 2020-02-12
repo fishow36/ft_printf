@@ -8,9 +8,9 @@ int main(void)
     char c;
     int i;
     char *str;
-    ft_printf("null %c and text", 0);
+    ft_printf("");
     printf("\n");
-    printf("null %c and text", 0);
+    printf("");
 
 //    printf("%d\n", printf(""));
 //    printf("%d\n", ft_printf("%10x\\n", 42));

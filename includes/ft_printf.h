@@ -68,6 +68,11 @@ int     find_prec(const char *format, int pos, t_lst **node);
 int     find_length(const char *format, int pos, t_lst **node);
 int     find_type(const char *format, int pos, t_lst **node);
 
+int     print_elem(t_lst *temp, va_list ap);
+int     print_elem1(t_lst *temp, va_list ap, int *w_p);
+int     print_elem2(t_lst *temp, va_list ap, int *w_p);
+int     print_elem3(t_lst *temp, va_list ap, int *w_p);
+
 int    print_char(t_lst *temp, int c, int *w_p);
 int    print_str(t_lst *temp, char *str, int *w_p);
 int    print_ptr(t_lst *temp, void *ptr, int *w_p);

@@ -12,79 +12,6 @@
 
 #include "ft_printf.h"
 
-int print_elem2(t_lst *temp, va_list ap, int *w_p)
-{
-	if (temp->type == 'c')
-		return (print_char(temp, va_arg(ap, int), w_p));
-	else if (temp->type == 's')
-		return (print_str(temp, va_arg(ap, char*), w_p));
-	else if (temp->type == 'p')
-		return (print_ptr(temp, va_arg(ap, void*), w_p));
-	/*else if (temp->type == 'f')
-	{
-		if (temp->length[0] == 'L')
-			print_lfloat(temp, va_arg(ap, long double));
-		else
-			print_float(temp, va_arg(ap, double));
-	}*/
-	else
-		return (print_char(temp, temp->type, w_p));
-}
-
-int print_elem(t_lst *temp, va_list ap)
-{
-	int w_p[2];
-
-	w_p[0] = 0; //width
-	w_p[1] = -1; // precision
-	if (temp->width)
-	{
-		if (temp->width[0] == '*')
-			w_p[0] = va_arg(ap, int);
-		else
-			w_p[0] = ft_atoi(temp->width);        
-	}
-	if (temp->precision)
-	{
-		if (temp->precision[0] == '*')
-			w_p[1] = va_arg(ap, int);
-		else
-			w_p[1] = ft_atoi(temp->precision);        
-	}
-	if (temp->type == 'd' || temp->type == 'i')
-	{
-		if (temp->length[0] == 'l' && temp->length[1] != 'l')
-			return (print_long(temp, va_arg(ap, long), w_p));            
-		else if (temp->length[0] == 'l' && temp->length[1] == 'l')
-		{
-			return (print_long_long(temp, va_arg(ap, long long), w_p));
-		}     
-		else if (temp->length[0] == 'h' && temp->length[1] != 'h')
-			return (print_short(temp, va_arg(ap, int), w_p));
-		else if (temp->length[0] == 'h' && temp->length[1] == 'h')
-			return (print_sshort(temp, va_arg(ap, int), w_p));
-		else
-			return (print_int(temp, (long long)va_arg(ap, int), w_p)); 
-	}
-		
-	else if (temp->type == 'o' || temp->type == 'u'
-	|| temp->type == 'x' || temp->type == 'X')
-	{
-		if (temp->length[0] == 'l' && temp->length[1] != 'l')
-			return (print_ulong(temp, va_arg(ap, unsigned long), w_p));
-		else if (temp->length[0] == 'l' && temp->length[1] == 'l')
-			return (print_ulong_long(temp, va_arg(ap, unsigned long long), w_p));
-		else if (temp->length[0] == 'h' && temp->length[1] != 'h')
-			return (print_ushort(temp, va_arg(ap, unsigned int), w_p));
-		else if (temp->length[0] == 'h' && temp->length[1] == 'h')
-			return (print_uint(temp, va_arg(ap, int), w_p));
-		else
-			return (print_uint(temp, va_arg(ap, unsigned long long), w_p)); 
-	}
-	else
-		return (print_elem2(temp, ap, w_p));
-}
-
 int    print_from_list(const char *format, t_lst *head, va_list ap)
 {
 	t_lst *temp;
@@ -124,8 +51,6 @@ int    ft_printf(const char *format, ...)
 	t_lst *temp;
 	int res;
 
-//	if (strcmp(format, "") == 0)
-//		res = 0;
 	amount = 0;
 	va_start(ap, format);
 	pos = count_args(format, &amount);

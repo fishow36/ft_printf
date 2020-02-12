@@ -17,7 +17,7 @@ static	unsigned	razr(int *n, int *flag, int *i)
 	unsigned	cp;
 	unsigned	num;
 
-	num = *n < 0 ? (unsigned)(-*n) : *n;
+	num = *n < 0 ? (unsigned)(-*n) : (unsigned)*n;
 	*flag = *n < 0 ? 1 : 0;
 	cp = num;
 	if (cp == 0)

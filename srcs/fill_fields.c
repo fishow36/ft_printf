@@ -14,9 +14,6 @@
 
 int		find_flags(const char *format, int pos, t_lst **node)
 {
-	int i;
-
-	i = 0;
 	while ((format[pos] == '0' || format[pos] == '+'
 	|| format[pos] == '-' || format[pos] == ' '
 	|| format[pos] == '#') && format[pos])
@@ -127,32 +124,27 @@ int		find_prec(const char *format, int pos, t_lst **node)
 int		find_length(const char *format, int pos, t_lst **node)
 {
 	if (format[pos] == 'L')
-	{
 		(*node)->length[0] = 'L';
-		return (pos + 1);
-	}
-	else if (format[pos] == 'h')
+	else if (format[pos] == 'h' && format[pos + 1] == 'h')
 	{
 		(*node)->length[0] = 'h';
-		if (format[pos + 1] == 'h')
-		{
-			(*node)->length[1] = 'h';
-			return (pos + 2);
-		}
-		else
-			return (pos + 1);
+		(*node)->length[1] = 'h';
 	}
-	else if (format[pos] == 'l')
+	else if (format[pos] == 'l' && format[pos + 1] == 'l')
 	{
 		(*node)->length[0] = 'l';
-		if (format[pos + 1] == 'l')
-		{
-			(*node)->length[1] = 'l';
-			return (pos + 2);
-		}
-		else
-			return (pos + 1);
+		(*node)->length[1] = 'l';
 	}
+	else if (format[pos] == 'h')
+		(*node)->length[0] = 'h';
+	else if (format[pos] == 'l')
+		(*node)->length[0] = 'l';
+	if ((format[pos] == 'h' && format[pos + 1] == 'h')
+	|| (format[pos] == 'l' && format[pos + 1] == 'l'))
+		return (pos + 2);
+	else if (format[pos] == 'h' || format[pos] == 'l'
+	|| format[pos] == 'L')
+		return(pos + 1);
 	else
 		return (pos);
 }

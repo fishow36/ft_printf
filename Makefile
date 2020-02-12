@@ -19,9 +19,9 @@ SOURCES :=	aux.c \
 			print_csp.c \
 			width.c \
 			flags.c \
-			floats.c \
 			ft_printf.c \
 			print_int.c \
+			print_elem.c \
 			libft/ft_atoi.c \
 			libft/ft_strmap.c \
 			libft/ft_bzero.c \
