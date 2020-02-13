@@ -50,6 +50,12 @@ typedef union       u_ldbl
     t_ldbl_struct   parts;
 }                   t_ldbl;
 
+typedef struct      u_lan
+{
+    int             *num;
+    size_t          len;
+}                   t_lan;
+
 int     ft_printf(const char *format, ...);
 
 t_lst   *new(int pos);
@@ -82,6 +88,8 @@ void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
 
 void    print_float(t_lst *temp, double input);
 void    print_lfloat(t_lst *temp, long double input);
+t_lan   create_lan(t_ulli input_num);
+char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str);
 
 void    print_other(t_lst *temp, int *w_p);
 //

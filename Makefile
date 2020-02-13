@@ -8,6 +8,7 @@ SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 SOURCES :=	aux.c \
+			long_arithm.c \
 			for_convenience.c \
 			print_other.c \
 			create_and_fill_list.c \
