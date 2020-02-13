@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 12:45:35 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/13 15:18:09 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,52 +40,54 @@ char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str)
     return (res);
 }
 
-int		ft_atoi_lan(char *str)
+int		ft_atoi_lan(char *str, int index)
 {
     unsigned long	res;
     int             counter;
-    char            *s;
 
-    counter = 0;
-	s = str;
 	res = 0;
-	while (ft_isdigit(*s) && counter < 4 && *s != '\0')
-    {       
-        counter++;
-        s++;
-    }
-	while (counter-- >= 0)
-        res = res * 10 + (*s--) - '0';
-    printf("INT %d\n", (int)res);
-    // return ((int)res);
-    return (0);
+    if (index > 3)
+        counter = index - 3;
+    else
+        counter = 0;
+	while (counter <= index)
+        res = res * 10 + str[counter++] - '0';
+    // printf("lan %d\n", (int)res);
+    return ((int)res);
 }
 
+void    print_lan(t_lan to_print)
+{
+    int counter;
+
+    counter = 0;
+    while (counter < to_print.len)
+        printf("%d ", to_print.num[counter++]);
+    printf("\n");
+}
 
 t_lan   create_lan(t_ulli input_num)
 {
     t_lan   res;
-    int     count;
     int     i;
+    int     count;
     char    *str;
     int     len_str;
+
+    int temp;
 
     count = 1;
     i = 0;
     str = creat_str_and_count(input_num, &res.len, &len_str);
     res.num = (int *)malloc(sizeof(int) * res.len);
-    printf("\n!!!res -> %s\n%zu\n\n", str, res.len);
-    while(--len_str >= 0)
+    // printf("\n!!!res -> %s\n%zu\n\n", str, res.len);
+    len_str += 3;
+    while((len_str -= 4) >= 0)
     {
-        if (count == 4 || str[i] == '\0')
-        {
-            res.num[i / 4] = ft_atoi(str + i - count);
-            count = 1;
-        }
-        count++;
-        i++;
+        temp = ft_atoi_lan(str, len_str);
+        res.num[i++] = temp;
     }
+    print_lan(res);
     return (res);
 }
 
-// void    print_lan()

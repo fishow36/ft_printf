@@ -176,16 +176,19 @@ void    print_lfloat(t_lst *temp, long double input)
     unsigned	shift;
 	unsigned	mid_exp;
 	size_t		sign;
+    t_lan       mant_lan;
 
 	mid_exp = 0;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
-    // printf("%u\n", res.parts.sign);
-    // printf("%d\n", (int)res.parts.exp - mid_exp);
-    // printf("%llu\n", res.parts.mant);
+    printf("%u\n", res.parts.sign);
+    printf("%d\n", (int)res.parts.exp - mid_exp);
+    printf("%llu\n\n", res.parts.mant);
 
     // printf("\nMANT_BINARY\n");
 	// printf("%s\n", ft_itoa_base(res.parts.mant, 2));
     
 	ldbl_to_str(&res, res.parts.exp - mid_exp);
+    mant_lan = create_lan(res.parts.mant);
+
 }
