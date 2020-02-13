@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 17:27:44 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/13 17:55:58 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void    change_lan_rank(t_lan *p_lan, int type)
 {
     int *temp;
     int c;
+    int amount;
     
     c = -1;
     if (type == 1)
@@ -125,6 +126,23 @@ void    change_lan_rank(t_lan *p_lan, int type)
         while (++c < p_lan->len - 1)
             p_lan->num[c] = temp[c];
         p_lan->num[c] = 0;
+    }
+    else
+    {
+        c = p_lan->len;
+        amount = 0;
+        while (p_lan->num[--c] == 0 && c > 0)
+            amount++;
+        c = -1;
+        temp = (int *)malloc(sizeof(int) * (p_lan->len));
+        while (++c < p_lan->len)
+            temp[c] = p_lan->num[c];
+        free(p_lan->num);
+        p_lan->len -= amount;
+        p_lan->num = (int *)malloc(sizeof(int) * (p_lan->len));
+        c = -1;
+        while (++c < p_lan->len)
+            p_lan->num[c] = temp[c];
     }
 }
 
@@ -153,3 +171,35 @@ t_lan   sum_lan_nums(t_lan f, t_lan s)
     }
     return (f);
 }
+
+t_lan   sub_lan_nums(t_lan f, t_lan s)
+{
+    int     remainder;
+    size_t  c;
+    size_t  max;
+    
+    remainder = 0;
+    c = 0;
+    max = f.len > s.len ? f.len : s.len;
+    while(c < max || remainder > 0)
+    {
+        f.num[c] -= remainder + (c < s.len ? s.num[c] : 0);
+        remainder = (f.num[c] < 0) ? 1 : 0;
+        if (remainder == 1)
+            f.num[c] += 10000;
+        c++;
+    }
+    if (c == f.len)
+        change_lan_rank(&f, 0);
+    return (f);
+}
+
+// int carry = 0;
+// for (size_t i=0; i<b.size() || carry; ++i) {
+// 	a[i] -= carry + (i < b.size() ? b[i] : 0);
+// 	carry = a[i] < 0;
+// 	if (carry)  a[i] += base;
+// }
+// while (a.size() > 1 && a.back() == 0)
+// 	a.pop_back();
+

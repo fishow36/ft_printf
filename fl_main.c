@@ -10,12 +10,14 @@ int main()
     // printf("\nstd %Lf\n", test1);
     // ft_printf("our %Lf\n", test1);
 
-    t_ulli  for_lan1 = 123456789;
-    t_ulli  for_lan2 = 987654321;
+    t_ulli  for_lan1 = 5900100201111;
+    t_ulli  for_lan2 = 5900100001111;
     t_lan f = create_lan(for_lan1);
     t_lan s = create_lan(for_lan2);
     print_lan(f);
     print_lan(s);
-    print_lan(sum_lan_nums(f, s));
+    ft_putchar('\n');
+    print_lan(sub_lan_nums(f, s));
+    // print_lan(sum_lan_nums(f, s));
     return (0);
 }
