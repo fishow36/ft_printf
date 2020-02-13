@@ -91,6 +91,8 @@ void    print_lfloat(t_lst *temp, long double input);
 t_lan   create_lan(t_ulli input_num);
 char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str);
 void    print_lan(t_lan to_print);
+t_lan   sum_lan_nums(t_lan f, t_lan s);
+void    change_lan_rank(t_lan *p_lan, int type);
 
 void    print_other(t_lst *temp, int *w_p);
 //

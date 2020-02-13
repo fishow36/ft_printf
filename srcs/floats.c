@@ -170,8 +170,9 @@ int     ldbl_to_str(t_ldbl *input, int shift)
     print_ldbl_dec(i_part, f_part);
 }
 
-void    print_lfloat(t_lst *temp, long double input)
+char    *lfloat(long double input)
 {
+    char        *output;
     t_ldbl		res;
     unsigned	shift;
 	unsigned	mid_exp;
@@ -179,6 +180,7 @@ void    print_lfloat(t_lst *temp, long double input)
     t_lan       mant_lan;
 
 	mid_exp = 0;
+    output = NULL;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
     printf("%u\n", res.parts.sign);
@@ -190,5 +192,10 @@ void    print_lfloat(t_lst *temp, long double input)
     
 	ldbl_to_str(&res, res.parts.exp - mid_exp);
     mant_lan = create_lan(res.parts.mant);
+    return (output);
+}
 
+void    print_lfloat(t_lst *temp, long double input)
+{
+    lfloat(input);
 }
