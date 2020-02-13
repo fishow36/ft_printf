@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:44:04 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/11 15:17:14 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 18:13:02 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int		*count_args(const char *format, int *amount)
 	int *pos;
 
 	i = -1;
-	while (format[++i])
-		if (format[i] == '%' && format[i + 1] != '\0')
+	while (++i < (int)ft_strlen(format))
+		if (format[i] == '%')
 		{
 			i = type_pos(format, i + 1);
 			(*amount)++;
@@ -29,13 +29,13 @@ int		*count_args(const char *format, int *amount)
 		return (NULL);
 	i = -1;
 	j = 0;
-	while (format[++i])
+	while (++i < (int)ft_strlen(format))
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
 			pos[j] = i;
 			j++;
-			i = type_pos(format, i + 1);	
+			i = type_pos(format, i + 1);
 		}
 	}
 	return (pos);

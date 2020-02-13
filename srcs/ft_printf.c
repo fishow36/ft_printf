@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:18:28 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/11 18:08:13 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 18:25:18 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int    print_from_list(const char *format, t_lst *head, va_list ap)
 		i = temp->next_pos;
 		temp = temp->next;
 	}
-	while (format[i])
+	while (i < (int)ft_strlen(format))
 	{
 		ft_putchar(format[i]);
 		i++;
 		res++;
 	}
+	
 	return (res);
 }
 
@@ -55,6 +56,7 @@ int    ft_printf(const char *format, ...)
 	va_start(ap, format);
 	pos = count_args(format, &amount);
 	res = 0;
+//	printf("amount = %d\n", amount);
 	if (amount != 0)
 	{
 		head = create_list(format, pos, amount);

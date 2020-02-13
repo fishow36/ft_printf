@@ -8,15 +8,15 @@ int print_elem3(t_lst *temp, va_list ap, int *w_p)
 		return (print_str(temp, va_arg(ap, char*), w_p));
 	else if (temp->type == 'p')
 		return (print_ptr(temp, va_arg(ap, void*), w_p));
-	/*else if (temp->type == 'f')
+	else if (temp->type == 'f')
 	{
 		if (temp->length[0] == 'L')
-			print_lfloat(temp, va_arg(ap, long double));
+			return (print_lfloat(temp, va_arg(ap, long double), w_p));
 		else
-			print_float(temp, va_arg(ap, double));
-	}*/
+			return (print_float(temp, va_arg(ap, double), w_p));
+	}
 	else
-		return (print_char(temp, temp->type, w_p));
+		return print_other(temp, w_p);
 }
 
 int print_elem2(t_lst *temp, va_list ap, int *w_p)
@@ -31,9 +31,9 @@ int print_elem2(t_lst *temp, va_list ap, int *w_p)
 		else if (temp->length[0] == 'h' && temp->length[1] != 'h')
 			return (print_ushort(temp, va_arg(ap, unsigned int), w_p));
 		else if (temp->length[0] == 'h' && temp->length[1] == 'h')
-			return (print_uint(temp, va_arg(ap, int), w_p));
+			return (print_usshort(temp, va_arg(ap, unsigned int), w_p));
 		else
-			return (print_uint(temp, va_arg(ap, unsigned long long), w_p)); 
+			return (print_uint(temp, (unsigned long long)va_arg(ap, unsigned int), w_p)); 
 	}
 	else
 		return (print_elem3(temp, ap, w_p));
@@ -69,16 +69,34 @@ int print_elem(t_lst *temp, va_list ap)
 	if (temp->width)
 	{
 		if (temp->width[0] == '*')
+		{
 			w_p[0] = va_arg(ap, int);
+			if (w_p[0] < 0)
+			{
+				w_p[0] = w_p[0] * -1;
+				temp->flags[2] = '-';
+			}
+		}
 		else
 			w_p[0] = ft_atoi(temp->width);        
 	}
 	if (temp->precision)
 	{
 		if (temp->precision[0] == '*')
+		{
 			w_p[1] = va_arg(ap, int);
+			if (w_p[1] < 0)
+			{
+				w_p[1] = -1;
+			}
+		}
 		else
 			w_p[1] = ft_atoi(temp->precision);        
+	}
+	while (temp->stars > 0)
+	{
+		va_arg(ap, int);
+		temp->stars--;
 	}
 	return (print_elem1(temp, ap, w_p));
 }

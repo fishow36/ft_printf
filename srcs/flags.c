@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 14:30:27 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/11 15:02:18 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 18:54:34 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,31 @@ char	*add_plus(char *str, char to_add)
 	return (res);
 }
 
-char	*add_zero(char *str, char type, int prec)
+char	*add_zero(char *str, char type, int i)
 {
-	int		i;
 	char	*res;
 
-	i = -1;
-	if (type == 'x' || type == 'X')
-	{
-		if (!(res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 3))))
-			return (NULL);
-		res[0] = '0';
-		res[1] = type;
-		while (++i < (int)ft_strlen(str))
-			res[i + 2] = str[i];
-		res[i + 2] = '\0';
-	}
-	else if (type == 'o')
-	{
-		if (prec != -1)
-			return (str);
-		if (!(res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 2))))
-			return (NULL);
-		res[0] = '0';
-		while (++i < (int)ft_strlen(str))
-			res[i + 1] = str[i];
-		res[i + 1] = '\0';
-	}
+	if (type != 'x' && type != 'X' && type != 'o')
+		return (str);
 	else
-		res = str;
-	if (type == 'x' || type == 'X' || type == 'o')
+	{
+		if (type == 'x' || type == 'X')
+		{
+			res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 3));
+			res[1] = type;
+			while (++i < (int)ft_strlen(str))
+				res[i + 2] = str[i];
+			res[i + 2] = '\0';
+		}
+		else
+		{
+			res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 2));
+			while (++i < (int)ft_strlen(str))
+				res[i + 1] = str[i];
+			res[i + 1] = '\0';
+		}
+		res[0] = '0';
 		ft_strdel(&str);
-	return (res);
+		return (res);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:10:46 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/11 18:18:13 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 16:33:58 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int    print_int(t_lst *temp, long long int nbr, int *w_p)
 			temp->flags[3] = '?';
 		}
 	}	
-	if (w_p[0] != 0 && w_p[0] > (int)ft_strlen(str))
+	if (w_p[0] > (int)ft_strlen(str))
 	{
 		if (w_p[1] != -1)
 		{

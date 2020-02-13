@@ -19,6 +19,7 @@ typedef	struct	s_lst
     char    length[2];
     char    type;
     int     next_pos;
+    int     stars;
     struct s_lst  *next;
 }				t_lst;
 
@@ -61,6 +62,8 @@ void	lst_del(t_lst **head);
 
 int     type_pos(const char *format, int pos);
 void    change_case(char **str);
+char	*fill_number(const char *format, int *pos, int *len, char w_or_p);
+char	*find_w_or_p(const char *format, int len, int temp);
 int     *count_args(const char *format, int *amount);
 int     find_flags(const char *format, int pos, t_lst **node);
 int     find_width(const char *format, int pos, t_lst **node);
@@ -87,9 +90,10 @@ int    print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
 int	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
 int	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
 int	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
+int	print_usshort(t_lst *temp, int nbr, int *w_p);
 
-void    print_float(t_lst *temp, double input);
-void    print_lfloat(t_lst *temp, long double input);
+int    print_float(t_lst *temp, double input, int *w_p);
+int    print_lfloat(t_lst *temp, long double input, int *w_p);
 
 int    print_other(t_lst *temp, int *w_p);
 //
@@ -102,7 +106,7 @@ char    *align_width(char *str, int size, t_lst *node);
 char    *shorten_str(char *str, int precision);
 char    *int_width(char *str, int size, t_lst *node);
 char    *add_plus(char *str, char to_add);
-char    *add_zero(char *str, char type, int prec);
+char	*add_zero(char *str, char type, int i);
 
 char	*ft_itoa_long(long long n);
 char	*ft_itoa_base(unsigned long long value, unsigned long long base);

@@ -8,10 +8,19 @@ int main(void)
     char c;
     int i;
     char *str;
-    ft_printf("");
-    printf("\n");
-    printf("");
 
+    i = 12;
+   
+//    printf("\n");
+ //   printf("%0#-20.3o\n", 10);
+    ft_printf("%010c", 'g');
+    ft_printf("\n");
+    printf("%010c", 'g');
+
+/*    ft_printf("\n");
+    ft_printf("%-5.10o", 2500);
+    printf("\n");
+    printf("%-5.10o", 2500);*/
 //    printf("%d\n", printf(""));
 //    printf("%d\n", ft_printf("%10x\\n", 42));
 //    ft_printf("");

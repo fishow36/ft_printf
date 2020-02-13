@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:09:12 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/02 18:09:52 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 16:14:52 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_lst		*new(int pos)
 	node = (t_lst*)malloc(sizeof(t_lst));
 	node->next = NULL;
 	node->pos = pos;
+	node->stars = 0;
 	ft_memcpy((void *)node->flags, (const void*)"?????", 5);
 	ft_memcpy((void *)node->length, (const void*)"??", 2);
 	return (node);
