@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 19:11:24 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/13 23:25:24 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,87 @@ t_lan   create_lan(t_ulli input_num)
 }
 
 /*
+** TYPE == 1 -> INTEGER PART OF NUMBER
+** TYPE == 2 -> FRACT PART OF NUMBER
+*/
+t_lan   create_lan_from_bitstr(char *str, int type)
+{
+    t_lan   res;
+    t_lan   temp;
+    int     c;
+    int     len_str;
+
+    c = 0;
+    len_str = ft_strlen(str); 
+    res.num = (int *)malloc(sizeof(int) * 1);
+    res.num[0] = 0;
+    res.len = 1;
+    if (type == 1)
+    {
+        while (len_str - c > 0)
+        {
+            if (str[len_str - c - 1] == '1')
+            {
+                temp = power_of_two_lan(c);
+                res = sum_lan_nums(res, temp);
+            }
+            c++;
+        }
+    }
+    else
+    {
+        /* LOGARIFM!! 2 ^ (-N) = 10 ^ (-N) * 5 ^ N 
+    }
+    return (res);
+}
+
+t_lan   power_of_two_lan(int num)
+{
+    t_lan   temp;
+    int     c;
+
+    // c = -1;
+    // on_sub.len = s.len;
+    // on_sub.num = (int *)malloc(sizeof(int) * (s.len));
+    // while (++c < s.len)
+    //     on_sub.num[c] = s.num[c];
+    c = -1;
+    temp.len = 1;
+    temp.num = (int *)malloc(sizeof(int) * (temp.len));
+    temp.num[0] = 1;
+    while (num-- > 0)
+        temp = sum_lan_nums(temp, temp);
+    // print_lan(temp);
+    return (temp);
+}
+
+t_lan   power_two_lan(int num)
+{
+    t_lan   res;
+    t_lan   on_mult;
+
+    res.num = (int *)malloc(sizeof(int) * 1);
+    on_mult = create_lan(2);
+    if (num < 0)
+    {
+        while(num++ < 0)
+        {
+            print_lan(res);
+            res = div_lan_nums(res, 2);
+        }
+    }
+    else
+        while(num-- > 0)
+        {
+            // printf("±±±");
+            // print_lan(res);
+            // printf("\n");
+            // res = mult_lan_nums(res, on_mult);
+        }
+    return (res);
+}
+
+/*
 **  type == 1 -> rank++
 **  type == 0 -> ranl-- (until there is no free items)
 */
@@ -181,6 +262,7 @@ t_lan   sub_lan_nums(t_lan f, t_lan s, int type)
     int     remainder;
     size_t  c;
     size_t  max;
+    t_lan   res;
     
     if (type == 1)
     {
@@ -205,20 +287,27 @@ t_lan   sub_lan_nums(t_lan f, t_lan s, int type)
     return (f);        
 }
 
-t_lan   mult_lan_nums(t_lan f, t_lan s)
+
+t_lan   mult_lans(t_lan f, t_lan s)
 {
     t_lan   temp;
+    t_lan   on_sub;
     int     c;
 
+    c = -1;
+    on_sub.len = s.len;
+    on_sub.num = (int *)malloc(sizeof(int) * (s.len));
+    while (++c < s.len)
+        on_sub.num[c] = s.num[c];
     c = -1;
     temp.len = f.len;
     temp.num = (int *)malloc(sizeof(int) * (f.len));
     while (++c < f.len)
         temp.num[c] = f.num[c];
-    while (s.num[s.len - 1] - 1 > 0)
+    while (on_sub.num[on_sub.len - 1] - 1 > 0)
     {
-        sum_lan_nums(f, temp);
-        sub_lan_nums(s, f, 1);
+        f = sum_lan_nums(f, temp);
+        on_sub = sub_lan_nums(on_sub, f, 1);
     }
     return (f);
 }
@@ -243,6 +332,7 @@ t_lan   div_lan_nums(t_lan f, int num)
     c = f.len - 1;
     while(c >= 0)
     {
+        print_lan(f);
         cur = f.num[c] + remainder * 1ll * 10000;
         f.num[c] = (int)(f.num[c] / num);
         remainder = (int)(cur % num);
@@ -259,13 +349,3 @@ t_lan   div_lan_nums(t_lan f, int num)
 // }
 // while (a.size() > 1 && a.back() == 0)
 // 	a.pop_back();
-
-t_lan   neg_power_lan(t_ulli del, int num)
-{
-    t_lan   res;
-
-    res = create_lan(del);
-    while(num-- > 0)
-        div_lan_nums(res, 2);
-    return (res);
-}

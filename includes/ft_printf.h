@@ -93,10 +93,13 @@ char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str);
 void    print_lan(t_lan to_print);
 t_lan   sum_lan_nums(t_lan f, t_lan s);
 t_lan   sub_lan_nums(t_lan f, t_lan s, int type);
-t_lan   mult_lan_nums(t_lan f, t_lan s);
+t_lan   mult_lans(t_lan f, t_lan s);
 t_lan   div_lan_nums(t_lan f, int num);
-t_lan   neg_power_lan(t_ulli del, int num);
+t_lan   power_two_lan(int num);
+t_lan   power_of_two_lan(int num);
+t_lan   create_lan_from_bitstr(char *str, int type);
 void    change_lan_rank(t_lan *p_lan, int type);
+
 
 void    print_other(t_lst *temp, int *w_p);
 //

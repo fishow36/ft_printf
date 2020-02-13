@@ -124,13 +124,9 @@ char    *print_ldbl_dec(char *i_part, char *f_part)
     i_res = 0;
     f_res = 0.0;
     if (f_part == NULL)
-    {
 	    printf("%s\n", i_part);
-    }
     else
     {
-        // printf("%s\n", i_part);
-        // printf("%s\n", f_part);
         while (--power >= 0)
         {
             if (i_part[power] == '1')
@@ -147,6 +143,20 @@ char    *print_ldbl_dec(char *i_part, char *f_part)
         printf("%llu\n", i_res);    
         printf("%Lf\n", f_res);
     }
+}
+
+void    work_bitch(char *i_part, char *f_part)
+{
+    int     c;
+    size_t  len_i;
+    size_t  len_f;
+    t_lan   i_db;
+    t_lan   f_db;
+    
+    i_db = create_lan_from_bitstr(i_part, 1);
+    f_db = create_lan_from_bitstr(i_part, 2);
+    print_lan(i_db);
+    print_lan(f_db);
 }
 
 int     ldbl_to_str(t_ldbl *input, int shift)
@@ -167,8 +177,10 @@ int     ldbl_to_str(t_ldbl *input, int shift)
 			return (-1);
 		free(temp);
 	}
-
-    print_ldbl_dec(i_part, f_part);
+    // print_ldbl_dec(i_part, f_part);
+    printf("%s ", i_part);
+    printf("%s\n", f_part);
+    work_bitch(i_part, f_part);
 }
 
 char    *lfloat(long double input)
@@ -184,21 +196,21 @@ char    *lfloat(long double input)
     output = NULL;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
-    printf("ep mid -> %llu\n", mid_exp);
+    printf("exp mid -> %u\t%d\n~%u\n~~~%d\n", mid_exp, res.parts.exp, res.parts.exp - mid_exp, res.parts.exp - mid_exp - 64);
     printf("%u\n", res.parts.sign);
     // printf("%d\n", (int)res.parts.exp - mid_exp);
-    printf("%d\n", res.parts.exp);
     printf("%llu\n\n", res.parts.mant);
 
-    // printf("\nMANT_BINARY\n");
-	// printf("%s\n", ft_itoa_base(res.parts.mant, 2));
+    printf("\nMANT_BINARY\n");
+	printf("%s\n", ft_itoa_base(res.parts.mant, 2));
     
-	// ldbl_to_str(&res, res.parts.exp - mid_exp);
 
     // mant_lan = create_lan(res.parts.mant);
     // print_lan(mant_lan);
 
-    print_lan(neg_power_lan(res.parts.mant, res.parts.exp));
+    // print_lan(power_two_lan(res.parts.mant, res.parts.exp - mid_exp - 64));
+
+	ldbl_to_str(&res, res.parts.exp - mid_exp);
 
     return (output);
 }
