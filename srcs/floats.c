@@ -167,6 +167,7 @@ int     ldbl_to_str(t_ldbl *input, int shift)
 			return (-1);
 		free(temp);
 	}
+
     print_ldbl_dec(i_part, f_part);
 }
 
@@ -183,15 +184,22 @@ char    *lfloat(long double input)
     output = NULL;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
+    printf("ep mid -> %llu\n", mid_exp);
     printf("%u\n", res.parts.sign);
-    printf("%d\n", (int)res.parts.exp - mid_exp);
+    // printf("%d\n", (int)res.parts.exp - mid_exp);
+    printf("%d\n", res.parts.exp);
     printf("%llu\n\n", res.parts.mant);
 
     // printf("\nMANT_BINARY\n");
 	// printf("%s\n", ft_itoa_base(res.parts.mant, 2));
     
-	ldbl_to_str(&res, res.parts.exp - mid_exp);
-    mant_lan = create_lan(res.parts.mant);
+	// ldbl_to_str(&res, res.parts.exp - mid_exp);
+
+    // mant_lan = create_lan(res.parts.mant);
+    // print_lan(mant_lan);
+
+    print_lan(neg_power_lan(res.parts.mant, res.parts.exp));
+
     return (output);
 }
 

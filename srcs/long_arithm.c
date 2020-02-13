@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 17:55:58 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/13 19:11:24 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,34 +172,100 @@ t_lan   sum_lan_nums(t_lan f, t_lan s)
     return (f);
 }
 
-t_lan   sub_lan_nums(t_lan f, t_lan s)
+/*
+**  IF TYPE == 1 -> f--
+**  WITHOUT NEG_RESULT
+*/
+t_lan   sub_lan_nums(t_lan f, t_lan s, int type)
 {
     int     remainder;
     size_t  c;
     size_t  max;
     
-    remainder = 0;
-    c = 0;
-    max = f.len > s.len ? f.len : s.len;
-    while(c < max || remainder > 0)
+    if (type == 1)
     {
-        f.num[c] -= remainder + (c < s.len ? s.num[c] : 0);
-        remainder = (f.num[c] < 0) ? 1 : 0;
-        if (remainder == 1)
-            f.num[c] += 10000;
-        c++;
+        f.num[f.len - 1] -= 1; 
+    }
+    else
+    {
+        remainder = 0;
+        c = 0;
+        max = f.len > s.len ? f.len : s.len;
+        while(c < max || remainder > 0)
+        {
+            f.num[c] -= remainder + (c < s.len ? s.num[c] : 0);
+            remainder = (f.num[c] < 0) ? 1 : 0;
+            if (remainder == 1 && c + 1 != f.len)
+                f.num[c] += 10000;
+            c++;
+        }
     }
     if (c == f.len)
         change_lan_rank(&f, 0);
+    return (f);        
+}
+
+t_lan   mult_lan_nums(t_lan f, t_lan s)
+{
+    t_lan   temp;
+    int     c;
+
+    c = -1;
+    temp.len = f.len;
+    temp.num = (int *)malloc(sizeof(int) * (f.len));
+    while (++c < f.len)
+        temp.num[c] = f.num[c];
+    while (s.num[s.len - 1] - 1 > 0)
+    {
+        sum_lan_nums(f, temp);
+        sub_lan_nums(s, f, 1);
+    }
+    return (f);
+}
+
+// lnum c (a.size()+b.size());
+// for (size_t i=0; i<a.size(); ++i)
+// 	for (int j=0, carry=0; j<(int)b.size() || carry; ++j) {
+// 		long long cur = c[i+j] + a[i] * 1ll * (j < (int)b.size() ? b[j] : 0) + carry;
+// 		c[i+j] = int (cur % base);
+// 		carry = int (cur / base);
+// 	}
+// while (c.size() > 1 && c.back() == 0)
+// 	c.pop_back();
+
+t_lan   div_lan_nums(t_lan f, int num)
+{
+    int     remainder;
+    int     c;
+    long long   cur;
+
+    remainder = 0;
+    c = f.len - 1;
+    while(c >= 0)
+    {
+        cur = f.num[c] + remainder * 1ll * 10000;
+        f.num[c] = (int)(f.num[c] / num);
+        remainder = (int)(cur % num);
+        c--;
+    }
     return (f);
 }
 
 // int carry = 0;
-// for (size_t i=0; i<b.size() || carry; ++i) {
-// 	a[i] -= carry + (i < b.size() ? b[i] : 0);
-// 	carry = a[i] < 0;
-// 	if (carry)  a[i] += base;
+// for (int i=(int)a.size()-1; i>=0; --i) {
+// 	long long cur = a[i] + carry * 1ll * base;
+// 	a[i] = int (cur / b);
+// 	carry = int (cur % b);
 // }
 // while (a.size() > 1 && a.back() == 0)
 // 	a.pop_back();
 
+t_lan   neg_power_lan(t_ulli del, int num)
+{
+    t_lan   res;
+
+    res = create_lan(del);
+    while(num-- > 0)
+        div_lan_nums(res, 2);
+    return (res);
+}
