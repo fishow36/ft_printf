@@ -92,7 +92,7 @@ void	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
 void	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
 void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
 
-void    print_lfloat(t_lst *temp, long double input);
+void    print_lfloat(t_lst *temp, long double input, int prec);
 
 t_lan   create_lan(t_ulli input_num);
 char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str);

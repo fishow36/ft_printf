@@ -1,10 +1,12 @@
 #include "ft_printf.h"
 
+#include<float.h>
 
 int main()
 {
-    long double test1 = 2560000.123;
-    ft_printf("our %Lf\n", test1);
+    long double test1 = LDBL_MAX;
+    printf("std\t%.40Lf\n", test1);
+    ft_printf("our\t%.40Lf\n", test1);
 
     // t_lanch res;
     // create_lanch(&res);

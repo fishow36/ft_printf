@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:44:40 by mbrogg            #+#    #+#             */
-/*   Updated: 2019/09/15 19:44:42 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 21:38:34 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static	int			ft_pow(int i)
 	return (res);
 }
 
-char				*ft_itoa(int n)
+char				*ft_itoa(int n, int *amount)
 {
 	char		*res;
 	int			i;
@@ -64,5 +64,6 @@ char				*ft_itoa(int n)
 		num %= ft_pow(i - sign);
 	}
 	res[--sign] = '\0';
+	*amount = ft_strlen(res);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 19:54:42 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 21:54:16 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int     change_lanch_rank(t_lanch *p_lan, int type)
         if (cpy_lanch_str(p_lan, &temp)== -1)
             return (-1);
         free(temp.num);
+        return (1);
     }
     else
     {
@@ -91,6 +92,7 @@ int     change_lanch_rank(t_lanch *p_lan, int type)
         if (cpy_lanch_str(p_lan, &temp)== -1)
             return (-1);
         free(temp.num);
+        return (1);
     }
 }
 

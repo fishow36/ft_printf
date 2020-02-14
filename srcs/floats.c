@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 20:07:16 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 22:18:06 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,73 +48,45 @@ t_ulli  ft_power(unsigned num)
     return (res_llu);
 }
 
-char    *print_ldbl_dec(char *i_part, char *f_part)
-{
-    int         power;
-    unsigned    len;
-    t_ulli      i_res;
-    long double f_res;
-
-    power = ft_strlen(i_part);
-    len = power;
-    i_res = 0;
-    f_res = 0.0;
-    if (f_part == NULL)
-	    printf("%s\n", i_part);
-    else
-    {
-        while (--power >= 0)
-        {
-            if (i_part[power] == '1')
-                i_res += ft_power(len - power - 1);
-        }
-        len = ft_strlen(f_part);
-        power = 0;
-        while (power < len)
-        {
-            if (f_part[power] == '1')
-                f_res += 1. / ft_power(power + 1);
-            power++;
-        }
-        printf("%llu\n", i_res);    
-        printf("%Lf\n", f_res);
-    }
-}
-
-char    *str_from_db(t_lan i_db, t_lanch f_db)
+char    *str_from_db(t_lan i_db, t_lanch f_db, int prec)
 {
     char    *res;
+    int     amount;
     int     c;
     int     i;
+    int     j;
     int     len;
 
     i = -1;
-    c = i_db.len;
-    len = i_db.len * 4 + f_db.len + 1;
+    c = 0;
+    j = i_db.len - 1;
+    len = i_db.len * 4 + prec + 1 + 1;
     res = (char *)malloc(sizeof(char) * (len));
-    while (c < len)
+    while (j >= 0)
     {
         i = -1;
-        if (ft_itoa(i_db.num[c] == 0))
+        if (i_db.num[j] == 0)
             while (++i < 4)
-                res[c++] = 0; 
+                res[c++] = 0 + '0'; 
         else
         {
-            res[c] = i_db.num[c] / 1000 % 1000;
-            res[c + 1] = i_db.num[c] / 100 % 100;
-            res[c + 2] = i_db.num[c] / 10 % 10;
-            res[c + 3] = i_db.num[c] % 10;
-            c += 4;
+            ft_strcpy(res + c, ft_itoa(i_db.num[i_db.len -  c / 4 - 1], &amount));
+            c += amount;
         }
+        j--;
     }
-    c = f_db.len - 1;
-    while (c > -1)
-        res[c] = f_db.num[c--];
-    printf("-> %s\n", res);
+    res[c++] = '.';
+    j = f_db.len - 1;
+    i = 0;
+    while (j > -1 && ++i <= prec)
+        res[c++] = f_db.num[j--] + '0';
+    while (++i <= prec)
+        res[c++] = '0';
+    res[c] = '\0';
     return (res);
 }
 
-void    parse_str_to_lan(char *i_part, char *f_part)
+char    *parse_str_to_lan(char *i_part, char *f_part, int prec)
 {
     t_lan   i_db;
     t_lanch f_db;
@@ -122,13 +94,11 @@ void    parse_str_to_lan(char *i_part, char *f_part)
 
     i_db = create_lan_from_bitstr(i_part, 1);
     f_db = create_lanch_from_bitstr(f_part);
-    printf("\n");
-    print_lan(i_db);
-    print_lanch(f_db);
-    output = str_from_db(i_db, f_db);
+    output = str_from_db(i_db, f_db, prec);
+    return (output);
 }
 
-int     ldbl_to_str(t_ldbl *input, int shift)
+char    *ldbl_to_str(t_ldbl *input, int shift, int prec)
 {
     char    *i_part;
     char    *f_part;
@@ -136,39 +106,40 @@ int     ldbl_to_str(t_ldbl *input, int shift)
 
 	f_part = NULL;
     if ((i_part = ft_dtoa_two(input->parts.mant, shift)) == NULL)
-		return (-1);
+		return (NULL);
 	if (shift > 0)
 	{
 		if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
-			return (-1);
+			return (NULL);
 		temp = i_part;
 		if ((i_part = ft_strncpy(i_part, i_part, shift + 1)) == NULL)
-			return (-1);
+			return (NULL);
 		free(temp);
 	}
-    printf("%s ", i_part);
-    printf("%s\n", f_part);
-    parse_str_to_lan(i_part, f_part);
+    return (parse_str_to_lan(i_part, f_part, prec));
 }
 
-char    *lfloat(long double input)
+char    *lfloat(long double input, int prec)
 {
-    char        *output;
     t_ldbl		res;
-    unsigned	shift;
+    char        *output;
 	unsigned	mid_exp;
-	size_t		sign;
-    t_lan       mant_lan;
-
+    int         c;
+    
+    c = 0;
 	mid_exp = 0;
-    output = NULL;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
-	ldbl_to_str(&res, res.parts.exp - mid_exp);
+	output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec);
+    while (output[c] != '\0' && output[c] != '.')
+        c++;
+    while (prec-- >= 0 && output[c] != '\0')
+        c++;
+    output[c] = '\0';
     return (output);
 }
 
-void    print_lfloat(t_lst *temp, long double input)
+void    print_lfloat(t_lst *temp, long double input, int prec)
 {
-    lfloat(input);
+    printf("%s\n", lfloat(input, prec));
 }
