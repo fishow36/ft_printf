@@ -5,8 +5,8 @@
             "name": "C Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/a.out",
-            // "preLaunchTask": "print",
+            "program": "${workspaceRoot}/ft_printf",
+            "preLaunchTask": "print",
             "logging": {
                 "moduleLoad": false,
                 "programOutput": true,
@@ -17,7 +17,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
-            "externalConsole": false, 
+            "externalConsole": true, 
             "osx": {
                 "MIMode": "lldb"
             }

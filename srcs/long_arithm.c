@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 10:48:51 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 12:53:26 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,9 @@ t_lan   create_lan(t_ulli input_num)
     len_str = count_for_lan(input_num, &res.len); 
     res.num = (int *)malloc(sizeof(int) * res.len);
     str = creat_str_for_count(input_num, res.len, len_str);
-    // printf("\n!!!res -> %s\n%zu\n\n", str, res.len);
     len_str += 3;
     while((len_str -= 4) >= 0)
         res.num[i++] = ft_atoi_lan(str, len_str);
-    // print_lan(res);
     return (res);
 }
 
@@ -124,6 +122,60 @@ t_lan   power_of_five_lan(int num)
     return (temp);
 }
 
+static int     power_dec(int power)
+{
+    if (power == 0)
+        return (0);
+    else if (power == 1)
+        return (1);
+    else if (power == 2)
+        return (10);
+    else if (power == 3)
+        return (100);
+    else
+        return (1000);
+}
+
+static  int dec_power_for_frac(t_lan *p_lan, int number, int c)
+{
+    int power;
+
+    if (p_lan->num[c] != 0)
+        return (p_lan->num[c] + power_dec(number + 1 - c * 4));
+    else
+        return (power_dec(number + 1 - c * 4));
+}
+
+void    add_rank_for_frac(t_lan *p_lan, int len_of_lan)
+{
+    int *temp;
+    int old_len;
+    int c;
+    int amount;
+
+    int check;
+    
+    c = -1;
+    old_len = p_lan->len;
+    temp = (int *)malloc(sizeof(int) * (p_lan->len));
+    while (++c < p_lan->len)
+        temp[c] = p_lan->num[c];
+    free(p_lan->num);
+    p_lan->len = len_of_lan / 4 + 1;
+    p_lan->num = (int *)malloc(sizeof(int) * (p_lan->len));
+    c = 0;
+    int RES = len_of_lan / 4;
+    while (c < p_lan->len)
+    {
+        check = (c + 1) * 4;
+        if (check < len_of_lan || c < old_len)
+            p_lan->num[c] = (c < old_len) ? temp[c] : 0;
+        else
+            p_lan->num[c] = dec_power_for_frac(p_lan, len_of_lan, c);
+        c++;
+    }
+}
+
 /*
 ** TYPE == 1 -> INTEGER PART OF NUMBER
 ** TYPE == 2 -> FRACT PART OF NUMBER
@@ -135,11 +187,11 @@ t_lan   create_lan_from_bitstr(char *str, int type)
     int     c;
     int     len_str;
 
-    c = 0;
     len_str = ft_strlen(str); 
     res.num = (int *)malloc(sizeof(int) * 1);
     res.num[0] = 0;
     res.len = 1;
+    c = 0;
     if (type == 1)
     {
         while (len_str - c > 0)
@@ -155,11 +207,15 @@ t_lan   create_lan_from_bitstr(char *str, int type)
     else
     {
         // LOGARIFM!! 2 ^ (-N) = 10 ^ (-N) * 5 ^ N
-        while (len_str - c > 0)
+            // printf("±%s\n", str);
+        while (c < len_str)
         {
-            if (str[len_str - c - 1] == '1')
+            if (str[c] == '1')
             {
-                temp = power_of_two_lan(c);
+                temp = power_of_five_lan(c + 1);
+                // printf("LOOP\n");
+                // print_lan(temp);
+                add_rank_for_frac(&temp, c + 1);
                 res = sum_lan_nums(res, temp);
             }
             c++;
@@ -356,7 +412,7 @@ t_lan   div_lan_nums(t_lan f, int num)
     c = f.len - 1;
     while(c >= 0)
     {
-        print_lan(f);
+        // print_lan(f);
         cur = f.num[c] + remainder * 1ll * 10000;
         f.num[c] = (int)(f.num[c] / num);
         remainder = (int)(cur % num);

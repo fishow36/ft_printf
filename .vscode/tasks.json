@@ -11,11 +11,11 @@
 			"args": [
 				"-g",				
 				"-I",
-				"${workspaceFolder}/libft/includes/",
-				"${workspaceFolder}/libft/libft.a",
-				"${workspaceFolder}/*.c",
+				"${workspaceFolder}/includes/",
+				"${workspaceFolder}/libftprintf.a",
+				"${workspaceFolder}/fl_main.c",
 				"-o",
-				"${workspaceFolder}/a.out"
+				"${workspaceFolder}/ft_printf"
 			],
 			"options": {
 				"cwd": "/usr/bin"
@@ -30,3 +30,4 @@
 		}
 	]
 }
+

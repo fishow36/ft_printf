@@ -5,11 +5,11 @@ int main()
 {
     // char *str = "10000000000000000000000000000000000000000000000000000000000000000";
     //double test = 1.25;
-    long double test1 = 256;
+    long double test1 = 256000.0009765625;
     // printf("std %f\n", test);
     // ft_printf("our %f\n", test);
-    //printf("\nstd %Lf\n", test1);
-    // ft_printf("our %Lf\n", test1);
+    // printf("\nstd %Lf\n", test1);
+    ft_printf("our %Lf\n", test1);
     // print_lan(c/reate_lan_from_bitstr(str));
 //    t_ulli  for_lan1 = 150000;
     // t_ulli  for_lan2 = 4;
