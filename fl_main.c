@@ -4,9 +4,9 @@
 
 int main()
 {
-    long double test1 = LDBL_MAX;
-    printf("std\t%.40Lf\n", test1);
-    ft_printf("our\t%.40Lf\n", test1);
+    long double test1 = 12800000000000.1230000001234;
+    printf("std\t%.50Lf\n", test1);
+    ft_printf("our\t%.50Lf\n", test1);
 
     // t_lanch res;
     // create_lanch(&res);

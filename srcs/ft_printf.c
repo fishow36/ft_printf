@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:18:28 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 21:58:25 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 23:12:09 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void print_elem2(t_lst *temp, va_list ap, int *w_p)
         print_ptr(temp, va_arg(ap, void*), w_p);
     else if (temp->type == 'f')
     {
-        // if (temp->length[0] == 'L')
-            print_lfloat(temp, va_arg(ap, long double), w_p[1]);
-        // else
-            // print_float(temp, va_arg(ap, double));
+        print_lfloat(temp, va_arg(ap, long double), w_p[1]);
     }
     else
         print_char(temp, temp->type, w_p);
