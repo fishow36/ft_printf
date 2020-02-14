@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 23:25:24 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 10:48:51 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,6 @@ size_t  count_for_lan(t_ulli input_num, size_t *len)
     return (len_str);
 }
 
-// t_lan   fill_lan(size_t size)
-// {
-//     t_lan   res;
-
-//     res.num = (int *)malloc(sizeof(int) * size);
-//     return (res); 
-// }
-
 t_lan   create_lan(t_ulli input_num)
 {
     t_lan   res;
@@ -101,6 +93,35 @@ t_lan   create_lan(t_ulli input_num)
         res.num[i++] = ft_atoi_lan(str, len_str);
     // print_lan(res);
     return (res);
+}
+
+t_lan   power_of_five_lan(int num)
+{
+    t_lan   temp;
+    int     remainder;
+    int     c;
+    
+    remainder = 0;
+    temp.len = 1;
+    temp.num = (int *)malloc(sizeof(int) * (temp.len));
+    temp.num[0] = 1;
+    while (num-- > 0)
+    {
+        c = 0;
+        while(c < temp.len || remainder > 0)
+        {
+            if (c == temp.len)
+                change_lan_rank(&temp, 1);
+            temp.num[c] *= 5;
+            temp.num[c] += remainder;
+            remainder = (temp.num[c] > 9999) ? temp.num[c] / 10000: 0;
+            if (remainder != 0)
+                temp.num[c] %= 10000;
+            c++;
+        }
+    }
+    // print_lan(temp);
+    return (temp);
 }
 
 /*
@@ -133,7 +154,16 @@ t_lan   create_lan_from_bitstr(char *str, int type)
     }
     else
     {
-        /* LOGARIFM!! 2 ^ (-N) = 10 ^ (-N) * 5 ^ N 
+        // LOGARIFM!! 2 ^ (-N) = 10 ^ (-N) * 5 ^ N
+        while (len_str - c > 0)
+        {
+            if (str[len_str - c - 1] == '1')
+            {
+                temp = power_of_two_lan(c);
+                res = sum_lan_nums(res, temp);
+            }
+            c++;
+        }
     }
     return (res);
 }
@@ -143,18 +173,12 @@ t_lan   power_of_two_lan(int num)
     t_lan   temp;
     int     c;
 
-    // c = -1;
-    // on_sub.len = s.len;
-    // on_sub.num = (int *)malloc(sizeof(int) * (s.len));
-    // while (++c < s.len)
-    //     on_sub.num[c] = s.num[c];
     c = -1;
     temp.len = 1;
     temp.num = (int *)malloc(sizeof(int) * (temp.len));
     temp.num[0] = 1;
     while (num-- > 0)
         temp = sum_lan_nums(temp, temp);
-    // print_lan(temp);
     return (temp);
 }
 

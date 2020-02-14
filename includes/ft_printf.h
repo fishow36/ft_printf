@@ -18,7 +18,7 @@ typedef	struct	s_lst
     char    *precision;
     char    length[2];
     char    type;
-    int     next_pos;
+    int     next_pos;       
     struct s_lst  *next;
 }				t_lst;
 
@@ -97,6 +97,7 @@ t_lan   mult_lans(t_lan f, t_lan s);
 t_lan   div_lan_nums(t_lan f, int num);
 t_lan   power_two_lan(int num);
 t_lan   power_of_two_lan(int num);
+t_lan   power_of_five_lan(int num);
 t_lan   create_lan_from_bitstr(char *str, int type);
 void    change_lan_rank(t_lan *p_lan, int type);
 

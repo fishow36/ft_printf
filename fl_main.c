@@ -9,7 +9,7 @@ int main()
     // printf("std %f\n", test);
     // ft_printf("our %f\n", test);
     //printf("\nstd %Lf\n", test1);
-    ft_printf("our %Lf\n", test1);
+    // ft_printf("our %Lf\n", test1);
     // print_lan(c/reate_lan_from_bitstr(str));
 //    t_ulli  for_lan1 = 150000;
     // t_ulli  for_lan2 = 4;
@@ -22,6 +22,7 @@ int main()
 // print_lan(sum_lan_nums(f, s));
 // print_lan(mult_lan_nums(f, s));
     // print_lan(div_lan_nums(f, 4));
-    // power_of_two_lan(65);
+    // for (int i = 0; i <= 30; i++)
+        // print_lan(power_of_five_lan(i));
     return (0);
 }
