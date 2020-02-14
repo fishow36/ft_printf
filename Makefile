@@ -9,6 +9,7 @@ OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 SOURCES :=	aux.c \
 			long_arithm.c \
+			long_arithm_char.c \
 			for_convenience.c \
 			print_other.c \
 			create_and_fill_list.c \

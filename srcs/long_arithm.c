@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 12:53:26 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 13:59:55 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void    add_rank_for_frac(t_lan *p_lan, int len_of_lan)
     p_lan->len = len_of_lan / 4 + 1;
     p_lan->num = (int *)malloc(sizeof(int) * (p_lan->len));
     c = 0;
-    int RES = len_of_lan / 4;
     while (c < p_lan->len)
     {
         check = (c + 1) * 4;
@@ -206,15 +205,13 @@ t_lan   create_lan_from_bitstr(char *str, int type)
     }
     else
     {
-        // LOGARIFM!! 2 ^ (-N) = 10 ^ (-N) * 5 ^ N
-            // printf("±%s\n", str);
         while (c < len_str)
         {
             if (str[c] == '1')
             {
                 temp = power_of_five_lan(c + 1);
                 // printf("LOOP\n");
-                // print_lan(temp);
+                print_lan(temp);
                 add_rank_for_frac(&temp, c + 1);
                 res = sum_lan_nums(res, temp);
             }

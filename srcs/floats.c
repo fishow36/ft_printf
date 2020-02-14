@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 12:59:34 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 15:28:07 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,19 +157,16 @@ char    *print_ldbl_dec(char *i_part, char *f_part)
     }
 }
 
-void    work_bitch(char *i_part, char *f_part)
+void    parse_str_to_lan(char *i_part, char *f_part)
 {
-    int     c;
-    size_t  len_i;
-    size_t  len_f;
     t_lan   i_db;
-    t_lan   f_db;
+    t_lanch   f_db;
     
     i_db = create_lan_from_bitstr(i_part, 1);
-    f_db = create_lan_from_bitstr(f_part, 2);
+    f_db = create_lanch_from_bitstr(f_part);
     printf("\n");
     print_lan(i_db);
-    print_lan(f_db);
+    print_lanch(f_db);
 }
 
 int     ldbl_to_str(t_ldbl *input, int shift)
@@ -192,7 +189,7 @@ int     ldbl_to_str(t_ldbl *input, int shift)
 	}
     printf("%s ", i_part);
     printf("%s\n", f_part);
-    work_bitch(i_part, f_part);
+    parse_str_to_lan(i_part, f_part);
 }
 
 char    *lfloat(long double input)
