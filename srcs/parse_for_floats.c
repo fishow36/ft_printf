@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:19:43 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 23:28:02 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ char	*str_from_db(t_lan i_db, t_lanch f_db, int prec)
 	ar[0] = -1;
 	ar[1] = i_db.len - 1;
 	ar[2] = 0;
-	ar[3] = i_db.len * 4 + prec + 1 + 1;
+	ar[3] = 0;
 	ar[5] = prec;
-	res = (char *)malloc(sizeof(char) * (ar[3]));
+	res = (char *)malloc(sizeof(char) * (i_db.len * 4 + prec + 1 + 1));
 	while (ar[1] >= 0)
 	{
 		ar[0] = -1;
@@ -72,12 +72,10 @@ char	*str_from_db(t_lan i_db, t_lanch f_db, int prec)
 				res[(ar[2])++] = 0 + '0';
 		else
 		{
-			printf("^^^\t %s %d", ft_itoa(i_db.num[i_db.len - ar[2] / 4 - 1], &ar[4]), i_db.num[i_db.len - ar[2] / 4 - 1]);
-			ft_strcpy(res + ar[2], ft_itoa(i_db.num[i_db.len - ar[2] / 4 - 1],
+			ft_strcpy(res + ar[2], ft_itoa(i_db.num[ar[1]],
 				&ar[4]));
 			ar[2] += ar[4];
 			res[ar[2]] = '\0';
-			printf("$$$ %s\n", res);
 		}
 		(ar[1])--;
 	}

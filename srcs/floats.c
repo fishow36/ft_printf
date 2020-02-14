@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:14:41 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 23:31:18 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int prec)
 	t_lanch	f_db;
 	char	*output;
 
-	i_db = create_lan_from_bitstr(i_part, 1);
+	i_db = create_lan_from_bitstr(i_part);
 	f_db = create_lanch_from_bitstr(f_part);
 	return (str_from_db(i_db, f_db, prec));
 }

@@ -24,19 +24,6 @@ typedef	struct	s_lst
 
 typedef unsigned long long int t_ulli;
 
-typedef struct      s_dbl_struct
-{
-    t_ulli          mant : 52;
-    unsigned int    exp : 11;
-    unsigned int    sign : 1;
-}                   t_dbl_struct;
-
-typedef union       u_dbl
-{
-    double          origin;
-    t_dbl_struct    parts;
-}                   t_dbl;
-
 typedef struct      s_ldbl_struct
 {
     t_ulli          mant : 64;
@@ -107,8 +94,8 @@ t_lan   power_two_lan(int num);
 t_lan   power_of_two_lan(int num);
 t_lan   power_of_five_lan(int num);
 void    add_rank_for_frac(t_lan *p_lan, int len_of_lan);
-t_lan   create_lan_from_bitstr(char *str, int type);
-void    change_lan_rank(t_lan *p_lan, int type);
+t_lan   create_lan_from_bitstr(char *str);
+void    change_lan_rank(t_lan *p_lan);
 
 int     create_lanch(t_lanch *res, int width);
 void    print_lanch(t_lanch to_print);
