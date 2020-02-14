@@ -92,7 +92,6 @@ void	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
 void	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
 void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
 
-void    print_float(t_lst *temp, double input);
 void    print_lfloat(t_lst *temp, long double input);
 
 t_lan   create_lan(t_ulli input_num);
@@ -109,14 +108,13 @@ void    add_rank_for_frac(t_lan *p_lan, int len_of_lan);
 t_lan   create_lan_from_bitstr(char *str, int type);
 void    change_lan_rank(t_lan *p_lan, int type);
 
-
 int     create_lanch(t_lanch *res, int width);
 void    print_lanch(t_lanch to_print);
 int     change_lanch_rank(t_lanch *p_lan, int type);
 int     cpy_lanch_str(t_lanch *dst, t_lanch *src);
-t_lanch   power_of_five_lanch(int num, int width);
-t_lanch   create_lanch_from_bitstr(char *str);
-t_lanch   sum_lanch_nums(t_lanch f, t_lanch s);
+t_lanch power_of_five_lanch(int num, int width);
+t_lanch create_lanch_from_bitstr(char *str);
+t_lanch sum_lanch_nums(t_lanch f, t_lanch s);
 void    print_other(t_lst *temp, int *w_p);
 //
 void print_node(t_lst *node);

@@ -6,87 +6,11 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 15:28:07 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/14 20:07:16 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void print_bit(t_ulli num, int shift)
-{
-    int i = --shift;
-    int counter; 
-    
-    counter = 0;
-    while (i > -1)
-    {
-        if (i > 31)
-        {                        
-            if (num & (1 << 31) << (i - 31))
-                printf("1");
-            else
-                printf("0");
-        }
-        else
-        {
-            if (num & (1 << i))
-                printf("1");
-            else
-                printf("0");            
-        }
-        i--;
-    }
-    printf(" ");
-}
-
-void    print_ldbl(t_ldbl to_print)
-{
-    printf("\nmanti\n");
-    print_bit(to_print.parts.mant, 64);
-    printf("\nsign\texpo\n");
-    print_bit(to_print.parts.sign, 1);
-    printf("    ");
-    print_bit(to_print.parts.exp, 15);
-    printf("\n");
-}
-
-void    print_dbl(t_dbl to_print)
-{
-    printf("\nmanti\n");
-    print_bit(to_print.parts.mant, 52);
-    printf("\nsign\texpo\n");
-    print_bit(to_print.parts.sign, 1);
-    printf("    ");
-    print_bit(to_print.parts.exp, 11);
-    printf("\n");
-}
-
-// unsigned    exp_shift(unsigned exp, unsigned *shift, unsigned dbl_ldbl)
-// {
-//     if (dbl_ldbl == 1)
-//     {
-//         *shift = exp - 1023;
-//         return (*shift > 0 ? 1 : -1);
-//     }
-//     else if (dbl_ldbl == 2)
-//     {
-//         *shift = exp - 1023; // 1023?
-//         return (*shift > 0 ? 1 : -1);
-//     }
-// }
-
-void    print_float(t_lst *temp, double input)
-{
-    t_dbl   res;
-    unsigned    shift;
-
-    res.origin = input;
-    printf("%u\n", res.parts.sign);
-    printf("%u\n", res.parts.exp);
-    printf("%llu\n", res.parts.mant);
-    printf("\nMANT_BINARY\n%s\n", ft_itoa_base(res.parts.mant, 2));
-    printf("%s\n", ft_itoa_base(res.parts.exp, 2));    
-}
 
 static char    *ft_dtoa_two(t_ulli value, int shift)
 {
@@ -157,16 +81,51 @@ char    *print_ldbl_dec(char *i_part, char *f_part)
     }
 }
 
+char    *str_from_db(t_lan i_db, t_lanch f_db)
+{
+    char    *res;
+    int     c;
+    int     i;
+    int     len;
+
+    i = -1;
+    c = i_db.len;
+    len = i_db.len * 4 + f_db.len + 1;
+    res = (char *)malloc(sizeof(char) * (len));
+    while (c < len)
+    {
+        i = -1;
+        if (ft_itoa(i_db.num[c] == 0))
+            while (++i < 4)
+                res[c++] = 0; 
+        else
+        {
+            res[c] = i_db.num[c] / 1000 % 1000;
+            res[c + 1] = i_db.num[c] / 100 % 100;
+            res[c + 2] = i_db.num[c] / 10 % 10;
+            res[c + 3] = i_db.num[c] % 10;
+            c += 4;
+        }
+    }
+    c = f_db.len - 1;
+    while (c > -1)
+        res[c] = f_db.num[c--];
+    printf("-> %s\n", res);
+    return (res);
+}
+
 void    parse_str_to_lan(char *i_part, char *f_part)
 {
     t_lan   i_db;
-    t_lanch   f_db;
-    
+    t_lanch f_db;
+    char    *output;
+
     i_db = create_lan_from_bitstr(i_part, 1);
     f_db = create_lanch_from_bitstr(f_part);
     printf("\n");
     print_lan(i_db);
     print_lanch(f_db);
+    output = str_from_db(i_db, f_db);
 }
 
 int     ldbl_to_str(t_ldbl *input, int shift)
@@ -205,19 +164,7 @@ char    *lfloat(long double input)
     output = NULL;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
     res.origin = input;
-    // printf("exp mid -> %u\t%d\n~%u\n~~~%d\n", mid_exp, res.parts.exp, res.parts.exp - mid_exp, res.parts.exp - mid_exp - 64);
-    // printf("%u\n", res.parts.sign);
-    // printf("%d\n", (int)res.parts.exp - mid_exp);
-    // printf("%llu\n\n", res.parts.mant);
-
-    // printf("\nMANT_BINARY\n");
-	// printf("%s\n", ft_itoa_base(res.parts.mant, 2));
-    
-    // mant_lan = create_lan(res.parts.mant);
-    // print_lan(mant_lan);
-    // print_lan(power_two_lan(res.parts.mant, res.parts.exp - mid_exp - 64));
 	ldbl_to_str(&res, res.parts.exp - mid_exp);
-
     return (output);
 }
 

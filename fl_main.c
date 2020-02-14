@@ -3,10 +3,8 @@
 
 int main()
 {
-    long double test1 = 2560000.12506103515625;
+    long double test1 = 2560000.123;
     ft_printf("our %Lf\n", test1);
-    
-
 
     // t_lanch res;
     // create_lanch(&res);
