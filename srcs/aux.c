@@ -82,7 +82,7 @@ char	*find_w_or_p(const char *format, int len, int temp)
 	return (res);
 }
 
-char		*fill_number(const char *format, int *pos, int *len, char w_or_p)
+char	*fill_number(const char *format, int *pos, int *len, char w_or_p)
 {
 	char *str;
 	int temp;

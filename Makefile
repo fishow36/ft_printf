@@ -23,6 +23,10 @@ SOURCES :=	aux.c \
 			print_int.c \
 			print_elem.c \
 			floats.c \
+			int_aux.c \
+			int_aux2.c \
+			uint_aux.c \
+			align.c \
 			libft/ft_atoi.c \
 			libft/ft_strmap.c \
 			libft/ft_bzero.c \

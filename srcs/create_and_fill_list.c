@@ -14,9 +14,9 @@
 
 int		*count_args(const char *format, int *amount)
 {
-	int i;
-	int j;
-	int *pos;
+	int		i;
+	int		j;
+	int		*pos;
 
 	i = -1;
 	while (++i < (int)ft_strlen(format))
@@ -47,6 +47,8 @@ int		fill_node(const char *format, int pos, t_lst **node)
 	(*node)->width = NULL;
 	(*node)->precision = NULL;
 	pos = find_flags(format, pos, node);
+	if ((*node)->flags[2] == '-')
+        (*node)->flags[0] = '?';
 	pos = find_width(format, pos, node);
 	pos = find_prec(format, pos, node);
 	pos = find_length(format, pos, node);

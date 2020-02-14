@@ -12,14 +12,12 @@
 
 #include "ft_printf.h"
 
-int    print_from_list(const char *format, t_lst *head, va_list ap)
+int    print_from_list(const char *format, t_lst *head, va_list ap, int i)
 {
 	t_lst *temp;
-	int i;
 	int res;
 
 	temp = head;
-	i = 0;
 	res = 0;
 	while (temp)
 	{
@@ -39,7 +37,6 @@ int    print_from_list(const char *format, t_lst *head, va_list ap)
 		i++;
 		res++;
 	}
-	
 	return (res);
 }
 
@@ -56,7 +53,6 @@ int    ft_printf(const char *format, ...)
 	va_start(ap, format);
 	pos = count_args(format, &amount);
 	res = 0;
-//	printf("amount = %d\n", amount);
 	if (amount != 0)
 	{
 		head = create_list(format, pos, amount);
@@ -66,7 +62,7 @@ int    ft_printf(const char *format, ...)
 			print_node(head);
 			head = head->next;
 		}*/
-		res = print_from_list(format, temp, ap);
+		res = print_from_list(format, temp, ap, 0);
 	}
 	else
 	{

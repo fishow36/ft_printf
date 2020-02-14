@@ -80,22 +80,34 @@ int    print_char(t_lst *temp, int c, int *w_p);
 int    print_str(t_lst *temp, char *str, int *w_p);
 int    print_ptr(t_lst *temp, void *ptr, int *w_p);
 
-int    print_int(t_lst *temp, long long int nbr, int *w_p);
+void	add_s_or_p(char **str, t_lst *temp, long long int nbr);
+void    zero_flag(char **str, long long int nbr, t_lst *temp, int *w_p);
+void	prec_greater(char **str, t_lst **temp, int *w_p);
+void    prec_no_width(char **str, t_lst *temp, long long int nbr, int *w_p);
+char    *create_str(long long int nbr, int *w_p);
+void    add_and_change(char **str, long long int nbr, t_lst **temp);
+void	prec_and_width(t_lst **temp, char **str, int *w_p);
+
+int     print_int(t_lst *temp, long long int nbr, int *w_p);
 int     print_long(t_lst *temp, long nbr, int *w_p);
-int	print_long_long(t_lst *temp, long long nbr, int *w_p);
-int	print_short(t_lst *temp, int nbr, int *w_p);
-int	print_sshort(t_lst *temp, int nbr, int *w_p);
+int     print_long_long(t_lst *temp, long long nbr, int *w_p);
+int     print_short(t_lst *temp, int nbr, int *w_p);
+int     print_sshort(t_lst *temp, int nbr, int *w_p);
 
-int    print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
-int	print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
-int	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
-int	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
-int	print_usshort(t_lst *temp, int nbr, int *w_p);
+char    *create_str_u(unsigned long long nbr, t_lst **temp, int *w_p, char *flag);
+void    prec_u(char **str, t_lst *temp, int *w_p);
+void    width_u(char **str, t_lst *temp, int *w_p);
 
-int    print_float(t_lst *temp, double input, int *w_p);
-int    print_lfloat(t_lst *temp, long double input, int *w_p);
+int     print_uint(t_lst *temp, unsigned long long int nbr, int *w_p);
+int     print_ulong(t_lst *temp, unsigned long nbr, int *w_p);
+int     print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
+int     print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
+int     print_usshort(t_lst *temp, int nbr, int *w_p);
 
-int    print_other(t_lst *temp, int *w_p);
+int     print_float(t_lst *temp, double input, int *w_p);
+int     print_lfloat(t_lst *temp, long double input, int *w_p);
+
+int     print_other(t_lst *temp, int *w_p);
 //
 void print_node(t_lst *node);
 //

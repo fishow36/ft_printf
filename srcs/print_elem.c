@@ -60,6 +60,22 @@ int print_elem1(t_lst *temp, va_list ap, int *w_p)
 		return (print_elem2(temp, ap, w_p));
 }
 
+int	width_star(t_lst **temp, va_list ap, int w)
+{
+	if ((*temp)->width[0] == '*')
+	{
+		w = va_arg(ap, int);
+		if (w < 0)
+		{
+			w = w * -1;
+			(*temp)->flags[2] = '-';
+		}
+	}
+	else
+		w = ft_atoi((*temp)->width);
+	return (w);
+}
+
 int print_elem(t_lst *temp, va_list ap)
 {
 	int w_p[2];
@@ -67,28 +83,14 @@ int print_elem(t_lst *temp, va_list ap)
 	w_p[0] = 0;
 	w_p[1] = -1;
 	if (temp->width)
-	{
-		if (temp->width[0] == '*')
-		{
-			w_p[0] = va_arg(ap, int);
-			if (w_p[0] < 0)
-			{
-				w_p[0] = w_p[0] * -1;
-				temp->flags[2] = '-';
-			}
-		}
-		else
-			w_p[0] = ft_atoi(temp->width);        
-	}
+		w_p[0] = width_star(&temp, ap, w_p[0]);
 	if (temp->precision)
 	{
 		if (temp->precision[0] == '*')
 		{
 			w_p[1] = va_arg(ap, int);
 			if (w_p[1] < 0)
-			{
 				w_p[1] = -1;
-			}
 		}
 		else
 			w_p[1] = ft_atoi(temp->precision);        

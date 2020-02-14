@@ -43,11 +43,9 @@ int		print_char(t_lst *temp, int c, int *w_p)
 	char	ch;
 	int		len;
 	char	filler;
-	int		i;
 	char	side;
 
 	ch = (char)c;
-	i = 0;
 	filler = ' ';
 	if (w_p[0] != 0)
 	{

@@ -70,9 +70,7 @@ int		find_prec(const char *format, int pos, t_lst **node)
 				return (-1);
 		}
 		else
-		{
 			(*node)->precision = fill_number(format, &pos, &len, 'p');
-		}
 	}
 	return (pos);
 }
