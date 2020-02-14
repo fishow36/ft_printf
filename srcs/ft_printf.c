@@ -46,7 +46,6 @@ int    ft_printf(const char *format, ...)
 	int *pos;
 	int amount;
 	t_lst *head;
-	t_lst *temp;
 	int res;
 
 	amount = 0;
@@ -56,13 +55,7 @@ int    ft_printf(const char *format, ...)
 	if (amount != 0)
 	{
 		head = create_list(format, pos, amount);
-		temp = head;
-		/*while (head)
-		{
-			print_node(head);
-			head = head->next;
-		}*/
-		res = print_from_list(format, temp, ap, 0);
+		res = print_from_list(format,  head, ap, 0);
 	}
 	else
 	{

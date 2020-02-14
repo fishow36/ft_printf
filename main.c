@@ -11,10 +11,10 @@ int main(void)
 
     i = 12;
    
-    ft_printf("% -015f\n", 10.205);
+    ft_printf("% -015f %d %d %100d\n", 10.205, 2, 3, 4);
 
     printf("\n");
-    printf("%0- 15f\n", 10.205);
+    printf("% -015f %d %d %100d\n", 10.205, 2, 3, 4);
 
     return (0);
 }
