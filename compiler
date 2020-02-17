@@ -13,3 +13,5 @@ cd printf_check
 rm -rf a.out compiler fl_main.c main.c tests a.out.dSYM README.md
 make fclean
 cd ..
+
+gcc -g -Iincludes libftprintf.a fl_main.c -o ft_printf

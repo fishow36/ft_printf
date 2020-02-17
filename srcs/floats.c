@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 14:28:08 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 16:57:12 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*parse_str_to_lan(char *i_part, char *f_part, int prec)
+char	*parse_str_to_lan(char *i_part, char *f_part, int prec, int sign)
 {
 	t_lan	i_db;
 	t_lanch	f_db;
 
 	i_db = create_lan_from_bitstr(i_part);
 	f_db = create_lanch_from_bitstr(f_part);
-	return (str_from_db(i_db, f_db, prec));
+	return (str_from_db(i_db, f_db, prec, sign));
 }
 
 char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
@@ -40,7 +40,11 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 			return (NULL);
 		free(temp);
 	}
-	return (parse_str_to_lan(i_part, f_part, prec));
+	else
+	{
+			
+	}
+	return (parse_str_to_lan(i_part, f_part, prec, input->parts.sign));
 }
 
 int		check_inf_nan(t_ldbl res)
@@ -68,17 +72,17 @@ char	*lfloat(long double input, int prec)
 
 	c = 0;
 	mid_exp = 0;
-	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
-	res.origin = input;
+	mid_exp = (mid_exp | ((1 << 15) >> 1)) - 1;
 	if (prec == -1)
 		prec = 6;
-	printf("%u\n", res.parts.sign);
-    printf("%u\n", res.parts.exp);
-    printf("%llu\n", res.parts.mant);
-    printf("\nMANT_BINARY\n%s\n", ft_itoa_base(res.parts.mant, 2));
-    printf("%s\n", ft_itoa_base(res.parts.exp, 2));    
-	if (check_inf_nan(res) == -1)
-		return (NULL);
+	res.origin = input;
+	// printf("%u\n", res.parts.sign);
+    // printf("%u\n", res.parts.exp);
+    // printf("%llu\n", res.parts.mant);
+    // printf("\nMANT_BINARY\n%s\n", ft_itoa_base(res.parts.mant, 2));
+    // printf("%s\n", ft_itoa_base(res.parts.exp, 2));    
+	// if (check_inf_nan(res) == -1)
+	// 	return (NULL);
 	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec)) == NULL)
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')

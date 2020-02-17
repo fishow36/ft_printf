@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:05:07 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 13:06:52 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 16:50:20 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		print_elem3(t_lst *temp, va_list ap, int *w_p)
 {
+    long double input;
+
 	if (temp->type == 'c')
 		return (print_char(temp, va_arg(ap, int), w_p));
 	else if (temp->type == 's')
@@ -25,7 +27,10 @@ int		print_elem3(t_lst *temp, va_list ap, int *w_p)
 		if (temp->length[0] == 'L')
 			return (print_lfloat(temp, va_arg(ap, long double), w_p));
 		else
-			return (print_float(temp, va_arg(ap, double), w_p));
+		{
+			input = (long double)va_arg(ap, double);
+			return (print_lfloat(temp, input, w_p));
+		}
 	}
 	else
 		return (print_other(temp, w_p));

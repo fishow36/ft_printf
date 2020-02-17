@@ -106,7 +106,7 @@ char	*lfloat(long double input, int prec);
 int     print_float(t_lst *temp, double input, int *w_p);
 int		print_lfloat(t_lst *temp, long double input, int *w_p);
 //void    return_lfloat(t_lst *temp, long double input, int prec);
-char	*str_from_db(t_lan i_db, t_lanch f_db, int prec);
+char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
 char	*ft_dtoa_two(t_ulli value, int shift);
 
 t_lan   create_lan(t_ulli input_num);
