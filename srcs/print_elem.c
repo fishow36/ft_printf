@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_elem.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 13:05:07 by eshor             #+#    #+#             */
+/*   Updated: 2020/02/17 13:06:52 by eshor            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int print_elem3(t_lst *temp, va_list ap, int *w_p)
+int		print_elem3(t_lst *temp, va_list ap, int *w_p)
 {
 	if (temp->type == 'c')
 		return (print_char(temp, va_arg(ap, int), w_p));
@@ -16,10 +28,10 @@ int print_elem3(t_lst *temp, va_list ap, int *w_p)
 			return (print_float(temp, va_arg(ap, double), w_p));
 	}
 	else
-		return print_other(temp, w_p);
+		return (print_other(temp, w_p));
 }
 
-int print_elem2(t_lst *temp, va_list ap, int *w_p)
+int		print_elem2(t_lst *temp, va_list ap, int *w_p)
 {
 	if (temp->type == 'o' || temp->type == 'u'
 	|| temp->type == 'x' || temp->type == 'X')
@@ -27,40 +39,42 @@ int print_elem2(t_lst *temp, va_list ap, int *w_p)
 		if (temp->length[0] == 'l' && temp->length[1] != 'l')
 			return (print_ulong(temp, va_arg(ap, unsigned long), w_p));
 		else if (temp->length[0] == 'l' && temp->length[1] == 'l')
-			return (print_ulong_long(temp, va_arg(ap, unsigned long long), w_p));
+			return (print_ulong_long(temp,
+			va_arg(ap, unsigned long long), w_p));
 		else if (temp->length[0] == 'h' && temp->length[1] != 'h')
 			return (print_ushort(temp, va_arg(ap, unsigned int), w_p));
 		else if (temp->length[0] == 'h' && temp->length[1] == 'h')
 			return (print_usshort(temp, va_arg(ap, unsigned int), w_p));
 		else
-			return (print_uint(temp, (unsigned long long)va_arg(ap, unsigned int), w_p)); 
+			return (print_uint(temp,
+			(unsigned long long)va_arg(ap, unsigned int), w_p));
 	}
 	else
 		return (print_elem3(temp, ap, w_p));
 }
 
-int print_elem1(t_lst *temp, va_list ap, int *w_p)
+int		print_elem1(t_lst *temp, va_list ap, int *w_p)
 {
 	if (temp->type == 'd' || temp->type == 'i')
 	{
 		if (temp->length[0] == 'l' && temp->length[1] != 'l')
-			return (print_long(temp, va_arg(ap, long), w_p));            
+			return (print_long(temp, va_arg(ap, long), w_p));
 		else if (temp->length[0] == 'l' && temp->length[1] == 'l')
 		{
 			return (print_long_long(temp, va_arg(ap, long long), w_p));
-		}     
+		}
 		else if (temp->length[0] == 'h' && temp->length[1] != 'h')
 			return (print_short(temp, va_arg(ap, int), w_p));
 		else if (temp->length[0] == 'h' && temp->length[1] == 'h')
 			return (print_sshort(temp, va_arg(ap, int), w_p));
 		else
-			return (print_int(temp, (long long)va_arg(ap, int), w_p)); 
+			return (print_int(temp, (long long)va_arg(ap, int), w_p));
 	}
 	else
 		return (print_elem2(temp, ap, w_p));
 }
 
-int	width_star(t_lst **temp, va_list ap, int w)
+int		width_star(t_lst **temp, va_list ap, int w)
 {
 	if ((*temp)->width[0] == '*')
 	{
@@ -76,7 +90,7 @@ int	width_star(t_lst **temp, va_list ap, int w)
 	return (w);
 }
 
-int print_elem(t_lst *temp, va_list ap)
+int		print_elem(t_lst *temp, va_list ap)
 {
 	int w_p[2];
 
@@ -93,7 +107,7 @@ int print_elem(t_lst *temp, va_list ap)
 				w_p[1] = -1;
 		}
 		else
-			w_p[1] = ft_atoi(temp->precision);        
+			w_p[1] = ft_atoi(temp->precision);
 	}
 	while (temp->stars > 0)
 	{

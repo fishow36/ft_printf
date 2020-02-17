@@ -22,11 +22,15 @@ SOURCES :=	aux.c \
 			ft_printf.c \
 			print_int.c \
 			print_elem.c \
-			floats.c \
+			printf_float.c \
 			int_aux.c \
 			int_aux2.c \
 			uint_aux.c \
 			align.c \
+			floats.c \
+			long_arithm_char.c \
+			long_arithm.c \
+			parse_for_floats.c \
 			libft/ft_atoi.c \
 			libft/ft_strmap.c \
 			libft/ft_bzero.c \

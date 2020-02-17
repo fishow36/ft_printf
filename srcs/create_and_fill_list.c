@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:44:04 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/13 18:13:02 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 12:56:15 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		fill_node(const char *format, int pos, t_lst **node)
 	(*node)->precision = NULL;
 	pos = find_flags(format, pos, node);
 	if ((*node)->flags[2] == '-')
-        (*node)->flags[0] = '?';
+		(*node)->flags[0] = '?';
 	pos = find_width(format, pos, node);
 	pos = find_prec(format, pos, node);
 	pos = find_length(format, pos, node);

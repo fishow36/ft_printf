@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:44:40 by mbrogg            #+#    #+#             */
-/*   Updated: 2019/09/15 19:44:42 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 13:51:11 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	unsigned	razr(int *n, int *flag, int *i)
 	unsigned	cp;
 	unsigned	num;
 
-	num = *n < 0 ? (unsigned)(-*n) : (unsigned)*n;
+	num = *n < 0 ? (unsigned)(-*n) : *n;
 	*flag = *n < 0 ? 1 : 0;
 	cp = num;
 	if (cp == 0)
@@ -44,7 +44,7 @@ static	int			ft_pow(int i)
 	return (res);
 }
 
-char				*ft_itoa(int n)
+char				*ft_itoa(int n, int *amount)
 {
 	char		*res;
 	int			i;
@@ -64,5 +64,6 @@ char				*ft_itoa(int n)
 		num %= ft_pow(i - sign);
 	}
 	res[--sign] = '\0';
+	*amount = ft_strlen(res);
 	return (res);
 }

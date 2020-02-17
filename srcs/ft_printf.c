@@ -6,16 +6,16 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:18:28 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/13 18:25:18 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 13:03:36 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int    print_from_list(const char *format, t_lst *head, va_list ap, int i)
+int		print_from_list(const char *format, t_lst *head, va_list ap, int i)
 {
-	t_lst *temp;
-	int res;
+	t_lst	*temp;
+	int		res;
 
 	temp = head;
 	res = 0;
@@ -40,13 +40,13 @@ int    print_from_list(const char *format, t_lst *head, va_list ap, int i)
 	return (res);
 }
 
-int    ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
-	va_list ap;
-	int *pos;
-	int amount;
-	t_lst *head;
-	int res;
+	va_list		ap;
+	int			*pos;
+	int			amount;
+	t_lst		*head;
+	int			res;
 
 	amount = 0;
 	va_start(ap, format);
@@ -55,16 +55,16 @@ int    ft_printf(const char *format, ...)
 	if (amount != 0)
 	{
 		head = create_list(format, pos, amount);
-		res = print_from_list(format,  head, ap, 0);
+		res = print_from_list(format, head, ap, 0);
 	}
 	else
 	{
 		ft_putstr(format);
 		res = (int)ft_strlen(format);
-	} 
+	}
 	va_end(ap);
 	if (amount != 0)
 		lst_del(&head);
 	free(pos);
-	return(res);
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:43:05 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/13 18:35:38 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 12:56:00 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ char	*find_w_or_p(const char *format, int len, int temp)
 
 char	*fill_number(const char *format, int *pos, int *len, char w_or_p)
 {
-	char *str;
-	int temp;
+	char	*str;
+	int		temp;
 
 	temp = *pos;
 	while (format[*pos] > 47 && format[*pos] < 58)
