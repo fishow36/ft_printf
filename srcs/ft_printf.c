@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 20:18:28 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:12:09 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 15:26:33 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void print_elem2(t_lst *temp, va_list ap, int *w_p)
 {
+    long double input;
+    
     if (temp->type == 'c')
         print_char(temp, va_arg(ap, int), w_p);
     else if (temp->type == 's')
         print_str(temp, va_arg(ap, char*), w_p);
     else if (temp->type == 'p')
         print_ptr(temp, va_arg(ap, void*), w_p);
-    else if (temp->type == 'f')
+    else if (temp->type == 'f' && temp->length[0] == 'L')
     {
         print_lfloat(temp, va_arg(ap, long double), w_p[1]);
+    }
+    else if (temp->type == 'f' || temp->type == 'f' 
+        && temp->length[0] == 'l')
+    {
+        input = va_arg(ap, double);
+        print_lfloat(temp, (long double)input, w_p[1]);
     }
     else
         print_char(temp, temp->type, w_p);

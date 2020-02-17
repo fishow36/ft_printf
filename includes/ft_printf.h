@@ -80,7 +80,7 @@ void	print_ulong_long(t_lst *temp, unsigned long long nbr, int *w_p);
 void	print_ushort(t_lst *temp, unsigned int nbr, int *w_p);
 
 void    print_lfloat(t_lst *temp, long double input, int prec);
-char	*str_from_db(t_lan i_db, t_lanch f_db, int prec);
+char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
 char	*ft_dtoa_two(t_ulli value, int shift);
 
 t_lan   create_lan(t_ulli input_num);

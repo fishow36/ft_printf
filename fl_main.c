@@ -12,10 +12,12 @@ int main()
 
     // printf("std\t%.50Lf\n\n\n\n%.50Lf\n", test_max, test_min);
     // printf("std\t%Lf\n", 1.0 / 0.0);
-    printf("std\t%Lпf\n", sqrt(- 1 / 2));
-    ft_printf("std\t%Lf\n", sqrt(- 1 / 2));
-
-    // printf("std\t%f\n\n", -1.0 / 0.0);
+    // printf("std\t%Lf\n", sqrt(- 1 / 2));
+    // ft_printf("std\t%Lf\n", sqrt(- 1 / 2));
+    double test = -4.25;
+    
+    printf("std\t%lf\n", test);
+ft_printf("\t%lf\n", test);
     // ft_printf("our\t%f\n", 1.0 / 0.0);
     // ft_printf("our\t%f\n\n", 0.0 / 0.0);
     // ft_printf("our\t%.50Lf\n", test1);

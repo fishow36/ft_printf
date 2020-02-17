@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:39:03 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 14:34:27 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ t_lan	create_lan_from_bitstr(char *str)
 t_lan	power_of_two_lan(int num)
 {
 	t_lan	temp;
-	int		c;
 
-	c = -1;
 	temp.len = 1;
 	temp.num = (int *)malloc(sizeof(int) * (temp.len));
 	temp.num[0] = 1;
@@ -54,17 +52,16 @@ void	change_lan_rank(t_lan *p_lan)
 {
 	int	*temp;
 	int	c;
-	int	amount;
 
 	c = -1;
 	temp = (int *)malloc(sizeof(int) * (p_lan->len));
-	while (++c < p_lan->len)
+	while ((unsigned)++c < p_lan->len)
 		temp[c] = p_lan->num[c];
 	free(p_lan->num);
 	p_lan->len++;
 	p_lan->num = (int *)malloc(sizeof(int) * (p_lan->len));
 	c = -1;
-	while (++c < p_lan->len - 1)
+	while ((unsigned)++c < p_lan->len - 1)
 		p_lan->num[c] = temp[c];
 	p_lan->num[c] = 0;
 }

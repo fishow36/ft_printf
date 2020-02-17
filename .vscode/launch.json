@@ -14,7 +14,7 @@
             },
             "showDisplayString": false,
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true, 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_for_floats.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:28:02 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 15:33:32 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*str_from_db_after_loop(t_lanch f_db, char *res, int *ar)
 **	arr - > 0 - i, 1 - j, 2 - c, 3 - len, 4 - amount, 5 - prec
 */
 
-char	*str_from_db(t_lan i_db, t_lanch f_db, int prec)
+char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign)
 {
 	char	*res;
 	int		ar[6];
@@ -63,7 +63,9 @@ char	*str_from_db(t_lan i_db, t_lanch f_db, int prec)
 	ar[2] = 0;
 	ar[3] = 0;
 	ar[5] = prec;
-	res = (char *)malloc(sizeof(char) * (i_db.len * 4 + prec + 1 + 1));
+	res = (char *)malloc(sizeof(char) * (i_db.len * 4 + sign + prec + 2));
+	if (sign == 1)
+		res[(ar[2])++] = '-';
 	while (ar[1] >= 0)
 	{
 		ar[0] = -1;

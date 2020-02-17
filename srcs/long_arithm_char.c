@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 12:17:39 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/17 14:37:00 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		create_lanch(t_lanch *res, int width)
 {
-	int c;
+	unsigned	c;
 
 	c = 0;
 	res->len = (width == -1) ? 3 : width;
@@ -85,10 +85,10 @@ int		change_lanch_rank(t_lanch *p_lan, int type)
 
 t_lanch	power_of_five_lanch(int num, int width)
 {
-	t_lanch	temp;
-	int		remainder;
-	int		c;
-	int		cp;
+	t_lanch		temp;
+	int			remainder;
+	unsigned	c;
+	int			cp;
 
 	cp = num;
 	remainder = 0;
