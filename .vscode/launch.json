@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/ft_printf",
-            "preLaunchTask": "print",
+            // "preLaunchTask": "print",
             "logging": {
                 "moduleLoad": false,
                 "programOutput": true,
@@ -14,7 +14,7 @@
             },
             "showDisplayString": false,
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceRoot}",
             "environment": [],
             "externalConsole": true, 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/14 23:31:18 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 13:23:17 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 	return (parse_str_to_lan(i_part, f_part, prec));
 }
 
+int		check_inf_nan(t_ldbl res)
+{
+	if (res.parts.exp & 0x7ffff == 0x7ffff)
+	{
+		if (res.parts.mant & 0xffffffffffffffff == 0x8000000000000000)		
+		{
+			if (res.parts.sign == 0)
+					ft_putstr("+inf");
+			else
+					ft_putstr("-inf");
+		}
+		return (-1);
+	}
+	return (1);
+}
+
 char	*lfloat(long double input, int prec)
 {
 	t_ldbl		res;
@@ -56,6 +72,15 @@ char	*lfloat(long double input, int prec)
 	mid_exp = 0;
 	mid_exp = mid_exp | ((1 << 15) >> 1) - 1;
 	res.origin = input;
+	if (prec == -1)
+		prec = 6;
+	printf("%u\n", res.parts.sign);
+    printf("%u\n", res.parts.exp);
+    printf("%llu\n", res.parts.mant);
+    printf("\nMANT_BINARY\n%s\n", ft_itoa_base(res.parts.mant, 2));
+    printf("%s\n", ft_itoa_base(res.parts.exp, 2));    
+	if (check_inf_nan(res) == -1)
+		return (NULL);
 	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec)) == NULL)
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')
