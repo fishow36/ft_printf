@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 14:24:35 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:18:46 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,12 @@ t_lanch	power_of_five_lanch(int num, int width)
 	return (temp);
 }
 
+/*
+**	TYPE
+**	0 - > there are both parts
+**	n - > there is only frac_part
+*/
+
 t_lanch		create_lanch_from_bitstr(char *str)
 {
 	t_lanch res;
@@ -139,7 +145,7 @@ t_lanch		create_lanch_from_bitstr(char *str)
 		{
 			temp = power_of_five_lanch(c + 1, length);
 			res = sum_lanch_nums(res, temp);
-		}
+		}		
 		c++;
 	}
 	return (res);

@@ -11,7 +11,7 @@ int main(void)
 
     i = 12;
    
-    ft_printf("%Lf\n", 10);
+    // ft_printf("%Lf\n", 10);
 
     printf("\n");
     printf("%Lf\n", 10);
