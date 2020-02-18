@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_and_fill_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:44:04 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/10 20:10:27 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/17 12:56:15 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 int		*count_args(const char *format, int *amount)
 {
-	int i;
-	int j;
-	int *pos;
+	int		i;
+	int		j;
+	int		*pos;
 
 	i = -1;
-	while (format[++i])
-		if (format[i] == '%' && format[i + 1] != '\0')
+	while (++i < (int)ft_strlen(format))
+		if (format[i] == '%')
 		{
 			i = type_pos(format, i + 1);
 			(*amount)++;
 		}
-	pos = (int*)malloc(sizeof(int) * (*amount));
+	if (amount == 0 || !(pos = (int*)malloc(sizeof(int) * (*amount))))
+		return (NULL);
 	i = -1;
 	j = 0;
-	while (format[++i])
+	while (++i < (int)ft_strlen(format))
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
 			pos[j] = i;
 			j++;
-			i = type_pos(format, i + 1);	
+			i = type_pos(format, i + 1);
 		}
 	}
 	return (pos);
@@ -46,6 +47,8 @@ int		fill_node(const char *format, int pos, t_lst **node)
 	(*node)->width = NULL;
 	(*node)->precision = NULL;
 	pos = find_flags(format, pos, node);
+	if ((*node)->flags[2] == '-')
+		(*node)->flags[0] = '?';
 	pos = find_width(format, pos, node);
 	pos = find_prec(format, pos, node);
 	pos = find_length(format, pos, node);

@@ -18,7 +18,7 @@ void	ft_putnbr_fd(int n, int fd)
 
 	if (n < 0)
 		ft_putchar_fd('-', fd);
-	num = n < 0 ? (unsigned)(-n) : n;
+	num = n < 0 ? (unsigned)(-n) : (unsigned)n;
 	if (num >= 10)
 	{
 		ft_putnbr_fd(num / 10, fd);

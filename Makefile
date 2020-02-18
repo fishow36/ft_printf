@@ -8,9 +8,6 @@ SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 SOURCES :=	aux.c \
-			long_arithm.c \
-			long_arithm_char.c \
-			parse_for_floats.c \
 			for_convenience.c \
 			print_other.c \
 			create_and_fill_list.c \
@@ -22,9 +19,18 @@ SOURCES :=	aux.c \
 			print_csp.c \
 			width.c \
 			flags.c \
-			floats.c \
 			ft_printf.c \
 			print_int.c \
+			print_elem.c \
+			printf_float.c \
+			int_aux.c \
+			int_aux2.c \
+			uint_aux.c \
+			align.c \
+			floats.c \
+			long_arithm_char.c \
+			long_arithm.c \
+			parse_for_floats.c \
 			libft/ft_atoi.c \
 			libft/ft_strmap.c \
 			libft/ft_bzero.c \

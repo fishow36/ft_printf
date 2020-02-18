@@ -1,3 +1,17 @@
 gcc *.c -I libft/includes libft/libft.a
 
+gcc -Iincludes libftprintf.a fl_main.c
+
+gcc -Wall -Werror -Wextra main.c libftprintf.a -Iincludes/
+
+gcc main.c libftprintf.a -Iincludes/
+
+rm -r printf_check
+mkdir printf_check
+cp -r printf/* printf_check
+cd printf_check
+rm -rf a.out compiler fl_main.c main.c tests a.out.dSYM README.md
+make fclean
+cd ..
+
 gcc -g -Iincludes libftprintf.a fl_main.c -o ft_printf

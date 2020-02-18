@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:45:13 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/06 13:19:22 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/13 18:35:30 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int		find_flags(const char *format, int pos, t_lst **node)
 {
-	int i;
-
-	i = 0;
 	while ((format[pos] == '0' || format[pos] == '+'
 	|| format[pos] == '-' || format[pos] == ' '
 	|| format[pos] == '#') && format[pos])
@@ -36,62 +33,33 @@ int		find_flags(const char *format, int pos, t_lst **node)
 	return (pos);
 }
 
-char	*find_w_or_p(const char *format, int len, int temp)
-{
-	char *res;
-
-	if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	len = 0;
-	while (format[temp] > 47 && format[temp] < 58)
-	{
-		res[len] = format[temp];
-		len++;
-		temp++;
-	}
-	res[len] = '\0';
-	return (res);
-}
-
 int		find_width(const char *format, int pos, t_lst **node)
 {
 	int		len;
-	int		temp;
-	char	*str;
 
 	len = 0;
 	if (format[pos] == '*')
 	{
 		pos++;
-		if (!((*node)->precision = ft_strdup("*")))
+		if (!((*node)->width = ft_strdup("*")))
 			return (-1);
+		if (format[pos] >= '0' && format[pos] <= '9')
+		{
+			(*node)->stars++;
+			ft_strdel(&((*node)->width));
+			(*node)->width = fill_number(format, &pos, &len, 'w');
+		}
 	}
 	else
-	{
-		temp = pos;
-		while (format[pos] > 47 && format[pos] < 58)
-		{
-			pos++;
-			len++;
-		}
-		if (len == 0)
-			return (pos);
-		else if (!(str = find_w_or_p(format, len, temp)))
-			return (-1);
-		else
-			(*node)->width = str;
-	}
+		(*node)->width = fill_number(format, &pos, &len, 'w');
 	return (pos);
 }
 
 int		find_prec(const char *format, int pos, t_lst **node)
 {
 	int		len;
-	int		temp;
-	char	*str;
 
 	len = 0;
-	temp = pos;
 	if (format[pos] == '.')
 	{
 		pos++;
@@ -102,24 +70,7 @@ int		find_prec(const char *format, int pos, t_lst **node)
 				return (-1);
 		}
 		else
-		{
-			temp = pos;
-			while (format[pos] > 47 && format[pos] < 58)
-			{
-				pos++;
-				len++;
-			}
-			if (len == 0)
-			{
-				if (!((*node)->precision = ft_strdup("0")))
-					return (-1);
-				return (pos);
-			}
-			else if (!(str = find_w_or_p(format, len, temp)))
-				return (-1);
-			else
-				(*node)->precision = str;
-		}
+			(*node)->precision = fill_number(format, &pos, &len, 'p');
 	}
 	return (pos);
 }
@@ -127,32 +78,27 @@ int		find_prec(const char *format, int pos, t_lst **node)
 int		find_length(const char *format, int pos, t_lst **node)
 {
 	if (format[pos] == 'L')
-	{
 		(*node)->length[0] = 'L';
-		return (pos + 1);
-	}
-	else if (format[pos] == 'h')
+	else if (format[pos] == 'h' && format[pos + 1] == 'h')
 	{
 		(*node)->length[0] = 'h';
-		if (format[pos + 1] == 'h')
-		{
-			(*node)->length[1] = 'h';
-			return (pos + 2);
-		}
-		else
-			return (pos + 1);
+		(*node)->length[1] = 'h';
 	}
-	else if (format[pos] == 'l')
+	else if (format[pos] == 'l' && format[pos + 1] == 'l')
 	{
 		(*node)->length[0] = 'l';
-		if (format[pos + 1] == 'l')
-		{
-			(*node)->length[1] = 'l';
-			return (pos + 2);
-		}
-		else
-			return (pos + 1);
+		(*node)->length[1] = 'l';
 	}
+	else if (format[pos] == 'h')
+		(*node)->length[0] = 'h';
+	else if (format[pos] == 'l')
+		(*node)->length[0] = 'l';
+	if ((format[pos] == 'h' && format[pos + 1] == 'h')
+	|| (format[pos] == 'l' && format[pos + 1] == 'l'))
+		return (pos + 2);
+	else if (format[pos] == 'h' || format[pos] == 'l'
+	|| format[pos] == 'L')
+		return (pos + 1);
 	else
 		return (pos);
 }

@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 14:34:27 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/17 16:11:40 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	change_lan_rank(t_lan *p_lan)
 
 	c = -1;
 	temp = (int *)malloc(sizeof(int) * (p_lan->len));
-	while ((unsigned)++c < p_lan->len)
+	while (++c < (int)p_lan->len)
 		temp[c] = p_lan->num[c];
 	free(p_lan->num);
 	p_lan->len++;
 	p_lan->num = (int *)malloc(sizeof(int) * (p_lan->len));
 	c = -1;
-	while ((unsigned)++c < p_lan->len - 1)
+	while (++c < (int)p_lan->len - 1)
 		p_lan->num[c] = temp[c];
 	p_lan->num[c] = 0;
 }

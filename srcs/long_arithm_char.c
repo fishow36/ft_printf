@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 14:37:00 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:18:46 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 int		create_lanch(t_lanch *res, int width)
 {
-	unsigned	c;
+	int c;
 
 	c = 0;
 	res->len = (width == -1) ? 3 : width;
 	res->num = (char *)malloc(sizeof(char) * (res->len + 1));
 	if (res->num == NULL)
 		return (-1);
-	while (c < res->len)
+	while (c < (int)res->len)
 		res->num[c++] = 0;
 	res->num[c] = '\0';
 	return (1);
@@ -85,10 +85,10 @@ int		change_lanch_rank(t_lanch *p_lan, int type)
 
 t_lanch	power_of_five_lanch(int num, int width)
 {
-	t_lanch		temp;
-	int			remainder;
-	unsigned	c;
-	int			cp;
+	t_lanch	temp;
+	int		remainder;
+	int		c;
+	int		cp;
 
 	cp = num;
 	remainder = 0;
@@ -100,9 +100,9 @@ t_lanch	power_of_five_lanch(int num, int width)
 	while (cp-- > 0)
 	{
 		c = (width == -1) ? 0 : width - num;
-		while (c < temp.len || remainder > 0)
+		while (c < (int)temp.len || remainder > 0)
 		{
-			if (c == temp.len)
+			if (c == (int)temp.len)
 				change_lanch_rank(&temp, -1);
 			temp.num[c] = temp.num[c] * 5;
 			temp.num[c] = temp.num[c] + remainder;
@@ -114,6 +114,12 @@ t_lanch	power_of_five_lanch(int num, int width)
 	}
 	return (temp);
 }
+
+/*
+**	TYPE
+**	0 - > there are both parts
+**	n - > there is only frac_part
+*/
 
 t_lanch		create_lanch_from_bitstr(char *str)
 {
@@ -139,7 +145,7 @@ t_lanch		create_lanch_from_bitstr(char *str)
 		{
 			temp = power_of_five_lanch(c + 1, length);
 			res = sum_lanch_nums(res, temp);
-		}
+		}		
 		c++;
 	}
 	return (res);
