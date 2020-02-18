@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 18:24:18 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/18 21:19:15 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,15 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 	t_lanch	f_db;
 	char	*res;
 	int		c;
-	int		len;
 
-	c = -1;
-	len = ft_strlen(frac);
-	if ((res = (char *)malloc(sizeof(char) * (len + 2))) == NULL)
-		return (NULL);
-	res[++c] = '1';
-	while (frac[++c - 1] != '\0')
-		res[c] = frac[c - 1];
+	c = 0;
 	f_db = create_lanch_from_bitstr(frac);
-		printf("\n\n%s\n\n", f_db.num);
-
-	// c = -1;
-	// len = f_db.len + sh_pr_sg[2];
-	// if ((res = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
-	// 	return (NULL);
-	// if (sh_pr_sg[2] == 1)
-	// 	res[c++] = '-';
-	// while (c < len + 1)
-	// 	res[c++] = f_db.num[--f_db.len] + '0';
-	// res[c] = '\0';
+	if ((res = (char *)malloc(sizeof(char) * (sh_pr_sg[1] + 3))) == NULL)
+		return (NULL);
+	res[c++] = '0';
+	res[c++] = '.';
+	while (sh_pr_sg[1]-- > 0)
+		res[c++] = f_db.num[--f_db.len] + '0';
 	return (res);
 }
 
@@ -64,7 +52,7 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 	f_part = NULL;
 	if ((i_part = ft_dtoa_two(input->parts.mant, shift)) == NULL)
 		return (NULL);
-	if (shift > 0)
+	if (shift >= 0)
 	{
 		if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
 			return (NULL);
@@ -82,7 +70,7 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 // {
 // 	if (res.parts.exp & (0x7ffff == 0x7ffff))
 // 	{
-// 		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))		
+// 		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))
 // 		{
 // 			if (res.parts.sign == 0)
 // 					ft_putstr("+inf");
@@ -123,13 +111,3 @@ char	*lfloat(long double input, int prec)
 	output[c] = '\0';
 	return (output);
 }
-/*
-void	print_lfloat(t_lst *temp, long double input, int prec)
-{
-	char	*output;
-
-	if ((output = lfloat(input, prec)) == NULL)
-		return ;
-	printf("%s\n", output);
-}
-*/

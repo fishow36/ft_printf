@@ -15,3 +15,5 @@ make fclean
 cd ..
 
 gcc -g -Iincludes libftprintf.a fl_main.c -o ft_printf
+
+
