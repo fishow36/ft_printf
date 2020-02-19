@@ -105,37 +105,24 @@ int     print_usshort(t_lst *temp, int nbr, int *w_p);
 char	*lfloat(long double input, int prec);
 int     print_float(t_lst *temp, double input, int *w_p);
 int		print_lfloat(t_lst *temp, long double input, int *w_p);
-//void    return_lfloat(t_lst *temp, long double input, int prec);
 char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
 char	*ft_dtoa_two(t_ulli value, int shift);
 
-t_lan   create_lan(t_ulli input_num);
-char    *creat_str_and_count(t_ulli input_num, size_t *len, int *len_str);
-void    print_lan(t_lan to_print);
-t_lan   sum_lan_nums(t_lan f, t_lan s);
-t_lan   sub_lan_nums(t_lan f, t_lan s, int type);
-t_lan   mult_lans(t_lan f, t_lan s);
-t_lan   div_lan_nums(t_lan f, int num);
-t_lan   power_two_lan(int num);
-t_lan   power_of_two_lan(int num);
-t_lan   power_of_five_lan(int num);
-void    add_rank_for_frac(t_lan *p_lan, int len_of_lan);
-t_lan   create_lan_from_bitstr(char *str);
-void    change_lan_rank(t_lan *p_lan);
+char	*lfloat(long double input, int prec);
+t_lanch	power_of_five_lanch(int num, int width);
+int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec);
+t_lanch	sum_lanch_nums(t_lanch f, t_lanch s);
+int		create_lanch(t_lanch *res, int width);
+int		precision_in_da_house(t_lanch *res, int prec);
+t_lan	create_lan_from_bitstr(char *str);
+t_lan	power_of_two_lan(int num);
+t_lan	sum_lan_nums(t_lan f, t_lan s);
+char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
+char	*ft_dtoa_two(t_ulli value, int shift);
+void	ft_strrev(char **str);
+int		create_lanch(t_lanch *res, int width);
 
-int     create_lanch(t_lanch *res, int width);
-void    print_lanch(t_lanch to_print);
-int     change_lanch_rank(t_lanch *p_lan, int type);
-int     cpy_lanch_str(t_lanch *dst, t_lanch *src);
-t_lanch power_of_five_lanch(int num, int width);
-t_lanch create_lanch_from_bitstr(char *str);
-t_lanch sum_lanch_nums(t_lanch f, t_lanch s);
-void		ft_strrev(char **str);
 int     print_other(t_lst *temp, int *w_p);
-//
-void print_node(t_lst *node);
-//
-
 t_lst   *create_list(const char *format, int *pos, int amount);
 
 char    *align_width(char *str, int size, t_lst *node);

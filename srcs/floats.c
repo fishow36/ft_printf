@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 18:24:18 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 01:18:56 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,21 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 	char	*res;
 	int		c;
 	int		len;
+	int		flag;
 
-	c = -1;
-	len = ft_strlen(frac);
-	if ((res = (char *)malloc(sizeof(char) * (len + 2))) == NULL)
+	c = 0;
+	len = sh_pr_sg[1] + sh_pr_sg[2] + 2;
+	flag = create_lanch_from_bitstr(&f_db, frac, sh_pr_sg[1]);
+	if ((res = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	res[++c] = '1';
-	while (frac[++c - 1] != '\0')
-		res[c] = frac[c - 1];
-	f_db = create_lanch_from_bitstr(frac);
-		printf("\n\n%s\n\n", f_db.num);
-
-	// c = -1;
-	// len = f_db.len + sh_pr_sg[2];
-	// if ((res = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
-	// 	return (NULL);
-	// if (sh_pr_sg[2] == 1)
-	// 	res[c++] = '-';
-	// while (c < len + 1)
-	// 	res[c++] = f_db.num[--f_db.len] + '0';
-	// res[c] = '\0';
+	if (sh_pr_sg[2] == 1)
+		res[c++] = '-';
+	res[c++] = (flag == 0) ? '0' : '1';
+	if (sh_pr_sg[1] != 0)
+		res[c++] = '.';
+	while (sh_pr_sg[1]-- > 0)
+		res[c++] = f_db.num[--f_db.len] + '0';
+	res[c] = '\0';
 	return (res);
 }
 
@@ -45,9 +40,11 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 {
 	t_lan	i_db;
 	t_lanch	f_db;
+	int		flag;
 
 	i_db = create_lan_from_bitstr(i_part);
-	f_db = create_lanch_from_bitstr(f_part);
+	if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])) == 1)
+		i_db = sum_lan_nums(i_db, power_of_two_lan(0));
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
 
@@ -64,7 +61,7 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 	f_part = NULL;
 	if ((i_part = ft_dtoa_two(input->parts.mant, shift)) == NULL)
 		return (NULL);
-	if (shift > 0)
+	if (shift >= 0)
 	{
 		if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
 			return (NULL);
@@ -78,21 +75,21 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 		return (only_frac_input(i_part, ar));
 }
 
-// int		check_inf_nan(t_ldbl res)
-// {
-// 	if (res.parts.exp & (0x7ffff == 0x7ffff))
-// 	{
-// 		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))		
-// 		{
-// 			if (res.parts.sign == 0)
-// 					ft_putstr("+inf");
-// 			else
-// 					ft_putstr("-inf");
-// 		}
-// 		return (-1);
-// 	}
-// 	return (1);
-// }
+int		check_inf_nan(t_ldbl res)
+{
+	if (res.parts.exp & (0x7ffff == 0x7ffff))
+	{
+		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))		
+		{
+			if (res.parts.sign == 0)
+					ft_putstr("+inf");
+			else
+					ft_putstr("-inf");
+		}
+		return (-1);
+	}
+	return (1);
+}
 
 char	*lfloat(long double input, int prec)
 {
@@ -107,13 +104,6 @@ char	*lfloat(long double input, int prec)
 	if (prec == -1)
 		prec = 6;
 	res.origin = input;
-	// printf("%u\n", res.parts.sign);
-    // printf("%u\n", res.parts.exp);
-    // printf("%llu\n", res.parts.mant);
-    // printf("\nMANT_BINARY\n%s\n", ft_itoa_base(res.parts.mant, 2));
-    // printf("%s\n", ft_itoa_base(res.parts.exp, 2));    
-	// if (check_inf_nan(res) == -1)
-	// 	return (NULL);
 	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec)) == NULL)
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')
@@ -123,13 +113,3 @@ char	*lfloat(long double input, int prec)
 	output[c] = '\0';
 	return (output);
 }
-/*
-void	print_lfloat(t_lst *temp, long double input, int prec)
-{
-	char	*output;
-
-	if ((output = lfloat(input, prec)) == NULL)
-		return ;
-	printf("%s\n", output);
-}
-*/

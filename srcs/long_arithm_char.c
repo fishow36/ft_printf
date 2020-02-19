@@ -6,31 +6,11 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 18:18:46 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 01:24:50 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-**  WIDTH == -1 -> len = 3
-**  WIDTH != -1 -> len = WIDTH
-*/
-
-int		create_lanch(t_lanch *res, int width)
-{
-	int c;
-
-	c = 0;
-	res->len = (width == -1) ? 3 : width;
-	res->num = (char *)malloc(sizeof(char) * (res->len + 1));
-	if (res->num == NULL)
-		return (-1);
-	while (c < (int)res->len)
-		res->num[c++] = 0;
-	res->num[c] = '\0';
-	return (1);
-}
 
 int		cpy_lanch_str(t_lanch *dst, t_lanch *src)
 {
@@ -121,34 +101,26 @@ t_lanch	power_of_five_lanch(int num, int width)
 **	n - > there is only frac_part
 */
 
-t_lanch		create_lanch_from_bitstr(char *str)
+int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec)
 {
-	t_lanch res;
-	t_lanch temp;
 	int		c;
 	int		len_str;
 	int		length;
 
 	len_str = ft_strlen(str);
-	create_lanch(&res, -1);
+	create_lanch(res, -1);
 	c = len_str - 1;
 	while (c > 0 && str[c] == '0')
 		c--;
-	res = power_of_five_lanch(c + 1, -1);
-	change_lanch_rank(&res, c + 1);
+	*res = power_of_five_lanch(c + 1, -1);
+	change_lanch_rank(res, c + 1);
 	len_str = c;
-	length = res.len;
-	c = 0;
-	while (c < len_str)
-	{
+	length = res->len;
+	c = -1;
+	while (++c < len_str)
 		if (str[c] == '1')
-		{
-			temp = power_of_five_lanch(c + 1, length);
-			res = sum_lanch_nums(res, temp);
-		}		
-		c++;
-	}
-	return (res);
+			*res = sum_lanch_nums(*res, power_of_five_lanch(c + 1, length));
+	return (precision_in_da_house(res, prec));
 }
 
 /*

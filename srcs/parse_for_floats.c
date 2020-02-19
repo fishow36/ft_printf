@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/17 18:04:21 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 01:24:00 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ char	*ft_dtoa_two(t_ulli value, int shift)
 
 char	*str_from_db_after_loop(t_lanch f_db, char *res, int *ar)
 {
-	res[(ar[2])++] = '.';
-	ar[1] = f_db.len - 1;
-	ar[0] = 0;
-	while (ar[1] > -1 && ++(ar[0]) <= ar[5])
-		res[(ar[2])++] = f_db.num[(ar[1])--] + '0';
-	while (++(ar[0]) <= ar[5])
-		res[(ar[2])++] = '0';
+	if (ar[5] != 0)
+	{
+		res[(ar[2])++] = '.';
+		ar[1] = f_db.len - 1;
+		ar[0] = 0;
+		while (ar[1] > -1 && ++(ar[0]) <= ar[5])
+			res[(ar[2])++] = f_db.num[(ar[1])--] + '0';
+		while (++(ar[0]) <= ar[5])
+			res[(ar[2])++] = '0';
+	}
 	res[ar[2]] = '\0';
 	return (res);
 }
