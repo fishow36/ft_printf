@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_rounding.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/21 00:01:44 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 00:56:32 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ int		is_half(char *str, int c)
 int		precision_in_da_house(t_lanch *res, int prec)
 {
 	int	hlf;
+	int	index;
 
 	hlf = 0;
-	ft_strrev(&res->num);
+	index = prec > res->len ? 0 : res->len - prec - 1;
 	printf("\n^");
-	for (int i = 0; i < res->len; i++)
+	for (int i = index; i < res->len; i++)
 		printf("%d ", res->num[i]);
 	printf("\n");
-	if (res->num[prec] > 5 || (res->num[prec] == 5 && (hlf = is_half(res->num, prec)) != 1))
+	if (res->num[index] > 5 || (res->num[index] == 5 && (hlf = is_half(res->num, index)) != 1))
 		return (increas_lanch_one(res, prec));
-	else if (hlf == 1 && res->num[prec - 1] % 2 == 1)
+	else if (hlf == 1 && res->num[index + 1] % 2 == 1)
 		return (increas_lanch_one(res, prec));
 	else if (hlf == 1 && prec == 0)
 		return (1);

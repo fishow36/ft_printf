@@ -11,9 +11,9 @@ int main()
     long double test2 = 12.625;
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
+    ft_printf("our %.10Lf\n", test2);
     
     // printf("std %.51Lf\n", test2);
-    ft_printf("our %.2Lf\n", test2);
 
     // t_lan *test1;
     // if ((test1 = (t_lan *)malloc(sizeof(t_lan) * 1)) == NULL)
