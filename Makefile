@@ -9,7 +9,7 @@ OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 SOURCES :=	aux.c \
 			for_convenience.c \
-			precision_lanch.c \
+			checks_rounding_lanch.c \
 			print_other.c \
 			create_and_fill_list.c \
 			ft_itoa_base.c \

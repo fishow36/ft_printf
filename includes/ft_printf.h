@@ -118,6 +118,7 @@ t_lan	power_of_two_lan(int num);
 t_lan	sum_lan_nums(t_lan f, t_lan s);
 void	ft_strrev(char **str);
 int		create_lanch(t_lanch *res, int width);
+int		check_inf_nan(t_ldbl res);
 
 int     print_other(t_lst *temp, int *w_p);
 t_lst   *create_list(const char *format, int *pos, int amount);

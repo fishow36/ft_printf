@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/20 15:20:47 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 16:28:19 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,21 @@ int		create_lanch(t_lanch *res, int width)
 	while (c < (int)res->len)
 		res->num[c++] = 0;
 	res->num[c] = '\0';
+	return (1);
+}
+
+int		check_inf_nan(t_ldbl res)
+{
+	if (res.parts.exp & (0x7ffff == 0x7ffff))
+	{
+		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))
+		{
+			if (res.parts.sign == 0)
+				ft_putstr("+inf");
+			else
+				ft_putstr("-inf");
+		}
+		return (-1);
+	}
 	return (1);
 }

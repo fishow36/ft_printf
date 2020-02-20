@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 15:55:51 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 16:07:06 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ char	*str_from_db_after_loop(t_lanch *f_db, char *res, int *ar)
 		res[(ar[2])++] = '.';
 		ar[0] = 0;
 		if (f_db != NULL)
+		{
 			ar[1] = f_db->len - 1;
 			while (ar[1] > -1 && ++(ar[0]) <= ar[5])
 				res[(ar[2])++] = f_db->num[(ar[1])--] + '0';
+		}
 		while (++(ar[0]) <= ar[5])
 			res[(ar[2])++] = '0';
 	}
@@ -65,15 +67,14 @@ char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign)
 	char	*res;
 	int		ar[6];
 
-	ar[0] = -1;
-	ar[1] = i_db.len - 1;
+	ar[1] = i_db.len;
 	ar[2] = 0;
 	ar[3] = 0;
 	ar[5] = prec;
 	res = (char *)malloc(sizeof(char) * (i_db.len * 4 + sign + prec + 2));
 	if (sign == 1)
 		res[(ar[2])++] = '-';
-	while (ar[1] >= 0)
+	while (--(ar[1]) >= 0)
 	{
 		ar[0] = -1;
 		if (i_db.num[ar[1]] == 0)
@@ -86,7 +87,6 @@ char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign)
 			ar[2] += ar[4];
 			res[ar[2]] = '\0';
 		}
-		(ar[1])--;
 	}
 	return (str_from_db_after_loop(f_db, res, ar));
 }
