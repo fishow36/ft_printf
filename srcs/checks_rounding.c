@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checks_rounding.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/20 16:50:47 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 19:54:31 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_half(t_lanch *res, int c)
+int		is_half(int c)
 {
 	while (--c >= 0)
 		if (c != 0)
@@ -25,8 +25,9 @@ int		precision_in_da_house(t_lanch *res, int prec)
 	int c;
 	int	hlf;
 
+	hlf = 0;
 	c = res->len - prec - 1;
-	if (res->num[c] > 5 || (res->num[c] == 5 && (hlf = is_half(res, c)) != 1))
+	if (res->num[c] > 5 || (res->num[c] == 5 && (hlf = is_half(c)) != 1))
 		return (increas_lanch_one(res, c + 1));
 	else if (hlf == 1 && res->num[res->len - prec] % 2 == 1)
 		return (increas_lanch_one(res, c + 1));

@@ -1,8 +1,6 @@
 NAME = libftprintf.a
 COMPILER = gcc
 FLAGS = -g
-INC = -I libft/includes
-LIB = libft/libft.a
 INCLUDE_FOLDERS := -I includes/ -I libft/includes/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
@@ -119,6 +117,8 @@ objs/%.o: %.c
 
 clean:
 	@rm -rf $(OBJECTS)
+	@rm -rf objs
+	@rm -rf libft
 	
 fclean: clean
 	@rm -f $(NAME)

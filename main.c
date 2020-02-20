@@ -9,12 +9,6 @@ int main(void)
     int i;
     char *str;
 
-    i = 12;
-   
-    // ft_printf("%Lf\n", 10);
-
-    printf("\n");
-    printf("%Lf\n", 10);
-
-    return (0);
+    ft_printf("%c\n", (char)0);
+    printf("%c\n", (char)0);
 }

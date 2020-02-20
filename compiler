@@ -10,7 +10,7 @@ rm -r printf_check
 mkdir printf_check
 cp -r printf/* printf_check
 cd printf_check
-rm -rf a.out compiler fl_main.c main.c tests a.out.dSYM README.md
+rm -rf a.out compiler fl_main.c main.c tests a.out.dSYM README.md ft_printf.dSYM ft_printf
 make fclean
 cd ..
 
