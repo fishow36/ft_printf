@@ -105,7 +105,7 @@ char	*lfloat(long double input, int prec);
 int     print_float(t_lst *temp, double input, int *w_p);
 int		print_lfloat(t_lst *temp, long double input, int *w_p);
 char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
-char	*ft_dtoa_two(t_ulli value, int shift);
+char	*ft_dtoa_two(t_ulli value, int shift, int *res_len);
 
 char	*lfloat(long double input, int prec);
 t_lanch	power_of_five_lanch(int num, int width);
@@ -117,7 +117,6 @@ t_lan	create_lan_from_bitstr(char *str);
 t_lan	power_of_two_lan(int num);
 t_lan	sum_lan_nums(t_lan f, t_lan s);
 char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign);
-char	*ft_dtoa_two(t_ulli value, int shift);
 void	ft_strrev(char **str);
 int		create_lanch(t_lanch *res, int width);
 

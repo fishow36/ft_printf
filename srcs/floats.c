@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 10:27:31 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 13:30:26 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,56 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 	int		flag;
 
 	i_db = create_lan_from_bitstr(i_part);
+	// for (int i = 0; i < i_db.len; i++)
+		// printf("%d ", i_db.num[i]);
+	// printf("\n");
 	if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])) == 1)
 		i_db = sum_lan_nums(i_db, power_of_two_lan(0));
+	printf("@%s\n", i_part);
+	printf("@%s\n", f_part);
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
+
+
+/*
+**	l_i -> length integer_part
+*/
 
 char	*ldbl_to_str(t_ldbl *input, int shift, int prec, unsigned mid)
 {
 	char	*i_part;
 	char	*f_part;
 	char	*temp;
+	int		l_i;
 	int		ar[3];
 
 	ar[0] = shift;
 	ar[1] = prec;
 	ar[2] = input->parts.sign;
+	l_i = 0;
+	if (shift > 63)
+		l_i = shift - 63;
 	f_part = NULL;
-	if ((i_part = ft_dtoa_two(input->parts.mant, shift)) == NULL)
+	if ((i_part = ft_dtoa_two(input->parts.mant, shift, &l_i)) == NULL)
 		return (NULL);
+	// printf("%s\n", i_part);
 	if (shift >= 0)
 	{
-		if (shift == mid)
+		if (shift > 64)
 		{
 			if ((f_part = ft_strncpy(f_part, "0", 1)) == NULL)
 				return (NULL);
+			return (parse_str_to_lan(i_part, f_part, ar));
 		}
-		else if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
-			return (NULL);
-		temp = i_part;
-		if ((i_part = ft_strncpy(i_part, i_part, shift + 1)) == NULL)
-			return (NULL);
-		free(temp);
+		else
+		{
+			if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
+				return (NULL);
+			temp = i_part;
+			if ((i_part = ft_strncpy(i_part, i_part, shift + 1)) == NULL)
+				return (NULL);
+			free(temp);
+		}
 		return (parse_str_to_lan(i_part, f_part, ar));
 	}
 	else
@@ -109,9 +128,9 @@ char	*lfloat(long double input, int prec)
 	if (prec == -1)
 		prec = 6;
 	res.origin = input;
-	printf("%u\n", res.parts.sign);
-	printf("%u\n", res.parts.exp);
-	printf("%llu\n", res.parts.mant);
+	// printf("%u\n", res.parts.sign);
+	// printf("%u\n", res.parts.exp - mid_exp);
+	// printf("%llu\n", res.parts.mant);
 	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec, mid_exp)) == NULL)
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')

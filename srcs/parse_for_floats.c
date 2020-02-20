@@ -6,13 +6,13 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 01:24:00 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 13:34:48 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_dtoa_two(t_ulli value, int shift)
+char	*ft_dtoa_two(t_ulli value, int shift, int *res_len)
 {
 	char		*str;
 	unsigned	i;
@@ -22,8 +22,10 @@ char	*ft_dtoa_two(t_ulli value, int shift)
 	flag = shift < 0 ? -shift : 0;
 	if (value == 0)
 		return (ft_strdup("0"));
-	if (!(str = (char*)malloc(sizeof(char) * (64 + flag + 1))))
+	if (!(str = (char*)malloc(sizeof(char) * (64 + flag + *res_len + 1))))
 		return (NULL);
+	while ((*res_len)-- > 0)
+		str[i++] = '0';
 	while (value > 0 || i < 64)
 	{
 		str[i++] = value % 2 + '0';
@@ -33,11 +35,13 @@ char	*ft_dtoa_two(t_ulli value, int shift)
 		str[i++] = '0';
 	str[i] = '\0';
 	ft_strrev(&str);
+	*res_len = ft_strlen(str);
 	return (str);
 }
 
 char	*str_from_db_after_loop(t_lanch f_db, char *res, int *ar)
 {
+	printf("###%s\n", f_db.num);//FOR
 	if (ar[5] != 0)
 	{
 		res[(ar[2])++] = '.';

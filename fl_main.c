@@ -6,9 +6,9 @@ int main()
 {
     long double test_max = LDBL_MAX;
     double test = 4.25;
-    long double test1 = 0.5555555555555555;
-    ft_printf("our %.10Lf\n", test_max);
-    // printf("std %.10Lf\n", test_max);
+    long double test1 = 10000000000000000000000.0;
+    ft_printf("our %Lf\n", test1);
+    // printf("std %Lf\n", test1);
 
     // t_ldbl res;
 

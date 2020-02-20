@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/19 23:24:45 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 10:59:44 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_lan	create_lan_from_bitstr(char *str)
 	int		c;
 	int		len_str;
 
+
+	printf("#%s\n", str);
 	len_str = ft_strlen(str);
 	res.num = (int *)malloc(sizeof(int) * 1);
 	res.num[0] = 0;
@@ -29,7 +31,13 @@ t_lan	create_lan_from_bitstr(char *str)
 		if (str[len_str - c - 1] == '1')
 		{
 			temp = power_of_two_lan(c);
+			// for (int i = 0; i < temp.len; i++)
+			// 	printf("%d ", temp.num[i]);
 			res = sum_lan_nums(res, temp);
+			// printf("\n");
+			// for (int i = 0; i < res.len; i++)
+			// 	printf("%d ", res.num[i]);
+			// printf("<>\n");
 		}
 		c++;
 	}
