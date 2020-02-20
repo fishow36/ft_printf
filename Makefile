@@ -8,8 +8,7 @@ SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
 vpath %.c srcs
 SOURCES :=	aux.c \
-			for_convenience.c \
-			checks_rounding_lanch.c \
+			checks_rounding.c \
 			print_other.c \
 			create_and_fill_list.c \
 			ft_itoa_base.c \
@@ -30,6 +29,7 @@ SOURCES :=	aux.c \
 			align.c \
 			floats.c \
 			long_arithm_char.c \
+			long_arithm_char_2.c \
 			long_arithm.c \
 			parse_for_floats.c \
 			libft/ft_atoi.c \

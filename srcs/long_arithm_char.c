@@ -6,29 +6,11 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 15:56:28 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 16:49:53 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		cpy_lanch_str(t_lanch *dst, t_lanch *src)
-{
-	size_t	count;
-
-	count = 0;
-	if ((dst->num = (char *)malloc(sizeof(char) * (dst->len + 1))) == NULL)
-		return (-1);
-	while (count < src->len)
-	{
-		dst->num[count] = src->num[count];
-		count++;
-	}
-	while (count < dst->len)
-		dst->num[count++] = 0;
-	dst->num[count] = '\0';
-	return (1);
-}
 
 /*
 **  type == -1 -> rank += 1
@@ -63,6 +45,17 @@ int		change_lanch_rank(t_lanch *p_lan, int type)
 	}
 }
 
+void	power_of_five_lanch_inside(t_lanch *temp, int *c, int *r)
+{
+	if (*c == (int)temp->len)
+		change_lanch_rank(temp, -1);
+	temp->num[*c] = temp->num[*c] * 5 + *r;
+	*r = (temp->num[*c] > 9) ? temp->num[*c] / 10 : 0;
+	if (*r != 0)
+		temp->num[*c] %= 10;
+	(*c)++;
+}
+
 t_lanch	power_of_five_lanch(int num, int width)
 {
 	t_lanch	temp;
@@ -81,16 +74,7 @@ t_lanch	power_of_five_lanch(int num, int width)
 	{
 		c = (width == -1) ? 0 : width - num;
 		while (c < (int)temp.len || remainder > 0)
-		{
-			if (c == (int)temp.len)
-				change_lanch_rank(&temp, -1);
-			temp.num[c] = temp.num[c] * 5;
-			temp.num[c] = temp.num[c] + remainder;
-			remainder = (temp.num[c] > 9) ? temp.num[c] / 10 : 0;
-			if (remainder != 0)
-				temp.num[c] %= 10;
-			c++;
-		}
+			power_of_five_lanch_inside(&temp, &c, &remainder);
 	}
 	return (temp);
 }
@@ -101,7 +85,7 @@ t_lanch	power_of_five_lanch(int num, int width)
 **	n - > there is only frac_part
 */
 
-int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec)
+int		create_lanch_from_bitstr(t_lanch *res, char *str, int prec)
 {
 	int		c;
 	int		len_str;
@@ -127,7 +111,7 @@ int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec)
 **  f - first, s - second
 */
 
-t_lanch		sum_lanch_nums(t_lanch f, t_lanch s)
+t_lanch	sum_lanch_nums(t_lanch f, t_lanch s)
 {
 	int		remainder;
 	size_t	c;

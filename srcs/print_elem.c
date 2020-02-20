@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_elem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:05:07 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 16:50:20 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 16:52:18 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		print_elem3(t_lst *temp, va_list ap, int *w_p)
 {
-    long double input;
+	long double input;
 
 	if (temp->type == 'c')
 		return (print_char(temp, va_arg(ap, int), w_p));

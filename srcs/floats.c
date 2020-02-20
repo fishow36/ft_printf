@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 16:28:13 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 16:57:45 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,6 @@ char	*lfloat(long double input, int prec)
 	if (prec == -1)
 		prec = 6;
 	res.origin = input;
-	// printf("%u\n", res.parts.sign);
-	// printf("%u\n", res.parts.exp - mid_exp);
-	// printf("%llu\n", res.parts.mant);
 	if (!(output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec, mid_exp)))
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')
