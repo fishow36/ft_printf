@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 23:47:39 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 01:49:16 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	int		len_str;
 	int		length;
 
+	printf("~%s\n", str);
+
 	len_str = ft_strlen(str);
 	*res = create_lanch(*res, -1);
 	c = len_str - 1;
@@ -81,10 +83,13 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	*res = change_lanch_rank(*res, c + 1);
 	len_str = c;
 	length = (*res)->len;
+	printf("length(res) %d\n", length);
 	c = -1;
 	while (++c < len_str)
 		if (str[c] == '1')
 			*res = sum_lanch_nums(*res, power_of_five_lanch(c + 1, length));
+	// for(int i = 0; i < (*res)->len; i++)
+	// 	printf("%c-", (*res)->num[i] + '0');
 	return (precision_in_da_house(*res, prec));
 }
 

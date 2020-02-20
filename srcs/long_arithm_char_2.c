@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm_char_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 23:59:48 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 01:55:48 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		increas_lanch_one(t_lanch *res, int c)
 	int i;
 
 	remainder = 0;
-	ft_strrev(&res->num);
 	i = c;
 	if (c == res->len)
 		return (1);

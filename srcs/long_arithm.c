@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 22:51:12 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 02:13:57 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ t_lan	*create_lan_from_bitstr(char *str)
 	while (len_str - c > 0)
 	{
 		if (str[len_str - c - 1] == '1')
+		{
 			res = sum_lan_nums(res, power_of_two_lan(c));
+			printf("!");
+			for (int i = 0; i < res->len; i++)
+				printf("%d ", res->num[i]);
+			printf("\n");
+		}
 		c++;
 	}
 	return (res);
@@ -47,9 +53,9 @@ t_lan	*power_of_two_lan(int num)
 	temp->num[0] = 1;
 	while (num-- > 0)
 	{
-		for (int i = 0; i < temp->len; i++)
-			printf("%d ", temp->num[i]);
-		printf("\n");
+		// for (int i = 0; i < temp->len; i++)
+		// 	printf("%d ", temp->num[i]);
+		// printf("\n");
 		temp = sum_lan_nums(temp, temp);
 	}
 	return (temp);

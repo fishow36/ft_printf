@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/21 00:56:32 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/21 02:04:19 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int		is_half(char *str, int c)
 {
-	int len;
-
-	len = ft_strlen(str);
-	while (++c < len)
-		if (str[c] != '0')
+	while (--c >= 0)
+		if (str[c] != 0)
 			return (0);
 	return (1);
 }
@@ -30,16 +27,21 @@ int		precision_in_da_house(t_lanch *res, int prec)
 
 	hlf = 0;
 	index = prec > res->len ? 0 : res->len - prec - 1;
+	
 	printf("\n^");
 	for (int i = index; i < res->len; i++)
 		printf("%d ", res->num[i]);
 	printf("\n");
-	if (res->num[index] > 5 || (res->num[index] == 5 && (hlf = is_half(res->num, index)) != 1))
-		return (increas_lanch_one(res, prec));
-	else if (hlf == 1 && res->num[index + 1] % 2 == 1)
-		return (increas_lanch_one(res, prec));
+	
+	hlf = is_half(res->num, index);
+	if (res->num[index] > 5 && prec == 0)
+		return (2);
 	else if (hlf == 1 && prec == 0)
 		return (1);
+	else if (res->num[index] > 5 || (res->num[index] == 5 && hlf != 1))
+		return (increas_lanch_one(res, index));
+	else if (hlf == 1 && res->num[index + 1] % 2 == 1)
+		return (increas_lanch_one(res, index));
 	else
 		return (0);
 }

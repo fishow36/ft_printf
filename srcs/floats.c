@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 00:43:39 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/21 02:11:09 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,18 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 
 	c = -1;
 	i_db = create_lan_from_bitstr(i_part);
-	// printf("!");
-	//     for (int i = 0; i < i_db->len; i++)
-	// 		printf("%d ", i_db->num[i]);
-	// 	printf("\n");
+	printf("!");
+	    for (int i = 0; i < i_db->len; i++)
+			printf("%d ", i_db->num[i]);
+		printf("\n");
 	free(i_part);
 	if (ft_str_is_null_value(f_part) == 0)
 		f_db = NULL;
-	else if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])) == 1)
-		i_db = sum_lan_nums(i_db, power_of_two_lan(0));
+	else if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])))
+	{
+		if (flag == 2 || (flag == 1 && i_db->num[0] % 2 == 1))
+			i_db = sum_lan_nums(i_db, power_of_two_lan(0));
+	}
 	free(f_part);
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
@@ -94,8 +97,8 @@ char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
 			if ((i_pt = ft_strncpy(i_pt, i_pt, ar[0] + 1)) == NULL)
 				exit(1);
 			free(temp);
-			printf("±%s\n", i_pt);
-			printf("±%s\n,", f_pt);
+			// printf("±%s\n", i_pt);
+			// printf("±%s\n,", f_pt);
 		}
 		return (parse_str_to_lan(i_pt, f_pt, ar));
 	}
