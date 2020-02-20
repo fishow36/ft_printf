@@ -8,12 +8,33 @@ int main()
     long double test_min = LDBL_MIN;
     double test = 4.25;
     long double test1 = 100000000000000.00000;
-    long double test2 = 1234321.912834;
+    long double test2 = 12.5;
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
     
+    // printf("std %.51Lf\n", test2);
     ft_printf("our %.51Lf\n", test2);
-    printf("std %.51Lf\n", test2);
+
+    // t_lan *test1;
+    // if ((test1 = (t_lan *)malloc(sizeof(t_lan) * 1)) == NULL)
+	// 	exit(1);
+    // if ((test1->num = (int *)malloc(sizeof(int) * 1)) == NULL)
+	// 	exit(1);
+    // test1->len = 1;
+    // test1->num[0] = 10;
+    // t_lan *test2;
+    // if ((test2 = (t_lan *)malloc(sizeof(t_lan))) == NULL)
+	// 	exit(1);
+    // if ((test2->num = (int *)malloc(sizeof(int) * 1)) == NULL)
+	// 	exit(1);
+    // test2->len = 1;
+    // test2->num[0] = 100;
+
+    // test1 = sum_lan_nums(test1, test2);
+
+    // for (int i = 0; i < test1->len; i++)
+	// 		printf("%d ", test1->num[i]);
+	// 	printf("\n");
 
     // ft_printf("%.51Lf\n", test1);
     // ft_printf("%.51Lf\n", test2);
