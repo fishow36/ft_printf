@@ -41,13 +41,13 @@ typedef union       u_ldbl
 typedef struct      u_lan
 {
 	int             *num;
-	size_t          len;
+	int				len;
 }                   t_lan;
 
 typedef struct      u_lanch
 {
 	char            *num;
-	size_t          len;
+	int				len;
 }                   t_lanch;
 
 int     ft_printf(const char *format, ...);
@@ -105,23 +105,21 @@ char	*lfloat(long double input, int prec);
 int     print_float(t_lst *temp, double input, int *w_p);
 int		print_lfloat(t_lst *temp, long double input, int *w_p);
 
+int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec);
+int		cpy_lanch_str(t_lanch *dst, t_lanch *src);
+t_lanch	sum_lanch_nums(t_lanch f, t_lanch s);
+t_lanch	power_of_five_lanch(int num, int width);
+int		create_lanch(t_lanch *res, int width);
+int		precision_in_da_house(t_lanch *res, int prec);
+int		increas_lanch_one(t_lanch *res, int c);
 char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign);
 char	*ft_dtoa_two(t_ulli value, int shift, int *res_len);
 char	*lfloat(long double input, int prec);
-t_lanch	power_of_five_lanch(int num, int width);
-int 	create_lanch_from_bitstr(t_lanch *res, char *str, int prec);
-t_lanch	sum_lanch_nums(t_lanch f, t_lanch s);
-int		create_lanch(t_lanch *res, int width);
-int		precision_in_da_house(t_lanch *res, int prec);
 t_lan	create_lan_from_bitstr(char *str);
 t_lan	power_of_two_lan(int num);
 t_lan	sum_lan_nums(t_lan f, t_lan s);
 void	ft_strrev(char **str);
-int		create_lanch(t_lanch *res, int width);
 int		check_inf_nan(t_ldbl res);
-int		increas_lanch_one(t_lanch *res, int c);
-int		create_lanch(t_lanch *res, int width);
-int		cpy_lanch_str(t_lanch *dst, t_lanch *src);
 
 int     print_other(t_lst *temp, int *w_p);
 t_lst   *create_list(const char *format, int *pos, int amount);

@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 16:01:07 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 17:51:12 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_lan	create_lan_from_bitstr(char *str)
 	int		len_str;
 
 	len_str = ft_strlen(str);
-	res.num = (int *)malloc(sizeof(int) * 1);
+	if ((res.num = (int *)malloc(sizeof(int) * 1)) == NULL)
+		exit(1);
 	res.num[0] = 0;
 	res.len = 1;
 	c = 0;

@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 16:49:53 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 17:54:17 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,26 @@
 **  type == -1 -> rank += 1
 */
 
-int		change_lanch_rank(t_lanch *p_lan, int type)
+void	change_lanch_rank(t_lanch *p_lan, int type)
 {
 	t_lanch temp;
 
 	temp.len = p_lan->len;
 	if (type == -1)
 	{
-		if (cpy_lanch_str(&temp, p_lan) == -1)
-			return (-1);
+		cpy_lanch_str(&temp, p_lan);
 		free(p_lan->num);
 		p_lan->len += 1;
-		if (cpy_lanch_str(p_lan, &temp) == -1)
-			return (-1);
+		cpy_lanch_str(p_lan, &temp);
 		free(temp.num);
-		return (1);
 	}
 	else
 	{
-		if (cpy_lanch_str(&temp, p_lan) == -1)
-			return (-1);
+		cpy_lanch_str(&temp, p_lan);
 		free(p_lan->num);
 		p_lan->len = type;
-		if (cpy_lanch_str(p_lan, &temp) == -1)
-			return (-1);
+		cpy_lanch_str(p_lan, &temp);
 		free(temp.num);
-		return (1);
 	}
 }
 

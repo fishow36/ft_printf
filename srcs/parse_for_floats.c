@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 16:07:06 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 18:21:04 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_dtoa_two(t_ulli value, int shift, int *res_len)
 	if (value == 0)
 		return (ft_strdup("0"));
 	if (!(str = (char*)malloc(sizeof(char) * (64 + flag + *res_len + 1))))
-		return (NULL);
+		exit(1);
 	while ((*res_len)-- > 0)
 		str[i++] = '0';
 	while (value > 0 || i < 64)
@@ -39,7 +39,7 @@ char	*ft_dtoa_two(t_ulli value, int shift, int *res_len)
 	return (str);
 }
 
-char	*str_from_db_after_loop(t_lanch *f_db, char *res, int *ar)
+char	*str_from_db_after_loop(t_lan *i_db, t_lanch *f_db, char *res, int *ar)
 {
 	if (ar[5] != 0)
 	{
@@ -55,24 +55,35 @@ char	*str_from_db_after_loop(t_lanch *f_db, char *res, int *ar)
 			res[(ar[2])++] = '0';
 	}
 	res[ar[2]] = '\0';
+	free(i_db->num);
+	if (f_db != NULL)
+		free(f_db->num);
 	return (res);
+}
+
+void	str_from_db_init(int pc, int sn, t_lan i_db, int **ar)
+{
+	if (((*ar) = (int *)malloc(sizeof(int) * 6)) == NULL)
+		exit(1);
+	(*ar)[1] = i_db.len;
+	(*ar)[2] = 0;
+	(*ar)[3] = 0;
+	(*ar)[5] = pc;
 }
 
 /*
 **	arr - > 0 - i, 1 - j, 2 - c, 3 - len, 4 - amount, 5 - prec
 */
 
-char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign)
+char	*str_from_db(t_lan i_db, t_lanch *f_db, int pc, int sn)
 {
 	char	*res;
-	int		ar[6];
+	int		*ar;
 
-	ar[1] = i_db.len;
-	ar[2] = 0;
-	ar[3] = 0;
-	ar[5] = prec;
-	res = (char *)malloc(sizeof(char) * (i_db.len * 4 + sign + prec + 2));
-	if (sign == 1)
+	str_from_db_init(pc, sn, i_db, &ar);
+	if (!(res = (char *)malloc(sizeof(char) * (i_db.len * 4 + sn + pc + 2))))
+		exit(1);
+	if (sn == 1)
 		res[(ar[2])++] = '-';
 	while (--(ar[1]) >= 0)
 	{
@@ -88,5 +99,5 @@ char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign)
 			res[ar[2]] = '\0';
 		}
 	}
-	return (str_from_db_after_loop(f_db, res, ar));
+	return (str_from_db_after_loop(&i_db, f_db, res, ar));
 }

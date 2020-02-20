@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 16:51:25 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 17:53:08 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		create_lanch(t_lanch *res, int width)
 	res->len = (width == -1) ? 3 : width;
 	res->num = (char *)malloc(sizeof(char) * (res->len + 1));
 	if (res->num == NULL)
-		return (-1);
+		exit(1);
 	while (c < (int)res->len)
 		res->num[c++] = 0;
 	res->num[c] = '\0';
@@ -62,7 +62,7 @@ int		cpy_lanch_str(t_lanch *dst, t_lanch *src)
 
 	count = 0;
 	if ((dst->num = (char *)malloc(sizeof(char) * (dst->len + 1))) == NULL)
-		return (-1);
+		exit(1);
 	while (count < src->len)
 	{
 		dst->num[count] = src->num[count];
