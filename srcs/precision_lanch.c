@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   precision_lanch.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/20 01:24:55 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 15:20:47 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		increas_lanch_one(t_lanch *res, int c)
 		return (1);
 	while (c < res->len)
 	{
-		res->num[c] += remainder + (c == i) ? 1 : 0;
+		res->num[c] += remainder + ((c == i) ? 1 : 0);
 		remainder = (res->num[c] > 9) ? 1 : 0;
 		if (remainder == 1)
 		{
@@ -50,7 +50,7 @@ int		precision_in_da_house(t_lanch *res, int prec)
 	int	hlf;
 
 	c = res->len - prec - 1;
-	if (res->num[c] > 5 || res->num[c] == 5 && (hlf = is_half(res, c)) != 1)
+	if (res->num[c] > 5 || (res->num[c] == 5 && (hlf = is_half(res, c)) != 1))
 		return (increas_lanch_one(res, c + 1));
 	else if (hlf == 1 && res->num[res->len - prec] % 2 == 1)
 		return (increas_lanch_one(res, c + 1));

@@ -5,10 +5,11 @@
 int main()
 {
     long double test_max = LDBL_MAX;
+    long double test_min = LDBL_MIN;
     double test = 4.25;
-    long double test1 = 10000000000000000000000.0;
-    ft_printf("our %Lf\n", test1);
-    // printf("std %Lf\n", test1);
+    long double test1 = 100000000000000.00000;
+    ft_printf("our %.55Lf\n", test_min);
+    printf("std %.55Lf\n", test_min);
 
     // t_ldbl res;
 

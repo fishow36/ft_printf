@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_for_floats.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 13:34:48 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 15:55:51 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ char	*ft_dtoa_two(t_ulli value, int shift, int *res_len)
 	return (str);
 }
 
-char	*str_from_db_after_loop(t_lanch f_db, char *res, int *ar)
+char	*str_from_db_after_loop(t_lanch *f_db, char *res, int *ar)
 {
-	printf("###%s\n", f_db.num);//FOR
 	if (ar[5] != 0)
 	{
 		res[(ar[2])++] = '.';
-		ar[1] = f_db.len - 1;
 		ar[0] = 0;
-		while (ar[1] > -1 && ++(ar[0]) <= ar[5])
-			res[(ar[2])++] = f_db.num[(ar[1])--] + '0';
+		if (f_db != NULL)
+			ar[1] = f_db->len - 1;
+			while (ar[1] > -1 && ++(ar[0]) <= ar[5])
+				res[(ar[2])++] = f_db->num[(ar[1])--] + '0';
 		while (++(ar[0]) <= ar[5])
 			res[(ar[2])++] = '0';
 	}
@@ -60,7 +60,7 @@ char	*str_from_db_after_loop(t_lanch f_db, char *res, int *ar)
 **	arr - > 0 - i, 1 - j, 2 - c, 3 - len, 4 - amount, 5 - prec
 */
 
-char	*str_from_db(t_lan i_db, t_lanch f_db, int prec, int sign)
+char	*str_from_db(t_lan i_db, t_lanch *f_db, int prec, int sign)
 {
 	char	*res;
 	int		ar[6];

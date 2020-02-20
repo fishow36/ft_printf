@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 13:30:26 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 15:56:47 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 {
 	t_lan	i_db;
-	t_lanch	f_db;
+	t_lanch	*f_db;
 	int		flag;
+	int		is_null_value;
+	int		c;
 
+	c = -1;
+	is_null_value = 1;
 	i_db = create_lan_from_bitstr(i_part);
-	// for (int i = 0; i < i_db.len; i++)
-		// printf("%d ", i_db.num[i]);
-	// printf("\n");
-	if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])) == 1)
+	while (++c < ft_strlen(f_part))
+		if (f_part[c] != '0')
+			is_null_value = 0;
+	if (is_null_value == 1)
+		f_db = NULL;
+	else if ((flag = create_lanch_from_bitstr(f_db, f_part, sh_pr_sg[1])) == 1)
 		i_db = sum_lan_nums(i_db, power_of_two_lan(0));
-	printf("@%s\n", i_part);
-	printf("@%s\n", f_part);
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
 
@@ -75,7 +79,6 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec, unsigned mid)
 	f_part = NULL;
 	if ((i_part = ft_dtoa_two(input->parts.mant, shift, &l_i)) == NULL)
 		return (NULL);
-	// printf("%s\n", i_part);
 	if (shift >= 0)
 	{
 		if (shift > 64)
