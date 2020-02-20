@@ -6,7 +6,7 @@
 /*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 01:18:56 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/20 10:27:31 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
 
-char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
+char	*ldbl_to_str(t_ldbl *input, int shift, int prec, unsigned mid)
 {
 	char	*i_part;
 	char	*f_part;
@@ -63,7 +63,12 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 		return (NULL);
 	if (shift >= 0)
 	{
-		if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
+		if (shift == mid)
+		{
+			if ((f_part = ft_strncpy(f_part, "0", 1)) == NULL)
+				return (NULL);
+		}
+		else if (!(f_part = ft_strncpy(f_part, i_part + shift + 1, 64 - shift - 1)))
 			return (NULL);
 		temp = i_part;
 		if ((i_part = ft_strncpy(i_part, i_part, shift + 1)) == NULL)
@@ -104,7 +109,10 @@ char	*lfloat(long double input, int prec)
 	if (prec == -1)
 		prec = 6;
 	res.origin = input;
-	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec)) == NULL)
+	printf("%u\n", res.parts.sign);
+	printf("%u\n", res.parts.exp);
+	printf("%llu\n", res.parts.mant);
+	if ((output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec, mid_exp)) == NULL)
 		return (NULL);
 	while (output[c] != '\0' && output[c] != '.')
 		c++;

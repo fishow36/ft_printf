@@ -23,7 +23,6 @@ typedef	struct	s_lst
 	struct s_lst  *next;
 }				t_lst;
 
-//
 typedef unsigned long long int t_ulli;
 
 typedef struct      s_ldbl_struct

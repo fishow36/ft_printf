@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:57:42 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 14:26:02 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 10:16:39 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		print_lfloat(t_lst *temp, long double input, int *w_p)
 	char	*str;
 	int		len;
 
-	str = lfloat(input, w_p[1]);
+	if ((str = lfloat(input, w_p[1])) == NULL)
+		return (0);
 	if (w_p[0] > (int)ft_strlen(str))
 	{
 		if (temp->flags[2] == '-' || (temp->flags[2] != '-'
