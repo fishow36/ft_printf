@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 22:36:51 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 22:51:12 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ t_lan	*sum_lan_nums(t_lan *f, t_lan *s)
 	size_t	max;
 	t_lan	*res;
 
-printf("!!!!!!!!\n");
-	    for (int i = 0; i < f->len; i++)
-			printf("%d ", f->num[i]);
-		printf("\n");
+// printf("!!!!!!!!\n");
+// 	    for (int i = 0; i < f->len; i++)
+// 			printf("%d ", f->num[i]);
+// 		printf("\n");
 
-	printf("!!!!!!!!\n");
-		for (int i = 0; i < s->len; i++)
-			printf("%d ", s->num[i]);
-		printf("\n");
+// 	printf("!!!!!!!!\n");
+// 		for (int i = 0; i < s->len; i++)
+// 			printf("%d ", s->num[i]);
+// 		printf("\n");
 
 	if ((res = (t_lan *)malloc(sizeof(t_lan))) == NULL)
 		exit(1);
