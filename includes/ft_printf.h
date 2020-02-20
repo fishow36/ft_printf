@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 21:42:39 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/20 22:39:38 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ int								print_sshort(t_lst *temp, int nbr, int *w_p);
 char							*create_str_u(unsigned long long nbr,
 t_lst **temp, int *w_p, char *flag);
 void							prec_u(char **str, t_lst *temp, int *w_p);
-void							width_u(char **str, t_lst *temp, int *w_p);
+void							width_u(char **str, t_lst *temp, int *w_p,
+t_ulli nbr);
 
 int								print_uint(t_lst *temp,
 unsigned long long int nbr, int *w_p);

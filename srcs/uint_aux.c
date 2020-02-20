@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:10:43 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 13:11:21 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 22:17:09 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	prec_u(char **str, t_lst *temp, int *w_p)
 	}
 }
 
-void	width_u(char **str, t_lst *temp, int *w_p)
+void	width_u(char **str, t_lst *temp, int *w_p, t_ulli nbr)
 {
 	if (w_p[1] > 0)
 		*str = int_width(*str, w_p[0], temp);
@@ -75,7 +75,9 @@ void	width_u(char **str, t_lst *temp, int *w_p)
 		}
 		if (temp->flags[4] == '#')
 		{
-			*str = add_zero(*str, temp->type, -1);
+			if (!((*str)[0] == '0' && temp->type == 'o') &&
+			(int)ft_strlen(*str) != 0)
+				*str = add_zero(*str, temp->type, -1);
 			*str = int_width(*str, w_p[0], temp);
 		}
 		else
