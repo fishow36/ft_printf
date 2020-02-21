@@ -14,9 +14,9 @@ int main()
     long double test4 = 0.00123456789;
 
 //   ft_printf("our %#.16o\n", -875);
-    ft_printf("%+f\n", -875);
-    double dubb = NAN;
-    printf("%+f\n", dubb);
+    ft_printf("%.15f\n",        1.025978548534310421);
+    long double dubb = NAN;
+    printf("%.15f\n",        1.025978548534310421);
     // t_lan *tes;
 
     //             tes = power_of_two_lan(36);
