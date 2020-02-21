@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 19:11:28 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:47:20 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ t_lan	*create_lan_from_bitstr(char *str)
 	while (len_str - c > 0)
 	{
 		if (str[len_str - c - 1] == '1')
-		{
 			res = sum_lan_nums(res, power_of_two_lan(c));
-			// printf("!");
-			// for (int i = 0; i < res->len; i++)
-			// 	printf("%d ", res->num[i]);
-			// printf("\n");
-		}
 		c++;
 	}
 	return (res);
@@ -52,12 +46,7 @@ t_lan	*power_of_two_lan(int num)
 		exit(1);
 	temp->num[0] = 1;
 	while (num-- > 0)
-	{
-		// for (int i = 0; i < temp->len; i++)
-		// 	printf("%d ", temp->num[i]);
-		// printf("\n");
 		temp = sum_lan_nums(temp, temp);
-	}
 	return (temp);
 }
 
@@ -87,16 +76,6 @@ t_lan	*sum_lan_nums(t_lan *f, t_lan *s)
 	size_t	c;
 	size_t	max;
 	t_lan	*res;
-
-// printf("!!!!!!!!\n");
-// 	    for (int i = 0; i < f->len; i++)
-// 			printf("%d ", f->num[i]);
-// 		printf("\n");
-
-// 	printf("!!!!!!!!\n");
-// 		for (int i = 0; i < s->len; i++)
-// 			printf("%d ", s->num[i]);
-// 		printf("\n");
 
 	max = f->len > s->len ? f->len : s->len;
 	if ((res = (t_lan *)malloc(sizeof(t_lan))) == NULL)

@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:10:08 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:43:09 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_lanch	*change_lanch_rank(t_lanch **p_lan, int type)
 	int		new_len;
 
 	new_len = (type == -1) ? (*p_lan)->len + 1 : type;
-	temp = cpy_lanch((*p_lan), new_len);
+	temp = cpy_lanch(p_lan, new_len);
 	return (temp);
 }
 
@@ -59,10 +59,6 @@ t_lanch	*power_of_five_lanch(int num, int width)
 		while (c < (int)temp->len || remainder > 0)
 			power_of_five_lanch_inside(&temp, &c, &remainder);
 	}
-	// printf("\n&&&&");
-	// for(int i = 0; i < (temp)->len; i++)
-	// 	printf("%d-", (temp)->num[i]);
-	// printf("\n");
 	return (temp);
 }
 
@@ -95,10 +91,6 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 		{
 			temp = power_of_five_lanch(c + 1, length);
 			*res = sum_lanch_nums(*res, temp);
-	// 		printf("\t\t");
-	// 			for(int i = (*res)->len - 1; i >= 0; i--)
-	// 	printf("%d", (*res)->num[i]);
-	// printf("\n");
 		}
 	}
 	return (precision_in_da_house(*res, prec));
@@ -131,10 +123,6 @@ t_lanch	*sum_lanch_nums(t_lanch *f, t_lanch *s)
 		if (c == res->len)
 			f = change_lanch_rank(&f, 1);
 		res->num[c] = (c < f->len ? f->num[c] : 0) + remainder + (c < s->len ? s->num[c] : 0);
-		// printf("@");
-		// for(int i = res->len - 1; i >= 0; i--)
-		// 	printf("%d", res->num[i]);
-		// printf("\n");
 		remainder = (res->num[c] > 9) ? 1 : 0;
 		if (remainder == 1)
 			res->num[c] -= 10;

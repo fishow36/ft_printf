@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:13:02 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:40:09 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 	c = 0;
 	len = sh_pr_sg[1] + sh_pr_sg[2] + 2;
 	f = create_lanch_from_bitstr(&f_db, frac, sh_pr_sg[1]);
-	free(frac);
 	if ((res = (char *)malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
 	if (sh_pr_sg[2] == 1)
@@ -51,6 +50,7 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 	res[c] = '\0';
 	free(f_db->num);
 	free(f_db);
+	free(frac);
 	return (res);
 }
 
@@ -63,10 +63,6 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 
 	c = -1;
 	i_db = create_lan_from_bitstr(i_part);
-	// printf("!");
-	//     for (int i = 0; i < i_db->len; i++)
-	// 		printf("%d ", i_db->num[i]);
-	// 	printf("\n");
 	free(i_part);
 	if (ft_str_is_null_value(f_part) == 0)
 		f_db = NULL;
@@ -98,8 +94,6 @@ char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
 			if ((i_pt = ft_strncpy(i_pt, i_pt, ar[0] + 1)) == NULL)
 				exit(1);
 			free(temp);
-			// printf("±%s\n", i_pt);
-			// printf("±%s\n,", f_pt);
 		}
 		return (parse_str_to_lan(i_pt, f_pt, ar));
 	}

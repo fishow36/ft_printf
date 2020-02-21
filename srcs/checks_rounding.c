@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_rounding.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/21 21:20:20 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 22:44:25 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ int		precision_in_da_house(t_lanch *res, int prec)
 
 	hlf = 0;
 	index = prec > res->len ? 0 : res->len - prec - 1;
-	// printf("\n^");
-	// for (int i = index; i < res->len; i++)
-	// 	printf("%d ", res->num[i]);
-	// printf("\n");
 	hlf = is_half(res->num, index);
 	if (res->num[index] > 5 && prec == 0)
 		return (2);

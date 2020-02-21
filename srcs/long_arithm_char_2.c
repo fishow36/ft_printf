@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:06:59 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:34:28 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_lanch	*create_lanch(t_lanch *res, int width)
 	return (res);
 }
 
-t_lanch	*cpy_lanch(t_lanch *src, int dst_len)
+t_lanch	*cpy_lanch(t_lanch **src, int dst_len)
 {
 	size_t	count;
 	t_lanch	*dst;
@@ -65,18 +65,18 @@ t_lanch	*cpy_lanch(t_lanch *src, int dst_len)
 	count = 0;
 	if ((dst = (t_lanch *)malloc(sizeof(t_lanch) * 1)) == NULL)
 		exit(1);
-	if ((dst->num = (char *)malloc(sizeof(char) * (dst_len))) == NULL)
+	if ((dst->num = (char *)malloc(sizeof(char) * (dst_len + 1))) == NULL)
 		exit(1);
 	dst->len = dst_len;
-	while (count < src->len)
+	while (count < (*src)->len)
 	{
-		dst->num[count] = src->num[count];
+		dst->num[count] = (*src)->num[count];
 		count++;
 	}
 	while (count < dst_len)
 		dst->num[count++] = 0;
 	dst->num[count] = '\0';
-	// free(src->num);
-	// free(src);
+	free((*src)->num);
+	free(*src);
 	return (dst);
 }

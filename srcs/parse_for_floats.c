@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 19:35:22 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:47:27 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ char	*str_from_db_after_loop(t_lan *i_db, t_lanch *f_db, char *res, int *ar)
 	res[ar[2]] = '\0';
 	free(i_db->num);
 	if (f_db != NULL)
+	{
 		free(f_db->num);
+		free(f_db);
+	}
 	free(i_db);
-	free(f_db);
 	free(ar);
 	return (res);
 }
@@ -85,9 +87,6 @@ char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 	int		*ar;
 
 	str_from_db_init(pc, sn, i_db->len, &ar);
-	// for (int i = 0; i < i_db->len; i++)
-	// 	printf("%d ", i_db->num[i]);
-	// printf("\n");
 	if (!(res = (char *)malloc(sizeof(char) * (i_db->len * 4 + sn + pc + 2))))
 		exit(1);
 	if (sn == 1)
@@ -105,7 +104,6 @@ char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 			while (sn-- > 0 && (ar[1]) != i_db->len - 1)
 				res[(ar[2])++] = '0';
 			ft_strcpy(res + ar[2], temp);
-			// printf("res -> %s\n", res);
 			free(temp);
 			ar[2] += ar[4];
 		}

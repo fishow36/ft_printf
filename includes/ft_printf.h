@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/21 21:56:55 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 22:34:45 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ long double input, int *w_p);
 
 int								create_lanch_from_bitstr(t_lanch **res,
 char *str, int prec);
-t_lanch							*cpy_lanch(t_lanch *src, int dst_len);
+t_lanch							*cpy_lanch(t_lanch **src, int dst_len);
 t_lanch							*sum_lanch_nums(t_lanch *f, t_lanch *s);
 t_lanch							*power_of_five_lanch(int num, int width);
 t_lanch							*create_lanch(t_lanch *res, int width);
