@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 COMPILER = gcc
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -g
 INCLUDE_FOLDERS := -I includes/ -I libft/includes/
 SOURCES_FOLDER  := srcs/
 OBJECTS_FOLDER  := objs/
