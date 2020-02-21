@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/20 19:56:00 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 02:11:09 by kprmk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_str_is_null_value(char *str)
 
 char	*only_frac_input(char *frac, int *sh_pr_sg)
 {
-	t_lanch	f_db;
+	t_lanch	*f_db;
 	char	*res;
 	int		c;
 	int		len;
@@ -46,27 +46,34 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 		res[c++] = '.';
 	f = ft_str_is_null_value(frac);
 	while (sh_pr_sg[1]-- > 0)
-		res[c++] = (--f_db.len > -1 && f == 1) ? f_db.num[f_db.len] + '0': '0';
+		res[c++] = (--f_db->len > -1 && f == 1) ? f_db->num[f_db->len] + '0': '0';
 	res[c] = '\0';
-	free(f_db.num);
+	free(f_db->num);
+	free(f_db);
 	return (res);
 }
 
-
 char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 {
-	t_lan	i_db;
+	t_lan	*i_db;
 	t_lanch	*f_db;
 	int		flag;
 	int		c;
 
 	c = -1;
 	i_db = create_lan_from_bitstr(i_part);
+	printf("!");
+	    for (int i = 0; i < i_db->len; i++)
+			printf("%d ", i_db->num[i]);
+		printf("\n");
 	free(i_part);
 	if (ft_str_is_null_value(f_part) == 0)
 		f_db = NULL;
-	else if ((flag = create_lanch_from_bitstr(f_db, f_part, sh_pr_sg[1])) == 1)
-		i_db = sum_lan_nums(i_db, power_of_two_lan(0));
+	else if ((flag = create_lanch_from_bitstr(&f_db, f_part, sh_pr_sg[1])))
+	{
+		if (flag == 2 || (flag == 1 && i_db->num[0] % 2 == 1))
+			i_db = sum_lan_nums(i_db, power_of_two_lan(0));
+	}
 	free(f_part);
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
@@ -81,7 +88,6 @@ char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
 		{
 			if ((f_pt = ft_strncpy(f_pt, "0", 1)) == NULL)
 				exit(1);
-			return (parse_str_to_lan(i_pt, f_pt, ar));
 		}
 		else
 		{
@@ -91,6 +97,8 @@ char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
 			if ((i_pt = ft_strncpy(i_pt, i_pt, ar[0] + 1)) == NULL)
 				exit(1);
 			free(temp);
+			// printf("±%s\n", i_pt);
+			// printf("±%s\n,", f_pt);
 		}
 		return (parse_str_to_lan(i_pt, f_pt, ar));
 	}

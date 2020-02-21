@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 22:01:22 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 22:39:38 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define FT_PRINTF_H
 
 //
-#include <stdio.h>
+# include <stdio.h>
 //
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include "libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include "libft.h"
 
 typedef	struct					s_lst
 {
@@ -145,22 +145,22 @@ double input, int *w_p);
 int								print_lfloat(t_lst *temp,
 long double input, int *w_p);
 
-int								create_lanch_from_bitstr(t_lanch *res,
+int								create_lanch_from_bitstr(t_lanch **res,
 char *str, int prec);
-int								cpy_lanch_str(t_lanch *dst, t_lanch *src);
-t_lanch							sum_lanch_nums(t_lanch f, t_lanch s);
-t_lanch							power_of_five_lanch(int num, int width);
-int								create_lanch(t_lanch *res, int width);
+t_lanch							*cpy_lanch(t_lanch *src, int dst_len);
+t_lanch							*sum_lanch_nums(t_lanch *f, t_lanch *s);
+t_lanch							*power_of_five_lanch(int num, int width);
+t_lanch							*create_lanch(t_lanch *res, int width);
 int								precision_in_da_house(t_lanch *res, int prec);
 int								increas_lanch_one(t_lanch *res, int c);
-char							*str_from_db(t_lan i_db,
+char							*str_from_db(t_lan *i_db,
 t_lanch *f_db, int prec, int sign);
 char							*ft_dtoa_two(t_ulli value,
 int shift, int *res_len);
 char							*lfloat(long double input, int prec);
-t_lan							create_lan_from_bitstr(char *str);
-t_lan							power_of_two_lan(int num);
-t_lan							sum_lan_nums(t_lan f, t_lan s);
+t_lan							*create_lan_from_bitstr(char *str);
+t_lan							*power_of_two_lan(int num);
+t_lan							*sum_lan_nums(t_lan *f, t_lan *s);
 void							ft_strrev(char **str);
 int								check_inf_nan(t_ldbl res);
 
