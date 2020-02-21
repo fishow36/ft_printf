@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:04:19 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 13:04:42 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 23:53:00 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	add_and_change(char **str, long long int nbr, t_lst **temp)
 	{
 		*str = add_plus(*str, '+');
 		(*temp)->flags[1] = '?';
+		(*temp)->flags[3] = '?';
 	}
 	else if ((*temp)->flags[3] == ' ' && nbr >= 0)
 	{

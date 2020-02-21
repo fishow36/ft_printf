@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:03:50 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 13:04:05 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 23:51:46 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	add_s_or_p(char **str, t_lst *temp, long long int nbr)
 {
+	
 	if (temp->flags[1] == '+' && nbr >= 0)
 		*str = add_plus(*str, '+');
 	else if (temp->flags[3] == ' ' && nbr >= 0)
@@ -55,7 +56,7 @@ void	prec_no_width(char **str, t_lst *temp, long long int nbr, int *w_p)
 		add_s_or_p(str, temp, nbr);
 		*str = int_width(*str, w_p[0], temp);
 	}
-	else if (temp->flags[2] != '-')
+	else
 	{
 		if (temp->flags[0] == '0')
 			zero_flag(str, nbr, temp, w_p);

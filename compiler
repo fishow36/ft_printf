@@ -6,7 +6,7 @@ gcc -Wall -Werror -Wextra main.c libftprintf.a -Iincludes/
 
 gcc main.c libftprintf.a -Iincludes/
 
-rm -r printf_check
+rm -rf printf_check
 mkdir printf_check
 cp -r printf/* printf_check
 cd printf_check

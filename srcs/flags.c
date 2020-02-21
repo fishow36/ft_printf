@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 14:30:27 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 21:59:59 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/20 23:16:45 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@ char	*add_plus(char *str, char to_add)
 	return (res);
 }
 
+char	*type_x(char *str, char type, int i)
+{
+	char *res;
+
+	if (!(res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 3))))
+		return (NULL);
+	res[1] = type;
+	while (++i < (int)ft_strlen(str))
+		res[i + 2] = str[i];
+	res[i + 2] = '\0';
+	return (res);
+}
+
 char	*add_zero(char *str, char type, int i)
 {
 	char	*res;
@@ -43,21 +56,19 @@ char	*add_zero(char *str, char type, int i)
 	{
 		if (type == 'x' || type == 'X')
 		{
-			res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 3));
-			res[1] = type;
-			while (++i < (int)ft_strlen(str))
-				res[i + 2] = str[i];
-			res[i + 2] = '\0';
+			if (!(res = type_x(str, type, i)))
+				return (NULL);
 		}
 		else
 		{
-			res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 2));
+			if (!(res = (char*)malloc(sizeof(char) * (ft_strlen(str) + 2))))
+				return (NULL);
 			while (++i < (int)ft_strlen(str))
 				res[i + 1] = str[i];
 			res[i + 1] = '\0';
 		}
-		res[0] = '0';
 		ft_strdel(&str);
+		res[0] = '0';
 		return (res);
 	}
 }
