@@ -1,6 +1,7 @@
 #include "ft_printf.h"
 
 #include <float.h>
+#include <math.h>
 
 int main()
 {
@@ -12,25 +13,17 @@ int main()
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
 
-    ft_printf("our %.50Lf\n", test1);
-    printf("std %.50Lf\n", test1);
+//   ft_printf("our %#.16o\n", -875);
+    ft_printf("%+f\n", -875);
+    double dubb = NAN;
+    printf("%+f\n", dubb);
+    // t_lan *tes;
 
-    // t_lanch *tes;
-    // for (int i = 7; i <= 30; i++)
-    // {
-        // tes = power_of_five_lanch(3, 10);
-        // for (int i = 0; i < tes->len; i++)
-        //     printf("%d ", tes->num[i]);
-        // printf("\n");
-        // tes = power_of_five_lanch(10, 10);
-        // for (int i = 0; i < tes->len; i++)
-        //     printf("%d ", tes->num[i]);
-        // printf("\n");
-        // tes = sum_lanch_nums(power_of_five_lanch(3, 10), power_of_five_lanch(10, 10));
-        // for (int i = 0; i < tes->len; i++)
-        //     printf("%d ", tes->num[i]);
-        // printf("\n");
-    // }
+    //             tes = power_of_two_lan(36);
+    //             			printf("!");
+	// 		for (int i = 0; i < tes->len; i++)
+	// 			printf("%d ", tes->num[i]);
+	// 		printf("\n");
 
     // if ((test1 = (t_lan *)malloc(sizeof(t_lan) * 1)) == NULL)
 	// 	exit(1);

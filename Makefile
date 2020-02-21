@@ -30,6 +30,7 @@ SOURCES :=	aux.c \
 			long_arithm_char_2.c \
 			long_arithm.c \
 			parse_for_floats.c \
+			inf_nan.c \
 			libft/ft_atoi.c \
 			libft/ft_strmap.c \
 			libft/ft_bzero.c \
