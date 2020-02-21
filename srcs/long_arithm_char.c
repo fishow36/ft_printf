@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:43:09 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:23:56 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	t_lanch	*temp;
 
 	len_str = ft_strlen(str);
-	*res = create_lanch(*res, -1);
+	// *res = create_lanch(*res, -1);
 	c = len_str - 1;
 	while (c > 0 && str[c] == '0')
 		c--;
@@ -88,12 +88,10 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	while (++c < len_str)
 	{
 		if (str[c] == '1')
-		{
-			temp = power_of_five_lanch(c + 1, length);
-			*res = sum_lanch_nums(*res, temp);
-		}
+			*res = sum_lanch_nums(*res, power_of_five_lanch(c + 1, length));
 	}
-	return (precision_in_da_house(*res, prec));
+	c = precision_in_da_house(*res, prec);
+	return (c);
 }
 
 /*

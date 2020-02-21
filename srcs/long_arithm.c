@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:47:20 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:02:36 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	change_lan_rank(t_lan **p_lan)
 	free(temp);
 }
 
-t_lan	*sum_lan_nums(t_lan *f, t_lan *s)
+t_lan	*sum_lan_nums_init(t_lan *f, t_lan *s, int *c, int *remainder)
 {
-	int		remainder;
-	size_t	c;
 	size_t	max;
 	t_lan	*res;
 
@@ -82,18 +80,29 @@ t_lan	*sum_lan_nums(t_lan *f, t_lan *s)
 		exit(1);
 	if ((res->num = (int *)malloc(sizeof(int) * max)) == NULL)
 		exit(1);
-	c = -1;
-	while (++c < max)
-		res->num[c] = 0;
+	*c = -1;
+	while (++(*c) < max)
+		res->num[*c] = 0;
 	res->num[0] = 0;
 	res->len = max;
-	remainder = 0;
-	c = 0;
-	while (c < max || remainder > 0)
+	*remainder = 0;
+	*c = 0;
+	return (res);
+}
+
+t_lan	*sum_lan_nums(t_lan *f, t_lan *s)
+{
+	int		remainder;
+	int		c;
+	t_lan	*res;
+
+	res = sum_lan_nums_init(f, s, &c, &remainder);
+	while (c < res->len || remainder > 0)
 	{
 		if (c == res->len)
 			change_lan_rank(&res);
-		res->num[c] = (c < f->len ? f->num[c] : 0) + remainder + (c < s->len ? s->num[c] : 0);
+		res->num[c] = (c < f->len ? f->num[c] : 0) + remainder
+			+ (c < s->len ? s->num[c] : 0);
 		remainder = (res->num[c] > 9999) ? 1 : 0;
 		if (remainder == 1)
 			res->num[c] -= 10000;

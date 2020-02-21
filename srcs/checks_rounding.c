@@ -6,11 +6,24 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/21 22:44:25 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:51:10 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_str_is_null_value(char *str)
+{
+	int c;
+	int len;
+
+	len = ft_strlen(str);
+	c = 0;
+	while (c < len)
+		if (str[c++] != '0')
+			return (1);
+	return (0);
+}
 
 int		is_half(char *str, int c)
 {

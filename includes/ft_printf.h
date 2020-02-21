@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/21 22:34:45 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 22:51:54 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ t_lan							*create_lan_from_bitstr(char *str);
 t_lan							*power_of_two_lan(int num);
 t_lan							*sum_lan_nums(t_lan *f, t_lan *s);
 void							ft_strrev(char **str);
+int								ft_str_is_null_value(char *str);
 int								check_inf_nan(t_ldbl res);
 
 int								print_other(t_lst *temp, int *w_p);
