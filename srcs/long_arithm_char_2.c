@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/22 00:12:02 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:51:01 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,22 @@ t_lanch	*cpy_lanch(t_lanch **src, int dst_len)
 	free((*src)->num);
 	free(*src);
 	return (dst);
+}
+
+t_lanch	*sum_lanch_nums_init(t_lanch *f, t_lanch *s)
+{
+	int		max;
+	int		c;
+	t_lanch	*res;
+
+	max = f->len > s->len ? f->len : s->len;
+	if ((res = (t_lanch *)malloc(sizeof(t_lanch))) == NULL)
+		exit(1);
+	if ((res->num = (char *)malloc(sizeof(char) * max)) == NULL)
+		exit(1);
+	c = -1;
+	while (++c < max)
+		res->num[c] = 0;
+	res->len = max;
+	return (res);
 }

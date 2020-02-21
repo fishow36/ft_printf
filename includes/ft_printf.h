@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/21 22:51:54 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:51:24 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,4 +179,5 @@ char							*ft_itoa_long(long long n);
 char							*ft_itoa_base(unsigned long long value,
 unsigned long long base);
 int								print_inf_nan(char **str, int w, t_lst *temp);
+t_lanch							*sum_lanch_nums_init(t_lanch *f, t_lanch *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:43:34 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:51:53 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,25 +101,17 @@ t_lanch	*sum_lanch_nums(t_lanch *f, t_lanch *s)
 {
 	int		remainder;
 	int		c;
-	int		max;
 	t_lanch	*res;
 
 	remainder = 0;
+	res = sum_lanch_nums_init(f, s);
 	c = 0;
-	max = f->len > s->len ? f->len : s->len;
-	if ((res = (t_lanch *)malloc(sizeof(t_lanch))) == NULL)
-		exit(1);
-	if ((res->num = (char *)malloc(sizeof(char) * max)) == NULL)
-		exit(1);
-	while (++c < max)
-		res->num[c] = 0;
-	res->len = max;
-	c = 0;
-	while (c < max || remainder > 0)
+	while (c < res->len || remainder > 0)
 	{
 		if (c == res->len)
 			f = change_lanch_rank(&f, 1);
-		res->num[c] = (c < f->len ? f->num[c] : 0) + remainder + (c < s->len ? s->num[c] : 0);
+		res->num[c] = (c < f->len ? f->num[c] : 0) + remainder +
+			(c < s->len ? s->num[c] : 0);
 		remainder = (res->num[c] > 9) ? 1 : 0;
 		if (remainder == 1)
 			res->num[c] -= 10;

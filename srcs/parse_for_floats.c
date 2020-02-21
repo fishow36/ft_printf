@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:39:32 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:43:58 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,21 @@ char	*str_from_db_after_loop(t_lan *i_db, t_lanch *f_db, char *res, int *ar)
 	return (res);
 }
 
-void	str_from_db_init(int pc, int idb_len, int **ar)
+char	*str_from_db_init(int pc, int idb_len, int **ar, int sn)
 {
+	char	*res;
+
 	if (((*ar) = (int *)malloc(sizeof(int) * 6)) == NULL)
 		exit(1);
 	(*ar)[1] = idb_len;
 	(*ar)[2] = 0;
 	(*ar)[3] = 0;
 	(*ar)[5] = pc;
+	if (!(res = (char *)malloc(sizeof(char) * (idb_len * 4 + sn + pc + 2))))
+		exit(1);
+	if (sn == 1)
+		res[(*ar[2])++] = '-';
+	return (res);
 }
 
 /*
@@ -86,11 +93,7 @@ char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 	char	*temp;
 	int		*ar;
 
-	str_from_db_init(pc, i_db->len, &ar);
-	if (!(res = (char *)malloc(sizeof(char) * (i_db->len * 4 + sn + pc + 2))))
-		exit(1);
-	if (sn == 1)
-		res[(ar[2])++] = '-';
+	res = str_from_db_init(pc, i_db->len, &ar, sn);
 	while (--(ar[1]) >= 0)
 	{
 		ar[0] = -1;
