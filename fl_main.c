@@ -11,10 +11,10 @@ int main()
     long double test1 = 123456789.777918236412341234;
     long double test2 = 1.025978548534310421;
     long double test3 = 0.00000;
-    long double test4 = 0.00123456789987654321;
+    long double test4 = 2.5;
 
-    ft_printf("%.15Lf\n",        test4);
+    ft_printf("%.0Lf\n",        test4);
     long double dubb = NAN;
-    printf("%.15Lf\n",        test4);
+    printf("%.0Lf\n",        test4);
     return (0);
 }

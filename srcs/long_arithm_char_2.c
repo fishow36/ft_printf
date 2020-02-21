@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:37:21 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:12:02 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int		increas_lanch_one(t_lanch *res, int c)
 
 	remainder = 0;
 	i = c;
-	if (c == res->len)
-		return (1);
 	while (c < res->len)
 	{
 		res->num[c] += remainder + ((c == i) ? 1 : 0);
@@ -29,7 +27,7 @@ int		increas_lanch_one(t_lanch *res, int c)
 		{
 			res->num[c] -= 10;
 			if (c == res->len - 1)
-				return (1);
+				return (2);
 		}
 		c++;
 	}

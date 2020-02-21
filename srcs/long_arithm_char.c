@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:36:12 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:43:34 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 t_lanch	*sum_lanch_nums(t_lanch *f, t_lanch *s)
 {
 	int		remainder;
-	int	c;
-	int	max;
+	int		c;
+	int		max;
 	t_lanch	*res;
 
 	remainder = 0;
