@@ -12,8 +12,8 @@ int main()
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
 
-    ft_printf("our %.0Lf\n", test3);
-    printf("std %.0Lf\n", test3);
+    ft_printf("our %.0Lf\n", test_max);
+    printf("std %.0Lf\n", test_max);
 
     // t_lan *tes;
 

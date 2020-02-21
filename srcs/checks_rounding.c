@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_rounding.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/21 18:47:09 by eshor            ###   ########.fr       */
-=======
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
 /*   Updated: 2020/02/21 19:05:48 by mbrogg           ###   ########.fr       */
->>>>>>> b5021ce52f87db5a71d4308a190be93135dcd6f1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +28,10 @@ int		precision_in_da_house(t_lanch *res, int prec)
 	hlf = 0;
 	index = prec > res->len ? 0 : res->len - prec - 1;
 	
-<<<<<<< HEAD
-	/*printf("\n^");
-	for (int i = index; i < res->len; i++)
-		printf("%d ", res->num[i]);
-	printf("\n");*/
-=======
 	// printf("\n^");
 	// for (int i = index; i < res->len; i++)
 	// 	printf("%d ", res->num[i]);
 	// printf("\n");
->>>>>>> b5021ce52f87db5a71d4308a190be93135dcd6f1
 	
 	hlf = is_half(res->num, index);
 	if (res->num[index] > 5 && prec == 0)
