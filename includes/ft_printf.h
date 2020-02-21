@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/22 00:51:24 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:40:12 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ t_lan							*power_of_two_lan(int num);
 t_lan							*sum_lan_nums(t_lan *f, t_lan *s);
 void							ft_strrev(char **str);
 int								ft_str_is_null_value(char *str);
-int								check_inf_nan(t_ldbl res);
+int								check_inf_nan(t_ldbl *res);
 
 int								print_other(t_lst *temp, int *w_p);
 t_lst							*create_list(const char *format,
@@ -180,4 +180,5 @@ char							*ft_itoa_base(unsigned long long value,
 unsigned long long base);
 int								print_inf_nan(char **str, int w, t_lst *temp);
 t_lanch							*sum_lanch_nums_init(t_lanch *f, t_lanch *s);
+int								if_ones_zeros(unsigned num, int amount, int type);
 #endif

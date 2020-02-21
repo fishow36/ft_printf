@@ -13,8 +13,8 @@ int main()
     long double test3 = 0.00000;
     long double test4 = 2.5;
 
-    ft_printf("%.3Lf\n", LDBL_MAX);
-    long double dubb = NAN;
-    printf("%.3Lf\n", LDBL_MAX);
+    long double dubb = -INFINITY;
+    ft_printf("%.3Lf\n", dubb);
+    printf("%.3Lf\n", dubb);
     return (0);
 }

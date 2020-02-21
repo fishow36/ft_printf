@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:30:10 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:52:37 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,19 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 	if (shift > 63)
 		l_i = shift - 63;
 	f_pt = NULL;
-	if ((i_pt = ft_dtoa_two(input->parts.mant, ar[0], &l_i)) == NULL)
-		exit(1);
-	return (lbdl_to_str_inside(ar, i_pt, f_pt));
+	if ((ar[0] = check_inf_nan(input)) == -1)
+		return (ft_strdup("-inf"));
+	else if (ar[0] == 1)
+		return (ft_strdup("inf"));
+	else if (ar[0] == 2)
+		return (ft_strdup("nan"));
+	else
+	{
+		ar[0] = shift;
+		if ((i_pt = ft_dtoa_two(input->parts.mant, ar[0], &l_i)) == NULL)
+			exit(1);
+		return (lbdl_to_str_inside(ar, i_pt, f_pt));
+	}
 }
 
 char	*lfloat(long double input, int prec)

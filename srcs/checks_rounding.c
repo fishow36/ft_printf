@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/22 00:30:57 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:50:36 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,45 @@ int		precision_in_da_house(t_lanch *res, int prec)
 		return (0);
 }
 
-int		check_inf_nan(t_ldbl res)
+/*
+**	2 -> nan
+**	1 -> inf
+**	-1 -> -inf
+**	0 -> OK
+**	TYPE == 1 -> ONES
+**	TYPE == 0 -> ZEROS
+*/
+
+int		if_ones_zeros(unsigned num, int amount, int type)
 {
-	if (res.parts.exp & (0x7ffff == 0x7ffff))
+	int	c;
+
+	c = amount - 1;
+	if (type == 1)
 	{
-		if (res.parts.mant & (0xffffffffffffffff == 0x8000000000000000))
-		{
-			if (res.parts.sign == 0)
-				ft_putstr("+inf");
-			else
-				ft_putstr("-inf");
-		}
-		return (-1);
+		while ((c > -1) && ((num & (1 << c)) != 0))
+			c--;
+		if (c != -1)
+			return (0);
+		return (1);
 	}
-	return (1);
+	else
+	{
+		while ((c > -1) && !((num & (1 << c)) != 0))
+			c--;
+		if (c != -1)
+			return (0);
+		return (1);
+	}
+}
+
+int		check_inf_nan(t_ldbl *res)
+{
+	if (if_ones_zeros(res->parts.exp, 15, 1) == 1)
+	{
+		if (if_ones_zeros(res->parts.mant, 64, 0) == 1)
+			return (res->parts.sign == 1 ? -1 : 1);
+		return (2);
+	}
+	return (0);
 }
