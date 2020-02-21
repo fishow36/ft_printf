@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 02:11:09 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/21 18:43:48 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 
 	c = -1;
 	i_db = create_lan_from_bitstr(i_part);
-	printf("!");
+/*	printf("!");
 	    for (int i = 0; i < i_db->len; i++)
 			printf("%d ", i_db->num[i]);
-		printf("\n");
+		printf("\n");*/
 	free(i_part);
 	if (ft_str_is_null_value(f_part) == 0)
 		f_db = NULL;

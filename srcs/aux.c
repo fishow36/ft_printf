@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:43:05 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/17 12:56:00 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 17:45:33 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*fill_number(const char *format, int *pos, int *len, char w_or_p)
 		(*pos)++;
 		(*len)++;
 	}
-	if (len == 0)
+	if (*len == 0)
 	{
 		if (w_or_p == 'w')
 			return (NULL);

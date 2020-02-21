@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 01:49:16 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/21 18:38:12 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	int		len_str;
 	int		length;
 
-	printf("~%s\n", str);
+//	printf("~%s\n", str);
 
 	len_str = ft_strlen(str);
 	*res = create_lanch(*res, -1);
@@ -83,7 +83,7 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	*res = change_lanch_rank(*res, c + 1);
 	len_str = c;
 	length = (*res)->len;
-	printf("length(res) %d\n", length);
+//	printf("length(res) %d\n", length);
 	c = -1;
 	while (++c < len_str)
 		if (str[c] == '1')
