@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 21:55:30 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/21 21:57:29 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 22:34:30 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		print_inf_nan(char **str, int w, t_lst *temp)
 		else if (temp->flags[3] == ' ')
 			*str = add_plus(*str, ' ');
 	}
-	*str = int_width(*str, w, temp);
+	if (w > (int)ft_strlen(*str))
+		*str = int_width(*str, w, temp);
 	len = (int)ft_strlen(*str);
 	ft_putstr(*str);
 	ft_strdel(str);
