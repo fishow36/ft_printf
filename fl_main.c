@@ -7,21 +7,30 @@ int main()
     long double test_max = LDBL_MAX;
     long double test_min = LDBL_MIN;
     double test = 4.375;
-    long double test1 = 1234567899999.312736451234;
+    long double test1 = 123456789.777918236412341234;
     long double test2 = 12.7;
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
 
-    ft_printf("our %.0Lf\n", test_max);
-    printf("std %.0Lf\n", test_max);
+    ft_printf("our %.50Lf\n", test1);
+    printf("std %.50Lf\n", test1);
 
-    // t_lan *tes;
-
-    //             tes = power_of_two_lan(36);
-    //             			printf("!");
-	// 		for (int i = 0; i < tes->len; i++)
-	// 			printf("%d ", tes->num[i]);
-	// 		printf("\n");
+    // t_lanch *tes;
+    // for (int i = 7; i <= 30; i++)
+    // {
+        // tes = power_of_five_lanch(3, 10);
+        // for (int i = 0; i < tes->len; i++)
+        //     printf("%d ", tes->num[i]);
+        // printf("\n");
+        // tes = power_of_five_lanch(10, 10);
+        // for (int i = 0; i < tes->len; i++)
+        //     printf("%d ", tes->num[i]);
+        // printf("\n");
+        // tes = sum_lanch_nums(power_of_five_lanch(3, 10), power_of_five_lanch(10, 10));
+        // for (int i = 0; i < tes->len; i++)
+        //     printf("%d ", tes->num[i]);
+        // printf("\n");
+    // }
 
     // if ((test1 = (t_lan *)malloc(sizeof(t_lan) * 1)) == NULL)
 	// 	exit(1);
