@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/22 01:50:36 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:54:20 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		check_inf_nan(t_ldbl *res)
 {
 	if (if_ones_zeros(res->parts.exp, 15, 1) == 1)
 	{
-		if (if_ones_zeros(res->parts.mant, 64, 0) == 1)
+		if (if_ones_zeros(res->parts.mant, 63, 0) == 1)
 			return (res->parts.sign == 1 ? -1 : 1);
 		return (2);
 	}

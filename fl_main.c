@@ -12,9 +12,9 @@ int main()
     long double test2 = 1.025978548534310421;
     long double test3 = 0.00000;
     long double test4 = 2.5;
-
-    long double dubb = -INFINITY;
-    ft_printf("%.3Lf\n", dubb);
-    printf("%.3Lf\n", dubb);
+// "%f", -3.85
+    double dubb = -3.85;
+    ft_printf("%f", dubb);
+    // printf("%.3Lf\n", dubb);
     return (0);
 }

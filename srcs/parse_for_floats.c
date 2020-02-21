@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/22 01:18:30 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 01:58:44 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*str_from_db_init(int pc, int idb_len, int **ar, int sn)
 	if (!(res = (char *)malloc(sizeof(char) * (idb_len * 4 + sn + pc + 2))))
 		exit(1);
 	if (sn == 1)
-		res[(*ar[2])++] = '-';
+		res[((*ar)[2])++] = '-';
 	return (res);
 }
 
