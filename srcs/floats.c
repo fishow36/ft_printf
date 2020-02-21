@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:25:59 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:30:10 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*parse_str_to_lan(char *i_part, char *f_part, int *sh_pr_sg)
 	return (str_from_db(i_db, f_db, sh_pr_sg[1], sh_pr_sg[2]));
 }
 
-char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
+char	*lbdl_to_str_inside(int *ar, char *i_pt, char *f_pt)
 {
 	char	*temp;
 
@@ -92,7 +92,7 @@ char	*lbdl_to_str_inside(t_ldbl *input, int *ar, char *i_pt, char *f_pt)
 **	l_i -> length integer_part
 */
 
-char	*ldbl_to_str(t_ldbl *input, int shift, int prec, unsigned mid)
+char	*ldbl_to_str(t_ldbl *input, int shift, int prec)
 {
 	char	*i_pt;
 	char	*f_pt;
@@ -108,7 +108,7 @@ char	*ldbl_to_str(t_ldbl *input, int shift, int prec, unsigned mid)
 	f_pt = NULL;
 	if ((i_pt = ft_dtoa_two(input->parts.mant, ar[0], &l_i)) == NULL)
 		exit(1);
-	return (lbdl_to_str_inside(input, ar, i_pt, f_pt));
+	return (lbdl_to_str_inside(ar, i_pt, f_pt));
 }
 
 char	*lfloat(long double input, int prec)
@@ -124,7 +124,7 @@ char	*lfloat(long double input, int prec)
 	if (prec == -1)
 		prec = 6;
 	res.origin = input;
-	if (!(output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec, mid_exp)))
+	if (!(output = ldbl_to_str(&res, res.parts.exp - mid_exp, prec)))
 		exit(1);
 	while (output[c] != '\0' && output[c] != '.')
 		c++;

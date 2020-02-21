@@ -13,8 +13,8 @@ int main()
     long double test3 = 0.00000;
     long double test4 = 0.00123456789987654321;
 
-    ft_printf("%.15Lf\n",        test2);
+    ft_printf("%.15Lf\n",        test4);
     long double dubb = NAN;
-    printf("%.15Lf\n",        test2);
+    printf("%.15Lf\n",        test4);
     return (0);
 }

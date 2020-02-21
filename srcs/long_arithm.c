@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:02:36 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:37:53 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	change_lan_rank(t_lan **p_lan)
 
 t_lan	*sum_lan_nums_init(t_lan *f, t_lan *s, int *c, int *remainder)
 {
-	size_t	max;
+	int		max;
 	t_lan	*res;
 
 	max = f->len > s->len ? f->len : s->len;

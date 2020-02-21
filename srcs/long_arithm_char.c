@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:23:56 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:36:12 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_lanch	*power_of_five_lanch(int num, int width)
 	int		cp;
 
 	cp = num;
+	temp = NULL;
 	remainder = 0;
 	temp = create_lanch(temp, width);
 	if (width == -1)
@@ -73,10 +74,8 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	int		c;
 	int		len_str;
 	int		length;
-	t_lanch	*temp;
 
 	len_str = ft_strlen(str);
-	// *res = create_lanch(*res, -1);
 	c = len_str - 1;
 	while (c > 0 && str[c] == '0')
 		c--;
@@ -101,8 +100,8 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 t_lanch	*sum_lanch_nums(t_lanch *f, t_lanch *s)
 {
 	int		remainder;
-	size_t	c;
-	size_t	max;
+	int	c;
+	int	max;
 	t_lanch	*res;
 
 	remainder = 0;

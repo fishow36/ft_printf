@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 16:46:47 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 22:34:28 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:37:21 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_lanch	*create_lanch(t_lanch *res, int width)
 
 t_lanch	*cpy_lanch(t_lanch **src, int dst_len)
 {
-	size_t	count;
+	int		count;
 	t_lanch	*dst;
 
 	count = 0;

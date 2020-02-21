@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 23:20:17 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 23:39:32 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*str_from_db_after_loop(t_lan *i_db, t_lanch *f_db, char *res, int *ar)
 	return (res);
 }
 
-void	str_from_db_init(int pc, int sn, int idb_len, int **ar)
+void	str_from_db_init(int pc, int idb_len, int **ar)
 {
 	if (((*ar) = (int *)malloc(sizeof(int) * 6)) == NULL)
 		exit(1);
@@ -86,7 +86,7 @@ char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 	char	*temp;
 	int		*ar;
 
-	str_from_db_init(pc, sn, i_db->len, &ar);
+	str_from_db_init(pc, i_db->len, &ar);
 	if (!(res = (char *)malloc(sizeof(char) * (i_db->len * 4 + sn + pc + 2))))
 		exit(1);
 	if (sn == 1)
