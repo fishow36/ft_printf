@@ -6,16 +6,13 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/22 01:40:12 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 02:06:54 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-//
-# include <stdio.h>
-//
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
@@ -180,5 +177,6 @@ char							*ft_itoa_base(unsigned long long value,
 unsigned long long base);
 int								print_inf_nan(char **str, int w, t_lst *temp);
 t_lanch							*sum_lanch_nums_init(t_lanch *f, t_lanch *s);
-int								if_ones_zeros(unsigned num, int amount, int type);
+int								if_ones_zeros(unsigned num, int amount,
+int type);
 #endif
