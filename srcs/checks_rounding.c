@@ -6,7 +6,7 @@
 /*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 01:23:29 by kprmk             #+#    #+#             */
-/*   Updated: 2020/02/22 00:17:06 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/22 00:30:57 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int		precision_in_da_house(t_lanch *res, int prec)
 	int	index;
 
 	hlf = 0;
-	index = prec > res->len ? 0 : res->len - prec - 1;
+	if (prec >= res->len)
+		return (0);
+	index = res->len - prec - 1;
 	hlf = is_half(res->num, index);
 	if (res->num[index] >= 5 && hlf == 0 && prec == 0)
 		return (2);

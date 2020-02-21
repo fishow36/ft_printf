@@ -13,8 +13,8 @@ int main()
     long double test3 = 0.00000;
     long double test4 = 2.5;
 
-    ft_printf("%.0Lf\n",        test4);
+    ft_printf("%.3Lf\n", LDBL_MIN);
     long double dubb = NAN;
-    printf("%.0Lf\n",        test4);
+    printf("%.3Lf\n", LDBL_MIN);
     return (0);
 }
