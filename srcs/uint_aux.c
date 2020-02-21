@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:10:43 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 22:17:09 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 13:39:46 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	width_u(char **str, t_lst *temp, int *w_p, t_ulli nbr)
 	{
 		if (temp->flags[0] == '0')
 		{
-			if (temp->flags[4] == '#')
+			if (temp->flags[4] == '#' && nbr != 0)
 			{
 				if (temp->type == 'x' || temp->type == 'X')
 					w_p[0] = w_p[0] - 2;
@@ -73,10 +73,9 @@ void	width_u(char **str, t_lst *temp, int *w_p, t_ulli nbr)
 			}
 			*str = int_width(*str, w_p[0], temp);
 		}
-		if (temp->flags[4] == '#')
+		if (temp->flags[4] == '#' && nbr != 0)
 		{
-			if (!((*str)[0] == '0' && temp->type == 'o') &&
-			(int)ft_strlen(*str) != 0)
+			if ((int)ft_strlen(*str) != 0)
 				*str = add_zero(*str, temp->type, -1);
 			*str = int_width(*str, w_p[0], temp);
 		}

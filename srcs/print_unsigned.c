@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 21:54:17 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 22:28:38 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 14:09:04 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ int		print_uint(t_lst *temp, unsigned long long nbr, int *w_p)
 	if (w_p[1] > 0)
 	{
 		prec_u(&str, temp, w_p);
-		if ((temp->flags[4] == '#' && !(str[0] == '0' && temp->type == 'o'))
+		if ((temp->flags[4] == '#' && !(str[0] == '0' && temp->type == 'o')
+		&& !(nbr == 0 && (temp->type == 'x' || temp->type == 'X')))
 		|| (nbr == 0 && flag[2] == 'p'))
 			str = add_zero(str, temp->type, -1);
 	}
+	if (nbr == 0 && flag[2] == 'p' && w_p[1] < 0)
+		str = add_zero(str, temp->type, -1);
 	if (w_p[0] != 0)
 		width_u(&str, temp, w_p, nbr);
 	if (w_p[0] == 0 && w_p[1] < 1 && temp->flags[4] == '#' && nbr != 0)
-		str = add_zero(str, temp->type, -1);
-	if (nbr == 0 && flag[2] == 'p' && w_p[1] < 0 && w_p[0] == 0)
 		str = add_zero(str, temp->type, -1);
 	ft_putstr(str);
 	len = (int)ft_strlen(str);

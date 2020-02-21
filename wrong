@@ -1,0 +1,76 @@
+Test 961 (x_prec_fits_zero_af) : FAILED.
+    First line of code: {return test("%#.3x", 0);}
+      expected output : "000"
+      your output     : "0x000"
+      expected (nonprintable as hex) : "000"
+      actual   (nonprintable as hex) : "0x000"
+
+Test 968 (x_prec_width_fit_fit_zero_af) : FAILED.
+    First line of code: {return test("%#8.5x", 0);}
+      expected output : "   00000"
+      your output     : " 0x00000"
+      expected (nonprintable as hex) : "   00000"
+      actual   (nonprintable as hex) : " 0x00000"
+
+Test 973 (x_prec_width_fit_fit_zero_lj_af) : FAILED.
+    First line of code: {return test("%#-8.5x", 0);}
+      expected output : "00000   "
+      your output     : "0x00000 "
+      expected (nonprintable as hex) : "00000   "
+      actual   (nonprintable as hex) : "0x00000 "
+
+Test 978 (x_prec_width_ff_zero_zp_af) : FAILED.
+    First line of code: {return test("%#08.5x", 0);}
+      expected output : "   00000"
+      your output     : " 0x00000"
+      expected (nonprintable as hex) : "   00000"
+      actual   (nonprintable as hex) : " 0x00000"
+
+Test 983 (x_prec_width_ff_zero_ljzpaf_ignoreflag) : FAILED.
+    First line of code: {return test("%#0-8.5x", 0);}
+      expected output : "00000   "
+      your output     : "0x00000 "
+      expected (nonprintable as hex) : "00000   "
+      actual   (nonprintable as hex) : "0x00000 "
+
+Test 1093 (X_prec_fits_zero_af) : FAILED.
+    First line of code: {return test("%#.3X", 0);}
+      expected output : "000"
+      your output     : "0X000"
+      expected (nonprintable as hex) : "000"
+      actual   (nonprintable as hex) : "0X000"
+
+Test 1100 (X_prec_width_fit_fit_zero_af) : FAILED.
+    First line of code: {return test("%#8.5X", 0);}
+      expected output : "   00000"
+      your output     : " 0X00000"
+      expected (nonprintable as hex) : "   00000"
+      actual   (nonprintable as hex) : " 0X00000"
+
+Test 1105 (X_prec_width_fit_fit_zero_lj_af) : FAILED.
+    First line of code: {return test("%#-8.5X", 0);}
+      expected output : "00000   "
+      your output     : "0X00000 "
+      expected (nonprintable as hex) : "00000   "
+      actual   (nonprintable as hex) : "0X00000 "
+
+Test 1110 (X_prec_width_ff_zero_zp_af) : FAILED.
+    First line of code: {return test("%#08.5X", 0);}
+      expected output : "   00000"
+      your output     : " 0X00000"
+      expected (nonprintable as hex) : "   00000"
+      actual   (nonprintable as hex) : " 0X00000"
+
+Test 1115 (X_prec_width_ff_zero_ljzpaf_ignoreflag) : FAILED.
+    First line of code: {return test("%#0-8.5X", 0);}
+      expected output : "00000   "
+      your output     : "0X00000 "
+      expected (nonprintable as hex) : "00000   "
+      actual   (nonprintable as hex) : "0X00000 "
+
+Test 1289 (p_ftfc_5w_throwswarning) : FAILED.
+    First line of code: {return test("%5p", 0);}
+      expected output : "  0x0"
+      your output     : "    0"
+      expected (nonprintable as hex) : "  0x0"
+      actual   (nonprintable as hex) : "    0"

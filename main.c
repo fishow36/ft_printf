@@ -13,6 +13,6 @@ int main(void)
 
  //   ft_printf("%#2o\n", 0);
  //   printf("%#2o\n", 0);
-    ft_printf("% +-3.3i", 6983);
-    printf("% +-3.3i", 6983);
+    ft_printf("%5.4p\n", 0);
+    printf("%5.4p\n", 0);
 }

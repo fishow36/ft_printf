@@ -15,3 +15,6 @@ make fclean
 cd ..
 
 gcc -g -Iincludes libftprintf.a fl_main.c -o ft_printf
+
+git clone https://github.com/gavinfielder/pft.git pft && echo "pft/" >> .gitignore
+cp printf_check/pft/results.txt printf
