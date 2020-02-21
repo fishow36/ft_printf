@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_for_floats.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprmk <kprmk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 23:02:56 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 01:36:44 by kprmk            ###   ########.fr       */
+/*   Updated: 2020/02/21 19:35:22 by mbrogg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	*str_from_db_after_loop(t_lan *i_db, t_lanch *f_db, char *res, int *ar)
 		free(f_db->num);
 	free(i_db);
 	free(f_db);
+	free(ar);
 	return (res);
 }
 
@@ -80,9 +81,13 @@ void	str_from_db_init(int pc, int sn, int idb_len, int **ar)
 char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 {
 	char	*res;
+	char	*temp;
 	int		*ar;
 
 	str_from_db_init(pc, sn, i_db->len, &ar);
+	// for (int i = 0; i < i_db->len; i++)
+	// 	printf("%d ", i_db->num[i]);
+	// printf("\n");
 	if (!(res = (char *)malloc(sizeof(char) * (i_db->len * 4 + sn + pc + 2))))
 		exit(1);
 	if (sn == 1)
@@ -95,10 +100,14 @@ char	*str_from_db(t_lan *i_db, t_lanch *f_db, int pc, int sn)
 				res[(ar[2])++] = 0 + '0';
 		else
 		{
-			ft_strcpy(res + ar[2], ft_itoa(i_db->num[ar[1]],
-				&ar[4]));
+			temp = ft_itoa(i_db->num[ar[1]], &ar[4]);
+			sn = 4 - ar[4];
+			while (sn-- > 0 && (ar[1]) != i_db->len - 1)
+				res[(ar[2])++] = '0';
+			ft_strcpy(res + ar[2], temp);
+			// printf("res -> %s\n", res);
+			free(temp);
 			ar[2] += ar[4];
-			res[ar[2]] = '\0';
 		}
 	}
 	return (str_from_db_after_loop(i_db, f_db, res, ar));

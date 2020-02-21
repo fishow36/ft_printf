@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   long_arithm_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
 /*   Updated: 2020/02/21 18:38:12 by eshor            ###   ########.fr       */
+=======
+/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/13 11:46:34 by mbrogg            #+#    #+#             */
+/*   Updated: 2020/02/21 19:05:05 by mbrogg           ###   ########.fr       */
+>>>>>>> b5021ce52f87db5a71d4308a190be93135dcd6f1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +79,11 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	int		len_str;
 	int		length;
 
+<<<<<<< HEAD
 //	printf("~%s\n", str);
 
+=======
+>>>>>>> b5021ce52f87db5a71d4308a190be93135dcd6f1
 	len_str = ft_strlen(str);
 	*res = create_lanch(*res, -1);
 	c = len_str - 1;
@@ -83,7 +93,10 @@ int		create_lanch_from_bitstr(t_lanch **res, char *str, int prec)
 	*res = change_lanch_rank(*res, c + 1);
 	len_str = c;
 	length = (*res)->len;
+<<<<<<< HEAD
 //	printf("length(res) %d\n", length);
+=======
+>>>>>>> b5021ce52f87db5a71d4308a190be93135dcd6f1
 	c = -1;
 	while (++c < len_str)
 		if (str[c] == '1')
