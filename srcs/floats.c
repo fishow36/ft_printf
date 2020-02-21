@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:08:36 by mbrogg            #+#    #+#             */
-/*   Updated: 2020/02/21 19:06:06 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 21:21:08 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_str_is_null_value(char *str)
 
 	len = ft_strlen(str);
 	c = 0;
-	while(c < len)
+	while (c < len)
 		if (str[c++] != '0')
 			return (1);
 	return (0);
@@ -46,7 +46,8 @@ char	*only_frac_input(char *frac, int *sh_pr_sg)
 		res[c++] = '.';
 	f = ft_str_is_null_value(frac);
 	while (sh_pr_sg[1]-- > 0)
-		res[c++] = (--f_db->len > -1 && f == 1) ? f_db->num[f_db->len] + '0': '0';
+		res[c++] = (--f_db->len > -1 && f == 1) ?
+		f_db->num[f_db->len] + '0' : '0';
 	res[c] = '\0';
 	free(f_db->num);
 	free(f_db);

@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:57:42 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/21 20:58:28 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 22:00:09 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int		print_lfloat(t_lst *temp, long double input, int *w_p)
 
 	if ((str = lfloat(input, w_p[1])) == NULL)
 		return (0);
+	if (ft_strlen(str) > 2 && !(str[1] >= '0' && str[1] <= '9'))
+		return (print_inf_nan(&str, w_p[0], temp));
 	if (temp->flags[4] == '#' && w_p[1] == 0)
 		str = add_dot(str);
 	if (w_p[0] > (int)ft_strlen(str))

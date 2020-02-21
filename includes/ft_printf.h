@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrogg <mbrogg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 19:16:26 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 22:39:38 by mbrogg           ###   ########.fr       */
+/*   Updated: 2020/02/21 21:56:55 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ void							prec_u(char **str, t_lst *temp, int *w_p);
 void							width_u(char **str, t_lst *temp, int *w_p,
 t_ulli nbr);
 
-int								print_uint(t_lst *temp,
-unsigned long long int nbr, int *w_p);
+int								print_uint(t_lst *t,
+unsigned long long int n, int *w_p);
 int								print_ulong(t_lst *temp,
 unsigned long nbr, int *w_p);
 int								print_ulong_long(t_lst *temp,
@@ -177,4 +177,5 @@ char							*add_zero(char *str, char type, int i);
 char							*ft_itoa_long(long long n);
 char							*ft_itoa_base(unsigned long long value,
 unsigned long long base);
+int								print_inf_nan(char **str, int w, t_lst *temp);
 #endif

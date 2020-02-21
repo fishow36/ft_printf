@@ -6,7 +6,7 @@
 /*   By: eshor <eshor@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:03:50 by eshor             #+#    #+#             */
-/*   Updated: 2020/02/20 23:51:46 by eshor            ###   ########.fr       */
+/*   Updated: 2020/02/21 21:05:47 by eshor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	add_s_or_p(char **str, t_lst *temp, long long int nbr)
 {
-	
 	if (temp->flags[1] == '+' && nbr >= 0)
 		*str = add_plus(*str, '+');
 	else if (temp->flags[3] == ' ' && nbr >= 0)

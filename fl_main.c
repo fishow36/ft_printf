@@ -1,6 +1,7 @@
 #include "ft_printf.h"
 
 #include <float.h>
+#include <math.h>
 
 int main()
 {
@@ -12,9 +13,10 @@ int main()
     long double test3 = 0.00000000;
     long double test4 = 0.00123456789;
 
-   ft_printf("our %#.16Lf\n", test2);
-    printf("std %#.16Lf\n", test2);
-
+//   ft_printf("our %#.16o\n", -875);
+    ft_printf("%+f\n", -875);
+    double dubb = NAN;
+    printf("%+f\n", dubb);
     // t_lan *tes;
 
     //             tes = power_of_two_lan(36);
